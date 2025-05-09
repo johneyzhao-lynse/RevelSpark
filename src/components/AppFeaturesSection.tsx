@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText, BrainCircuit, ListChecks, Sparkles, MindMap, Download } from 'lucide-react';
+import { FileText, BrainCircuit, ListChecks, Sparkles, MapPin as MindMap, Download } from 'lucide-react';
 
 interface AppFeaturesSectionProps {
   language: 'en' | 'zh';
