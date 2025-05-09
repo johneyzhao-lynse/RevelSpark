@@ -12,43 +12,51 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
     meetings: {
       icon: <Headphones />,
       title: 'Meetings',
-      description: 'Never miss a detail in your business meetings. Record, transcribe, and highlight key points automatically.'
+      description: 'Never miss a detail in your business meetings. Record, transcribe, and highlight key points automatically.',
+      screenshot: 'https://images.pexels.com/photos/13935615/pexels-photo-13935615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     },
     lectures: {
       icon: <Laptop />,
       title: 'Lectures',
-      description: 'Transform how you take notes in class. Focus on understanding rather than frantically writing everything down.'
+      description: 'Transform how you take notes in class. Focus on understanding rather than frantically writing everything down.',
+      screenshot: 'https://images.pexels.com/photos/13935620/pexels-photo-13935620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     },
     interviews: {
       icon: <PenTool />,
       title: 'Interviews',
-      description: 'Conduct interviews without distractions. Review and analyze responses with perfect transcriptions later.'
+      description: 'Conduct interviews without distractions. Review and analyze responses with perfect transcriptions later.',
+      screenshot: 'https://images.pexels.com/photos/13935616/pexels-photo-13935616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     },
     notes: {
       icon: <FileText />,
       title: 'Personal Notes',
-      description: 'Capture your thoughts on the go. Ideas, reminders, and inspirations are safely recorded and transcribed.'
+      description: 'Capture your thoughts on the go. Ideas, reminders, and inspirations are safely recorded and transcribed.',
+      screenshot: 'https://images.pexels.com/photos/13935618/pexels-photo-13935618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     }
   } : {
     meetings: {
       icon: <Headphones />,
       title: '会议',
-      description: '在您的商务会议中不会错过任何细节。自动记录、转写并突出显示要点。'
+      description: '在您的商务会议中不会错过任何细节。自动记录、转写并突出显示要点。',
+      screenshot: 'https://images.pexels.com/photos/13935615/pexels-photo-13935615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     },
     lectures: {
       icon: <Laptop />,
       title: '讲座',
-      description: '改变您在课堂上记笔记的方式。专注于理解，而不是疯狂地记录所有内容。'
+      description: '改变您在课堂上记笔记的方式。专注于理解，而不是疯狂地记录所有内容。',
+      screenshot: 'https://images.pexels.com/photos/13935620/pexels-photo-13935620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     },
     interviews: {
       icon: <PenTool />,
       title: '访谈',
-      description: '不受干扰地进行访谈。稍后通过完美的转录来审查和分析回复。'
+      description: '不受干扰地进行访谈。稍后通过完美的转录来审查和分析回复。',
+      screenshot: 'https://images.pexels.com/photos/13935616/pexels-photo-13935616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     },
     notes: {
       icon: <FileText />,
       title: '个人笔记',
-      description: '随时捕捉您的想法。想法、提醒和灵感都被安全地记录和转写。'
+      description: '随时捕捉您的想法。想法、提醒和灵感都被安全地记录和转写。',
+      screenshot: 'https://images.pexels.com/photos/13935618/pexels-photo-13935618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
     }
   };
 
@@ -100,57 +108,13 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
                   </div>
                 </div>
 
-                {/* Use case visualization */}
-                <div className="mt-8 bg-white rounded-xl p-6 shadow-sm">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center">
-                      <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
-                        L
-                      </div>
-                      <div className="ml-3">
-                        <p className="font-medium text-gray-900">Lynse Recorder</p>
-                        <p className="text-xs text-gray-500">
-                          {language === 'en' ? 'Just now' : '刚刚'}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="text-sm text-blue-600 font-medium">
-                      {language === 'en' ? 'AI Generated' : 'AI 生成'}
-                    </div>
-                  </div>
-
-                  <div className="border-l-2 border-blue-200 pl-4 ml-5 mt-2">
-                    <p className="text-gray-700 mb-2">
-                      {language === 'en'
-                        ? "Today's meeting covered the Q3 marketing strategy. Key points:"
-                        : "今天的会议涵盖了第三季度营销策略。关键点："}
-                    </p>
-                    <ul className="list-disc list-inside text-gray-600 space-y-1 text-sm">
-                      <li>
-                        {language === 'en'
-                          ? "Increase social media budget by 15%"
-                          : "社交媒体预算增加15%"}
-                      </li>
-                      <li>
-                        {language === 'en'
-                          ? "Launch new campaign on September 15th"
-                          : "9月15日推出新活动"}
-                      </li>
-                      <li>
-                        {language === 'en'
-                          ? "Focus on Gen Z demographic for Q4"
-                          : "第四季度专注于Z世代人群"}
-                      </li>
-                    </ul>
-                    <div className="flex justify-between items-center mt-4 text-sm">
-                      <div className="flex items-center text-blue-600">
-                        <span>
-                          {language === 'en' ? "Full transcript >" : "完整转写 >"}
-                        </span>
-                      </div>
-                      <div className="text-gray-500">12:42 PM</div>
-                    </div>
-                  </div>
+                {/* App Screenshot */}
+                <div className="mt-8 rounded-xl overflow-hidden shadow-lg">
+                  <img
+                    src={tabs[activeTab].screenshot}
+                    alt={`${tabs[activeTab].title} screenshot`}
+                    className="w-full h-auto object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -181,8 +145,8 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
                         </div>
                         <div className="w-3/4 h-1 bg-blue-100 rounded-full mt-2"></div>
                         <div className="w-1/2 h-1 bg-blue-100 rounded-full mt-3"></div>
-                        <div className="font-bold text-blue-600 mt-6">lynse</div>
-                        <div className="text-xs text-gray-500">记易</div>
+                        <div className="font-bold text-blue-600 mt-6">DtingNote</div>
+                        <div className="text-xs text-gray-500">谛听记</div>
                       </div>
                     </div>
                   </div>
@@ -205,5 +169,3 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
     </section>
   );
 };
-
-export default ProductSection;

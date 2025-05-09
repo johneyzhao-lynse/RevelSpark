@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from './ui/Link';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, Apple, Android } from 'lucide-react';
 
 interface FooterProps {
   language: 'en' | 'zh';
@@ -17,16 +17,16 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
           <div>
             <div className="flex items-center mb-4">
               <span className="font-bold text-2xl bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-                lynse
+                DtingNote
               </span>
-              <span className="ml-1 text-sm text-gray-400">记易</span>
+              <span className="ml-1 text-sm text-gray-400">谛听记</span>
             </div>
             <p className="text-gray-400 mb-4">
               {language === 'en'
                 ? 'Transforming speech into valuable information with AI-powered technology.'
                 : '利用AI技术将语音转化为有价值的信息。'}
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mb-6">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
                 <Facebook size={20} />
               </a>
@@ -38,6 +38,26 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
               </a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors">
                 <Linkedin size={20} />
+              </a>
+            </div>
+            <div className="flex space-x-4">
+              <a
+                href="https://apps.apple.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 transition-colors px-4 py-2 rounded-lg"
+              >
+                <Apple size={20} />
+                <span>{language === 'en' ? 'App Store' : 'App Store'}</span>
+              </a>
+              <a
+                href="https://play.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 bg-gray-800 hover:bg-gray-700 transition-colors px-4 py-2 rounded-lg"
+              >
+                <Android size={20} />
+                <span>{language === 'en' ? 'Play Store' : '安卓商店'}</span>
               </a>
             </div>
           </div>
@@ -119,7 +139,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
               <div className="flex items-start">
                 <Mail className="text-gray-400 mr-3 mt-1" size={18} />
                 <div>
-                  <p className="text-gray-400">contact@lynseai.com</p>
+                  <p className="text-gray-400">contact@dtingnote.com</p>
                 </div>
               </div>
               <div className="flex items-start">
@@ -146,7 +166,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
 
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-500 mb-4 md:mb-0">
-            © {year} Lynse AI. {language === 'en' ? 'All rights reserved.' : '保留所有权利。'}
+            © {year} DtingNote AI. {language === 'en' ? 'All rights reserved.' : '保留所有权利。'}
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-sm text-gray-500 hover:text-gray-400">
@@ -164,5 +184,3 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
     </footer>
   );
 };
-
-export default Footer;

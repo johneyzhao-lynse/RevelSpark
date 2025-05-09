@@ -41,9 +41,9 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <div className="flex items-center">
           <span className="font-bold text-2xl bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-            lynse
+            DtingNote
           </span>
-          <span className="ml-1 text-sm text-gray-500">记易</span>
+          <span className="ml-1 text-sm text-gray-500">谛听记</span>
         </div>
 
         {/* Desktop Navigation */}
@@ -131,5 +131,3 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {
     </header>
   );
 };
-
-export default Header;
