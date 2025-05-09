@@ -131,3 +131,5 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {
     </header>
   );
 };
+
+export default Header

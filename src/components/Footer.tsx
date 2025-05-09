@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from './ui/Link';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, Apple, Android } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, Apple, Cuboid as Android } from 'lucide-react';
 
 interface FooterProps {
   language: 'en' | 'zh';
@@ -184,3 +184,5 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
     </footer>
   );
 };
+
+export default Footer

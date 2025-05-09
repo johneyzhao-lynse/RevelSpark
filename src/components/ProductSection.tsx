@@ -169,3 +169,5 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
     </section>
   );
 };
+
+export default ProductSection
