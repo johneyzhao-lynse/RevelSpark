@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import ProductSection from './components/ProductSection';
+import AppFeaturesSection from './components/AppFeaturesSection';
 import FeaturesSection from './components/FeaturesSection';
 import SpecsSection from './components/SpecsSection';
 import TestimonialsSection from './components/TestimonialsSection';
@@ -35,6 +36,7 @@ function App() {
       <Header language={language} onLanguageChange={handleLanguageChange} />
       <HeroSection language={language} />
       <ProductSection language={language} />
+      <AppFeaturesSection language={language} />
       <FeaturesSection language={language} />
       <SpecsSection language={language} />
       <TestimonialsSection language={language} />
