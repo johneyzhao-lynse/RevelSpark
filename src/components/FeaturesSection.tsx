@@ -139,7 +139,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
           <div className="w-full lg:w-1/2 sticky top-24">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               <img 
-                src="/dist/images/recording-card.png" 
+                src="./images/recording-card.png" 
                 alt={language === 'en' ? 'Lynse AI Recording Card' : 'Lynse AI 录音卡'}
                 className="w-full h-auto object-contain"
               />

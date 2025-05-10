@@ -13,50 +13,50 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
       icon: <Headphones />,
       title: 'Meetings',
       description: 'Never miss a detail in your business meetings. Record, transcribe, and highlight key points automatically.',
-      screenshot: "/images/product/meetings.png"
+      screenshot: "./images/product/meetings.png"
     },
     lectures: {
       icon: <Laptop />,
       title: 'Calls',
       description: 'Press close to phone, use built-in VPU microphone to capture and store call content in real-time.',
-      screenshot: "/dist/images/product/calls.png"
+      screenshot: "./images/product/calls.png"
     },
     interviews: {
       icon: <PenTool />,
       title: 'Interviews',
       description: 'Conduct interviews without distractions. Review and analyze responses with perfect transcriptions later.',
-      screenshot: "/dist/images/product/sales.png"
+      screenshot: "./images/product/sales.png"
     },
     notes: {
       icon: <FileText />,
       title: 'Personal Notes',
       description: 'Capture your thoughts on the go. Ideas, reminders, and inspirations are safely recorded and transcribed.',
-      screenshot: "/dist/images/product/todolist.png"
+      screenshot: "./images/product/todolist.png"
     }
   } : {
     meetings: {
       icon: <Headphones />,
       title: '会议',
       description: '在您的商务会议中不会错过任何细节。自动记录、转写并突出显示要点。',
-      screenshot: "/dist/images/product/meetings.png"
+      screenshot: "./images/product/meetings.png"
     },
     lectures: {
       icon: <PhoneCall />,
       title: '通话',
       description: '紧贴手机，通过内置的VPU麦克风，实时获取对方通话内容存储到卡片中。',
-      screenshot: "/dist/images/product/calls.png"
+      screenshot: "./images/product/calls.png"
     },
     interviews: {
       icon: <PenTool />,
       title: '销售访谈',
       description: '销售不受干扰地进行访谈。稍后通过完美的转录来审查和分析人群画像和购买意愿。',
-      screenshot: "/dist/images/product/sales.png"
+      screenshot: "./images/product/sales.png"
     },
     notes: {
       icon: <FileText />,
       title: '个人笔记',
       description: '随时捕捉您的想法。想法、提醒和灵感都被安全地记录和转写。',
-      screenshot: "/dist/images/product/todolist.png"
+      screenshot: "./images/product/todolist.png"
     }
   };
 

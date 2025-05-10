@@ -11,38 +11,38 @@ const AppFeaturesSection: React.FC<AppFeaturesSectionProps> = ({ language }) => 
       icon: <FileText className="w-12 h-12 text-blue-600" />,
       title: "Speech to Text",
       description: "Advanced AI-powered transcription with support for 30+ languages and real-time processing.",
-      screenshot: "/dist/images/features/stt-demo.png"
+      screenshot: "./images/features/stt-demo.png"
     },
     {
       icon: <Sparkles className="w-12 h-12 text-blue-600" />,
       title: "Smart Synopsis",
       description: "Get intelligent overviews of long recordings, with important topics and discussions highlighted.",
-      screenshot: "/dist/images/features/summary-demo.png"
+      screenshot: "./images/features/summary-demo.png"
     },
     {
       icon: <ListChecks className="w-12 h-12 text-blue-600" />,
       title: "Action Items Extraction",
       description: "Automatically identify and list action items, deadlines, and assignments from your recordings.",
-      screenshot: "/dist/images/features/stt-demo.png"
+      screenshot: "./images/features/stt-demo.png"
     }
   ] : [
     {
       icon: <FileText className="w-12 h-12 text-blue-600" />,
       title: "语音转文字",
       description: "支持30多种语言的高级AI驱动转录，实时处理。",
-      screenshot: "/dist/images/features/stt-demo.png"
+      screenshot: "./images/features/stt-demo.png"
     },
     {
       icon: <Sparkles className="w-12 h-12 text-blue-600" />,
       title: "智能概要",
       description: "获取长录音的智能概览，突出显示重要主题和讨论。",
-      screenshot: "/dist/images/features/summary-demo.png"
+      screenshot: "./images/features/summary-demo.png"
     },
     {
       icon: <ListChecks className="w-12 h-12 text-blue-600" />,
       title: "行动项目提取",
       description: "自动识别并列出录音中的行动项目、截止日期和任务分配。",
-      screenshot: "/dist/images/features/stt-demo.png"
+      screenshot: "./images/features/stt-demo.png"
     }
   ];
 
