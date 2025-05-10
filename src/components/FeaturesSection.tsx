@@ -65,16 +65,6 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
       icon: <Lock size={20} />,
       title: "Privacy First",
       description: "Your data stays on the device with optional cloud backup, giving you complete control over your privacy."
-    },
-    {
-      icon: <Wifi size={20} />,
-      title: "Bluetooth 5.2",
-      description: "Latest Bluetooth technology ensures stable connections and lower power consumption."
-    },
-    {
-      icon: <Smartphone size={20} />,
-      title: "Companion App",
-      description: "Control, organize, and edit your recordings with our intuitive mobile application."
     }
   ] : [
     {
@@ -84,13 +74,13 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
     },
     {
       icon: <Mic size={20} />,
-      title: "水晶般清晰的音频",
+      title: "内置多麦克风降噪算法",
       description: "采用降噪技术捕捉高质量音频，每次都能获得完美录音。"
     },
     {
       icon: <Zap size={20} />,
       title: "超长电池寿命",
-      description: "单次充电可持续录制长达12小时，让您永不错过重要时刻。"
+      description: "单次充电可持续录制长达30小时，让您永不错过重要时刻。"
     },
     {
       icon: <Share2 size={20} />,
@@ -100,7 +90,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
     {
       icon: <Languages size={20} />,
       title: "多语言支持",
-      description: "以令人印象深刻的准确性和自然措辞，转写和翻译超过30种语言。"
+      description: "以令人印象深刻的准确性和自然措辞，转写和翻译超过70种语言。"
     },
     {
       icon: <Lock size={20} />,
@@ -133,17 +123,29 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <FeatureCard
-              key={index}
-              icon={feature.icon}
-              title={feature.title}
-              description={feature.description}
-              index={index}
-            />
-          ))}
-        </div>
+        <div className="flex flex-col lg:flex-row gap-12 items-start">
+          <div className="w-full lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {features.slice(0, 6).map((feature, index) => (
+              <FeatureCard
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+                index={index}
+              />
+            ))}
+          </div>
+          
+          <div className="w-full lg:w-1/2 sticky top-24">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <img 
+                src="/dist/images/recording-card.png" 
+                alt={language === 'en' ? 'Lynse AI Recording Card' : 'Lynse AI 录音卡'}
+                className="w-full h-auto object-contain"
+              />
+            </div>
+          </div>
+      </div>
       </div>
 
       <style jsx>{`

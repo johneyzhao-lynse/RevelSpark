@@ -29,18 +29,18 @@ const SpecsSection: React.FC<SpecsSectionProps> = ({ language }) => {
     { icon: <Battery size={20} />, title: "Battery Life", value: "Up to 12 hours recording" },
     { icon: <Memory size={20} />, title: "Storage", value: "32GB internal storage" },
     { icon: <Clock size={20} />, title: "Charging Time", value: "1.5 hours to full charge" },
-    { icon: <MonitorSmartphone size={20} />, title: "Compatibility", value: "iOS, Android, Windows, macOS" },
+    { icon: <MonitorSmartphone size={20} />, title: "Compatibility", value: "iOS, Android" },
     { icon: <Globe size={20} />, title: "Languages", value: "30+ languages supported" },
     { icon: <Volume2 size={20} />, title: "Microphone", value: "Dual-array with noise cancellation" },
     { icon: <Cpu size={20} />, title: "Processor", value: "Dedicated AI chip for on-device processing" }
   ] : [
-    { icon: <Bluetooth size={20} />, title: "连接方式", value: "蓝牙5.2，USB-C" },
-    { icon: <Battery size={20} />, title: "电池寿命", value: "最长12小时录制" },
+    { icon: <Bluetooth size={20} />, title: "连接方式", value: "蓝牙5.2和WIFI4快速传输" },
+    { icon: <Battery size={20} />, title: "电池寿命", value: "最长30+小时录制" },
     { icon: <Memory size={20} />, title: "存储", value: "32GB内部存储" },
     { icon: <Clock size={20} />, title: "充电时间", value: "1.5小时充满" },
-    { icon: <MonitorSmartphone size={20} />, title: "兼容性", value: "iOS、Android、Windows、macOS" },
-    { icon: <Globe size={20} />, title: "语言", value: "支持30多种语言" },
-    { icon: <Volume2 size={20} />, title: "麦克风", value: "双阵列，带降噪功能" },
+    { icon: <MonitorSmartphone size={20} />, title: "兼容性", value: "iOS、Android" },
+    { icon: <Globe size={20} />, title: "语言", value: "支持70多种语言" },
+    { icon: <Volume2 size={20} />, title: "麦克风", value: "四麦克风阵列，通话/会议模式切换，带降噪功能" },
     { icon: <Cpu size={20} />, title: "处理器", value: "专用AI芯片，用于设备内处理" }
   ];
 
