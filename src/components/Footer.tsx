@@ -139,13 +139,13 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
               <div className="flex items-start">
                 <Mail className="text-gray-400 mr-3 mt-1" size={18} />
                 <div>
-                  <p className="text-gray-400">contact@dtingnote.com</p>
+                  <p className="text-gray-400">contact@lynse-ai.com</p>
                 </div>
               </div>
               <div className="flex items-start">
                 <Phone className="text-gray-400 mr-3 mt-1" size={18} />
                 <div>
-                  <p className="text-gray-400">+1 (888) 123-4567</p>
+                  <p className="text-gray-400">+1 (86) 15618981688</p>
                 </div>
               </div>
             </div>

@@ -27,8 +27,8 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, ind
         {icon}
       </div>
       <div className="ml-2 mt-2">
-        <h3 className="text-xl font-bold text-gray-900 mt-4 mb-3">{title}</h3>
-        <p className="text-gray-600">{description}</p>
+        <h3 className="text-lg font-medium text-gray-800 mt-4 mb-3 leading-snug">{title}</h3>
+        <p className="text-gray-700 leading-normal">{description}</p>
       </div>
     </div>
   );
@@ -123,10 +123,10 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
     <section id="features" className="py-24 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4 leading-tight">
             {language === 'en' ? 'Smart Features for Smart Recording' : '智能录音的智能特性'}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base text-gray-700 max-w-2xl mx-auto leading-relaxed">
             {language === 'en' 
               ? 'Experience the future of audio recording with features designed to transform how you capture and use spoken words.' 
               : '体验录音的未来，这些功能旨在改变您捕捉和使用口语的方式。'}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Headphones, Laptop, PenTool, FileText } from 'lucide-react';
+import { Headphones, Laptop, PenTool, FileText, PhoneCall } from 'lucide-react';
 
 interface ProductSectionProps {
   language: 'en' | 'zh';
@@ -13,19 +13,19 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
       icon: <Headphones />,
       title: 'Meetings',
       description: 'Never miss a detail in your business meetings. Record, transcribe, and highlight key points automatically.',
-      screenshot: 'https://images.pexels.com/photos/13935615/pexels-photo-13935615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      screenshot: "/images/product/meetings.png"
     },
     lectures: {
       icon: <Laptop />,
-      title: 'Lectures',
-      description: 'Transform how you take notes in class. Focus on understanding rather than frantically writing everything down.',
-      screenshot: 'https://images.pexels.com/photos/13935620/pexels-photo-13935620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      title: 'Calls',
+      description: 'Press close to phone, use built-in VPU microphone to capture and store call content in real-time.',
+      screenshot: "/images/product/calls.png"
     },
     interviews: {
       icon: <PenTool />,
       title: 'Interviews',
       description: 'Conduct interviews without distractions. Review and analyze responses with perfect transcriptions later.',
-      screenshot: 'https://images.pexels.com/photos/13935616/pexels-photo-13935616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      screenshot: "/images/product/sales.png"
     },
     notes: {
       icon: <FileText />,
@@ -38,19 +38,19 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
       icon: <Headphones />,
       title: '会议',
       description: '在您的商务会议中不会错过任何细节。自动记录、转写并突出显示要点。',
-      screenshot: 'https://images.pexels.com/photos/13935615/pexels-photo-13935615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      screenshot: "/images/product/meetings.png"
     },
     lectures: {
-      icon: <Laptop />,
-      title: '讲座',
-      description: '改变您在课堂上记笔记的方式。专注于理解，而不是疯狂地记录所有内容。',
-      screenshot: 'https://images.pexels.com/photos/13935620/pexels-photo-13935620.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      icon: <PhoneCall />,
+      title: '通话',
+      description: '紧贴手机，通过内置的VPU麦克风，实时获取对方通话内容存储到卡片中。',
+      screenshot: "/images/product/calls.png"
     },
     interviews: {
       icon: <PenTool />,
-      title: '访谈',
-      description: '不受干扰地进行访谈。稍后通过完美的转录来审查和分析回复。',
-      screenshot: 'https://images.pexels.com/photos/13935616/pexels-photo-13935616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      title: '销售访谈',
+      description: '销售不受干扰地进行访谈。稍后通过完美的转录来审查和分析人群画像和购买意愿。',
+      screenshot: "/images/product/sales.png"
     },
     notes: {
       icon: <FileText />,
@@ -64,10 +64,10 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
     <section id="product" className="py-24 overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4 leading-tight">
             {language === 'en' ? 'One Device, Endless Possibilities' : '一台设备，无限可能'}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base text-gray-700 max-w-2xl mx-auto leading-relaxed">
             {language === 'en'
               ? 'Designed for professionals, students, journalists, and anyone who values efficient and accurate speech capture.'
               : '专为专业人士、学生、记者和任何重视高效、准确语音捕捉的人设计。'}
@@ -103,8 +103,8 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
                     {tabs[activeTab].icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{tabs[activeTab].title}</h3>
-                    <p className="text-gray-600">{tabs[activeTab].description}</p>
+                    <h3 className="text-lg font-medium text-gray-800 mb-2 leading-snug">{tabs[activeTab].title}</h3>
+                    <p className="text-gray-700 leading-normal">{tabs[activeTab].description}</p>
                   </div>
                 </div>
 

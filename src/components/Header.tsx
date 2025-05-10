@@ -48,19 +48,19 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link href="#product" className={isScrolled ? 'text-gray-800' : 'text-white'}>
+          <Link href="#product" className={`${isScrolled ? 'text-gray-800' : 'text-white'} text-base font-bold`}>
             {language === 'en' ? 'Product' : '产品'}
           </Link>
-          <Link href="#features" className={isScrolled ? 'text-gray-800' : 'text-white'}>
+          <Link href="#features" className={`${isScrolled ? 'text-gray-800' : 'text-white'} text-base font-bold`}>
             {language === 'en' ? 'Features' : '特性'}
           </Link>
-          <Link href="#specs" className={isScrolled ? 'text-gray-800' : 'text-white'}>
+          <Link href="#specs" className={`${isScrolled ? 'text-gray-800' : 'text-white'} text-base font-bold`}>
             {language === 'en' ? 'Specs' : '规格'}
           </Link>
-          <Link href="#testimonials" className={isScrolled ? 'text-gray-800' : 'text-white'}>
+          <Link href="#testimonials" className={`${isScrolled ? 'text-gray-800' : 'text-white'} text-base font-bold`}>
             {language === 'en' ? 'Reviews' : '评价'}
           </Link>
-          <Link href="#faq" className={isScrolled ? 'text-gray-800' : 'text-white'}>
+          <Link href="#faq" className={`${isScrolled ? 'text-gray-800' : 'text-white'} text-base font-bold`}>
             {language === 'en' ? 'FAQ' : '常见问题'}
           </Link>
           <button

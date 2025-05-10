@@ -16,8 +16,8 @@ const SpecItem: React.FC<SpecItemProps> = ({ icon, title, value }) => {
     <div className="flex items-start p-4 border-b border-gray-100 group hover:bg-blue-50 transition-colors rounded-lg">
       <div className="text-blue-600 mr-4 mt-1">{icon}</div>
       <div>
-        <h4 className="text-sm font-medium text-gray-500">{title}</h4>
-        <p className="text-base font-semibold text-gray-900">{value}</p>
+        <h4 className="text-xs font-medium text-gray-600 leading-tight">{title}</h4>
+        <p className="text-sm font-bold text-gray-800 leading-snug">{value}</p>
       </div>
     </div>
   );
@@ -48,10 +48,10 @@ const SpecsSection: React.FC<SpecsSectionProps> = ({ language }) => {
     <section id="specs" className="py-24 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4 leading-tight">
             {language === 'en' ? 'Technical Specifications' : '技术规格'}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base text-gray-700 max-w-2xl mx-auto leading-relaxed">
             {language === 'en'
               ? 'Powerful hardware combined with innovative software delivers exceptional performance.'
               : '强大的硬件与创新的软件相结合，提供卓越的性能。'}
@@ -60,10 +60,10 @@ const SpecsSection: React.FC<SpecsSectionProps> = ({ language }) => {
 
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md overflow-hidden">
           <div className="p-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
-            <h3 className="text-2xl font-bold">
+            <h3 className="text-2xl font-bold text-white">
               {language === 'en' ? 'Lynse AI Recording Card' : 'Lynse AI 录音卡'}
             </h3>
-            <p className="opacity-80">
+            <p className="text-light-secondary opacity-90">
               {language === 'en' ? 'Detailed specifications' : '详细规格'}
             </p>
           </div>

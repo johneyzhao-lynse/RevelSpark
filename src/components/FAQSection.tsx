@@ -14,20 +14,22 @@ interface FAQItemProps {
 
 const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isOpen, toggleOpen }) => {
   return (
-    <div className="border-b border-gray-200 last:border-0">
+    <div className="border-b border-gray-200 last:border-0 transition-all duration-300">
       <button
-        className="flex justify-between items-center w-full py-4 text-left"
+        className="flex justify-between items-center w-full px-6 py-5 text-left hover:bg-light-secondary transition-all duration-300 group"
         onClick={toggleOpen}
         aria-expanded={isOpen}
       >
-        <h3 className="text-lg font-medium text-gray-900">{question}</h3>
-        {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-      </button>
-      {isOpen && (
-        <div className="pb-4 pr-4">
-          <p className="text-gray-600">{answer}</p>
+        <h3 className="text-base font-medium text-dark leading-snug group-hover:text-primary transition-colors duration-300">{question}</h3>
+        <div className={`ml-4 transition-colors duration-300 ${isOpen ? 'text-primary' : 'text-dark-secondary group-hover:text-primary'}`}>
+          {isOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
         </div>
-      )}
+      </button>
+      <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
+        <div className="px-6 pb-6 pt-2">
+          <p className="text-dark-secondary leading-relaxed">{answer}</p>
+        </div>
+      </div>
     </div>
   );
 };
@@ -92,13 +94,13 @@ const FAQSection: React.FC<FAQSectionProps> = ({ language }) => {
   ];
 
   return (
-    <section id="faq" className="py-24 bg-gray-50">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="faq" className="py-18 bg-light-secondary">
+      <div className="container mx-auto px-6 md:px-18">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl md:text-3xl font-semibold text-dark mb-4 leading-tight">
             {language === 'en' ? 'Frequently Asked Questions' : '常见问题'}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base text-dark-secondary max-w-2xl mx-auto leading-relaxed">
             {language === 'en'
               ? 'Find answers to common questions about the Lynse AI recording card.'
               : '查找有关Lynse AI录音卡的常见问题的答案。'}
@@ -106,7 +108,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({ language }) => {
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-md overflow-hidden">
+          <div className="bg-light rounded-4xl shadow-md hover:shadow-hover transition-shadow duration-300 overflow-hidden divide-y divide-gray-200">
             {faqs.map((faq, index) => (
               <FAQItem
                 key={index}
@@ -118,15 +120,15 @@ const FAQSection: React.FC<FAQSectionProps> = ({ language }) => {
             ))}
           </div>
 
-          <div className="mt-8 text-center">
-            <p className="text-gray-600">
+          <div className="mt-10 text-center">
+            <p className="text-dark-secondary leading-normal">
               {language === 'en'
                 ? "Don't see your question here?"
                 : "没有看到您的问题？"}
             </p>
             <a
               href="#contact"
-              className="text-blue-600 font-medium hover:underline inline-flex items-center"
+              className="text-primary font-medium hover:text-mint transition-colors duration-300 inline-flex items-center"
             >
               {language === 'en' ? 'Contact us' : '联系我们'} <ChevronDown size={16} className="ml-1 mt-1" />
             </a>

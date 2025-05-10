@@ -11,7 +11,7 @@ import CTASection from './components/CTASection';
 import Footer from './components/Footer';
 
 function App() {
-  const [language, setLanguage] = useState<'en' | 'zh'>('en');
+  const [language, setLanguage] = useState<'en' | 'zh'>('zh');
 
   // Update page title based on language
   React.useEffect(() => {
