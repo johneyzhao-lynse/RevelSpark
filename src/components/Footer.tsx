@@ -118,7 +118,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
                 </a>
               </li>
               <li>
-                <a href="/policy/privacy-policy.html" className="text-gray-400 hover:text-white">
+                <a href="/public/policy/privacy-policy.html" className="text-gray-400 hover:text-white">
                   {language === 'en' ? 'Privacy Policy' : '隐私政策'}
                 </a>
               </li>
