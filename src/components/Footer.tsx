@@ -118,7 +118,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white">
+                <a href="/policy/privacy-policy.html" className="text-gray-400 hover:text-white">
                   {language === 'en' ? 'Privacy Policy' : '隐私政策'}
                 </a>
               </li>
@@ -169,7 +169,7 @@ const Footer: React.FC<FooterProps> = ({ language }) => {
             © {year} DtingNote AI. {language === 'en' ? 'All rights reserved.' : '保留所有权利。'}
           </p>
           <div className="flex space-x-6">
-            <a href="#" className="text-sm text-gray-500 hover:text-gray-400">
+            <a href="/policy/privacy-policy.html" className="text-sm text-gray-500 hover:text-gray-400">
               {language === 'en' ? 'Privacy Policy' : '隐私政策'}
             </a>
             <a href="#" className="text-sm text-gray-500 hover:text-gray-400">
