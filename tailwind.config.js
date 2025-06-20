@@ -29,7 +29,12 @@ export default {
     },
     extend: {
       colors: {
-        primary: '#2A5CFF', // 科技蓝（强调色）
+        primary: '#1A6DFF', // logo主蓝
+        secondary: '#19E0E6', // logo主青
+        lightblue: '#F4F9FF', // 极浅蓝灰
+        paleblue: '#E6F7FB', // 淡青蓝
+        accent: '#005AE0', // 深蓝
+        cyanaccent: '#13C2C2', // 亮青
         mint: '#00C4A7',   // 薄荷绿（AI交互部分）
         dark: {
           DEFAULT: '#212529', // 深灰色（标题）
@@ -81,6 +86,10 @@ export default {
           },
         },
       },
+      gradientColorStops: theme => ({
+        'logo-blue': '#1A6DFF',
+        'logo-cyan': '#19E0E6',
+      }),
     },
   },
   plugins: [],

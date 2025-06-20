@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { Link } from './ui/Link';
 
@@ -7,7 +7,7 @@ interface HeaderProps {
   onLanguageChange: (language: 'en' | 'zh') => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {
+const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -19,108 +19,96 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {
         setIsScrolled(false);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const toggleLanguage = () => {
-    onLanguageChange(language === 'en' ? 'zh' : 'en');
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleLanguage = () => onLanguageChange(language === 'en' ? 'zh' : 'en');
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'
+        isScrolled ? 'bg-white/70 shadow-lg backdrop-blur-xl border-b border-lightblue py-2' : 'bg-gradient-to-b from-lightblue to-white/80 py-6'
       }`}
+      style={{ boxShadow: isScrolled ? '0 4px 24px 0 rgba(26,109,255,0.08)' : 'none' }}
     >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
-        <div className="flex items-center">
-          <span className="font-bold text-2xl bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-            DtingNote
-          </span>
-          <span className="ml-1 text-sm text-gray-500">谛听记</span>
+      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+        <div className="flex items-center select-none">
+          <img src="/images/logo.png" alt="lynse logo" className="max-w-[150px] h-[45px] w-auto object-contain mr-3" />
         </div>
-
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <Link href="#product" className={`${isScrolled ? 'text-gray-800' : 'text-white'} text-base font-bold`}>
+        <nav className="hidden md:flex items-center space-x-10">
+          <Link href="#product" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
             {language === 'en' ? 'Product' : '产品'}
           </Link>
-          <Link href="#features" className={`${isScrolled ? 'text-gray-800' : 'text-white'} text-base font-bold`}>
+          <Link href="#features" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
             {language === 'en' ? 'Features' : '特性'}
           </Link>
-          <Link href="#specs" className={`${isScrolled ? 'text-gray-800' : 'text-white'} text-base font-bold`}>
+          <Link href="#specs" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
             {language === 'en' ? 'Specs' : '规格'}
           </Link>
-          <Link href="#testimonials" className={`${isScrolled ? 'text-gray-800' : 'text-white'} text-base font-bold`}>
+          <Link href="#testimonials" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
             {language === 'en' ? 'Reviews' : '评价'}
           </Link>
-          <Link href="#faq" className={`${isScrolled ? 'text-gray-800' : 'text-white'} text-base font-bold`}>
+          <Link href="#faq" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
             {language === 'en' ? 'FAQ' : '常见问题'}
           </Link>
           <button
-            className="flex items-center text-sm font-medium bg-transparent"
+            className="flex items-center text-base font-medium bg-transparent px-2 py-1 rounded-lg hover:bg-lightblue/60 transition-all"
             onClick={toggleLanguage}
+            aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
           >
-            <Globe size={16} className={`mr-1 ${isScrolled ? 'text-gray-800' : 'text-white'}`} />
-            <span className={isScrolled ? 'text-gray-800' : 'text-white'}>
-              {language === 'en' ? 'EN / 中文' : '中文 / EN'}
-            </span>
+            <Globe size={18} className="mr-1 text-primary" />
+            <span className="text-primary">{language === 'en' ? 'EN / 中文' : '中文 / EN'}</span>
           </button>
           <Link
             href="#buy"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-all"
+            className="bg-gradient-to-r from-logo-blue to-logo-cyan hover:from-accent hover:to-cyanaccent text-white px-7 py-2 rounded-full text-lg font-bold shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-logo-blue"
           >
             {language === 'en' ? 'Buy Now' : '立即购买'}
           </Link>
         </nav>
-
         {/* Mobile Menu Button */}
         <div className="flex items-center md:hidden">
           <button
             onClick={toggleLanguage}
-            className="mr-4"
+            className="mr-2 p-2 rounded-full hover:bg-lightblue/60 transition-all"
             aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
           >
-            <Globe size={20} className={isScrolled ? 'text-gray-800' : 'text-white'} />
+            <Globe size={22} className="text-primary" />
           </button>
-          <button onClick={toggleMenu} aria-label="Toggle menu">
+          <button onClick={toggleMenu} aria-label="Toggle menu" className="p-2 rounded-full hover:bg-lightblue/60 transition-all">
             {isMenuOpen ? (
-              <X size={24} className="text-gray-800" />
+              <X size={28} className="text-primary" />
             ) : (
-              <Menu size={24} className={isScrolled ? 'text-gray-800' : 'text-white'} />
+              <Menu size={28} className="text-primary" />
             )}
           </button>
         </div>
       </div>
-
       {/* Mobile Navigation Dropdown */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg">
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <Link href="#product" className="text-gray-800 font-medium" onClick={toggleMenu}>
+        <div className="md:hidden bg-white/95 shadow-xl backdrop-blur-md rounded-b-2xl">
+          <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col space-y-4">
+            <Link href="#product" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
               {language === 'en' ? 'Product' : '产品'}
             </Link>
-            <Link href="#features" className="text-gray-800 font-medium" onClick={toggleMenu}>
+            <Link href="#features" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
               {language === 'en' ? 'Features' : '特性'}
             </Link>
-            <Link href="#specs" className="text-gray-800 font-medium" onClick={toggleMenu}>
+            <Link href="#specs" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
               {language === 'en' ? 'Specs' : '规格'}
             </Link>
-            <Link href="#testimonials" className="text-gray-800 font-medium" onClick={toggleMenu}>
+            <Link href="#testimonials" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
               {language === 'en' ? 'Reviews' : '评价'}
             </Link>
-            <Link href="#faq" className="text-gray-800 font-medium" onClick={toggleMenu}>
+            <Link href="#faq" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
               {language === 'en' ? 'FAQ' : '常见问题'}
             </Link>
             <Link
               href="#buy"
-              className="bg-blue-600 hover:bg-blue-700 text-white text-center px-6 py-2 rounded-full transition-all"
+              className="bg-gradient-to-r from-logo-blue to-logo-cyan text-white text-center px-7 py-2 rounded-full text-lg font-bold shadow-md transition-all"
               onClick={toggleMenu}
             >
               {language === 'en' ? 'Buy Now' : '立即购买'}
@@ -132,4 +120,4 @@ const Header: React.FC<HeaderProps> = ({ language, onLanguageChange }) => {
   );
 };
 
-export default Header
+export default Header;
