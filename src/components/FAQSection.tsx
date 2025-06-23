@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import BrandName from './ui/BrandName';
 
 interface FAQSectionProps {
   language: 'en' | 'zh';
@@ -7,7 +8,7 @@ interface FAQSectionProps {
 
 interface FAQItemProps {
   question: string;
-  answer: string;
+  answer: string | React.ReactElement;
   isOpen: boolean;
   toggleOpen: () => void;
 }
@@ -44,7 +45,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({ language }) => {
   const faqs = language === 'en' ? [
     {
       question: "How accurate is the transcription?",
-      answer: "The Lynse AI recording card achieves over 95% accuracy in quiet environments for most languages. Even in noisy environments, our advanced noise cancellation technology helps maintain high accuracy levels. The accuracy can vary slightly depending on accents, speech clarity, and background noise."
+      answer: <><BrandName>Lynse</BrandName> AI recording card achieves over 95% accuracy in quiet environments for most languages. Even in noisy environments, our advanced noise cancellation technology helps maintain high accuracy levels. The accuracy can vary slightly depending on accents, speech clarity, and background noise.</>
     },
     {
       question: "How long does the battery last?",
@@ -56,20 +57,20 @@ const FAQSection: React.FC<FAQSectionProps> = ({ language }) => {
     },
     {
       question: "What languages are supported?",
-      answer: "The Lynse card currently supports transcription in over 30 languages, including English, Chinese (Simplified and Traditional), Spanish, French, German, Japanese, Korean, Russian, Arabic, Portuguese, and many more. We regularly add new languages through firmware updates."
+      answer: <><BrandName>Lynse</BrandName> card currently supports transcription in over 30 languages, including English, Chinese (Simplified and Traditional), Spanish, French, German, Japanese, Korean, Russian, Arabic, Portuguese, and many more. We regularly add new languages through firmware updates.</>
     },
     {
       question: "Can I use it without a smartphone?",
-      answer: "Yes! The Lynse card functions as a standalone device. You can record, and the device will store the audio and transcriptions. However, pairing with our smartphone app provides additional features like organization, editing, translation, and sharing capabilities."
+      answer: <><BrandName>Lynse</BrandName> card functions as a standalone device. You can record, and the device will store the audio and transcriptions. However, pairing with the DitNote app provides additional features like organization, editing, translation, and sharing capabilities.</>
     },
     {
       question: "What's in the box?",
-      answer: "The package includes: 1 Lynse AI recording card, 1 USB-C charging cable, 1 protective case, 1 quick start guide, and a warranty card. The companion app is available as a free download for iOS and Android."
+      answer: <><BrandName>Lynse</BrandName> AI recording card, 1 USB-C charging cable, 1 protective case, 1 quick start guide, and a warranty card. The DitNote app is available as a free download for iOS and Android.</>
     }
   ] : [
     {
       question: "转录的准确性如何？",
-      answer: "Lynse AI 录音卡在安静环境下对大多数语言的准确率可达95%以上。即使在嘈杂的环境中，我们先进的降噪技术也有助于保持高准确度。准确性可能会因口音、语音清晰度和背景噪音而略有不同。"
+      answer: <><BrandName>Lynse</BrandName> AI 闪记卡在安静环境下对大多数语言的准确率可达95%以上。即使在嘈杂的环境中，我们先进的降噪技术也有助于保持高准确度。准确性可能会因口音、语音清晰度和背景噪音而略有不同。</>
     },
     {
       question: "电池续航时间有多长？",
@@ -81,15 +82,15 @@ const FAQSection: React.FC<FAQSectionProps> = ({ language }) => {
     },
     {
       question: "支持哪些语言？",
-      answer: "Lynse卡目前支持30多种语言的转录，包括英语、中文（简体和繁体）、西班牙语、法语、德语、日语、韩语、俄语、阿拉伯语、葡萄牙语等。我们通过固件更新定期添加新语言。"
+      answer: <><BrandName>Lynse</BrandName>卡目前支持30多种语言的转录，包括英语、中文（简体和繁体）、西班牙语、法语、德语、日语、韩语、俄语、阿拉伯语、葡萄牙语等。我们通过固件更新定期添加新语言。</>
     },
     {
       question: "可以不使用智能手机吗？",
-      answer: "是的！Lynse卡可以作为独立设备使用。您可以录制，设备将存储音频和转录内容。但是，与我们的智能手机应用程序配对可提供额外功能，如组织、编辑、翻译和共享功能。"
+      answer: <><BrandName>Lynse</BrandName>卡可以作为独立设备使用。您可以录制，设备将存储音频和转录内容。但是，与谛听记APP配对可提供额外功能，如组织、编辑、翻译和共享功能。</>
     },
     {
       question: "包装盒内包含什么？",
-      answer: "包装包括：1个Lynse AI录音卡、1根USB-C充电线、1个保护套、1份快速入门指南和一张保修卡。配套应用程序可免费下载，适用于iOS和Android。"
+      answer: <><BrandName>Lynse</BrandName> AI闪记卡、1根USB-C充电线、1个保护套、1份快速入门指南和一张保修卡。谛听记APP可免费下载，适用于iOS和Android。</>
     }
   ];
 
@@ -102,8 +103,8 @@ const FAQSection: React.FC<FAQSectionProps> = ({ language }) => {
           </h2>
           <p className="text-base text-dark-secondary max-w-2xl mx-auto leading-relaxed">
             {language === 'en'
-              ? 'Find answers to common questions about the Lynse AI recording card.'
-              : '查找有关Lynse AI录音卡的常见问题的答案。'}
+              ? <><BrandName>Lynse</BrandName> AI recording card.</>
+              : <><BrandName>Lynse</BrandName> AI闪记卡的常见问题的答案。</>}
           </p>
         </div>
 

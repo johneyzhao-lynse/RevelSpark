@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import BrandName from './ui/BrandName';
 
 interface TestimonialsSectionProps {
   language: 'en' | 'zh';
@@ -10,7 +11,7 @@ interface TestimonialProps {
   role: string;
   image: string;
   rating: number;
-  text: string;
+  text: string | React.ReactElement;
 }
 
 const Testimonial: React.FC<TestimonialProps> = ({ name, role, image, rating, text }) => {
@@ -47,7 +48,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
       role: "Journalist",
       image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       rating: 5,
-      text: "The Lynse card has transformed how I conduct interviews. The transcription quality is excellent, even in noisy environments, and the battery life is impressive."
+      text: <><BrandName>Lynse</BrandName> card has transformed how I conduct interviews. The transcription quality is excellent, even in noisy environments, and the battery life is impressive.</>
     },
     {
       name: "Michael Rodriguez",
@@ -61,7 +62,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
       role: "Graduate Student",
       image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       rating: 4,
-      text: "I use the Lynse card for all my lectures and study sessions. The app makes it easy to search through transcripts and the multi-language support is perfect for my international studies."
+      text: <><BrandName>Lynse</BrandName>卡。谛听记APP使搜索转录变得容易，多语言支持对我的国际研究非常完美。</>
     },
     {
       name: "David Kim",
@@ -76,7 +77,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
       role: "记者",
       image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       rating: 5,
-      text: "Lynse卡彻底改变了我进行采访的方式。即使在嘈杂的环境中，转录质量也很出色，而且电池寿命令人印象深刻。"
+      text: <><BrandName>Lynse</BrandName>卡彻底改变了我进行采访的方式。即使在嘈杂的环境中，转录质量也很出色，而且电池寿命令人印象深刻。</>
     },
     {
       name: "罗德里格斯 迈克尔",
@@ -90,7 +91,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
       role: "研究生",
       image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       rating: 4,
-      text: "我在所有讲座和学习会议中都使用Lynse卡。该应用程序使搜索转录变得容易，多语言支持对我的国际研究非常完美。"
+      text: <><BrandName>Lynse</BrandName>卡。谛听记APP使搜索转录变得容易，多语言支持对我的国际研究非常完美。</>
     },
     {
       name: "金大卫",
@@ -135,8 +136,8 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             {language === 'en'
-              ? 'Hear from professionals who have transformed their workflow with the Lynse AI recording card.'
-              : '听听使用Lynse AI录音卡改变工作流程的专业人士的评价。'}
+              ? <><BrandName>Lynse</BrandName> AI recording card.</>
+              : <><BrandName>Lynse</BrandName> AI闪记卡改变工作流程的专业人士的评价。</>}
           </p>
         </div>
 

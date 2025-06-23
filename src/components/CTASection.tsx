@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldCheck, Check } from 'lucide-react';
+import BrandName from './ui/BrandName';
 
 interface CTASectionProps {
   language: 'en' | 'zh';
@@ -35,7 +36,7 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
               <div className="flex items-center">
                 <Check className="text-cyan-300 mr-2" size={20} />
                 <span>
-                  {language === 'en' ? 'Free premium companion app subscription (1 year)' : '免费高级配套应用程序订阅（1年）'}
+                  {language === 'en' ? 'Free premium DitNote app subscription (1 year)' : '免费谛听记高级版订阅（1年）'}
                 </span>
               </div>
               <div className="flex items-center">
@@ -78,7 +79,7 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
             <div className="mb-6">
               <div className="flex justify-between items-center mb-2">
                 <h3 className="text-2xl font-bold">
-                  {language === 'en' ? 'Lynse Pro' : 'Lynse 专业版'}
+                  {language === 'en' ? <><BrandName size="lg">Lynse</BrandName> Pro</> : <><BrandName size="lg">Lynse</BrandName> 专业版</>}
                 </h3>
                 <span className="text-lg font-medium px-3 py-1 bg-blue-500 rounded-full text-white">
                   {language === 'en' ? 'Best Value' : '最佳价值'}
@@ -102,7 +103,7 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
               <div className="flex items-center">
                 <Check className="text-cyan-300 mr-2" size={18} />
                 <span className="text-sm">
-                  {language === 'en' ? 'Lynse AI Recording Card (32GB)' : 'Lynse AI 录音卡（32GB）'}
+                  {language === 'en' ? <><BrandName>Lynse</BrandName> AI Recording Card (32GB)</> : <><BrandName>Lynse</BrandName> AI 闪记卡（32GB）</>}
                 </span>
               </div>
               <div className="flex items-center">

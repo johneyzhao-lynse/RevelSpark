@@ -1,5 +1,6 @@
 import React from 'react';
 import { Battery, Bluetooth, MemoryStick as Memory, Clock, MonitorSmartphone, Globe, Volume2, Cpu } from 'lucide-react';
+import BrandName from './ui/BrandName';
 
 interface SpecsSectionProps {
   language: 'en' | 'zh';
@@ -36,7 +37,7 @@ const SpecsSection: React.FC<SpecsSectionProps> = ({ language }) => {
   ] : [
     { icon: <Bluetooth size={20} />, title: "连接方式", value: "蓝牙5.2和WIFI4快速传输" },
     { icon: <Battery size={20} />, title: "电池寿命", value: "最长30+小时录制" },
-    { icon: <Memory size={20} />, title: "存储", value: "32GB内部存储" },
+    { icon: <Memory size={20} />, title: "存储", value: "32GB内部存储，支持 2000+小时录音文件存储" },
     { icon: <Clock size={20} />, title: "充电时间", value: "1.5小时充满" },
     { icon: <MonitorSmartphone size={20} />, title: "兼容性", value: "iOS、Android" },
     { icon: <Globe size={20} />, title: "语言", value: "支持70多种语言" },
@@ -61,7 +62,7 @@ const SpecsSection: React.FC<SpecsSectionProps> = ({ language }) => {
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md overflow-hidden">
           <div className="p-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
             <h3 className="text-2xl font-bold text-white">
-              {language === 'en' ? 'Lynse AI Recording Card' : 'Lynse AI 录音卡'}
+              {language === 'en' ? <><BrandName size="lg">Lynse</BrandName> AI Recording Card</> : <><BrandName size="lg">Lynse</BrandName> AI 闪记卡</>}
             </h3>
             <p className="text-light-secondary opacity-90">
               {language === 'en' ? 'Detailed specifications' : '详细规格'}

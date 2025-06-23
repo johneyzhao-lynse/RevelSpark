@@ -1,174 +1,133 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
+  <title>隐私政策 - “谛听记”</title>
+  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1A6DFF', // logo主蓝
+            secondary: '#19E0E6', // logo主青
+            lightblue: '#F4F9FF', // 极浅蓝灰
+            paleblue: '#E6F7FB', // 淡青蓝
+            accent: '#005AE0', // 深蓝
+            cyanaccent: '#13C2C2', // 亮青
+          },
+          gradientColorStops: {
+            'logo-blue': '#1A6DFF',
+            'logo-cyan': '#19E0E6',
+          }
         }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script>
-  <title>隐私政策 - 谛听记（ditNote）</title>
-  <style>
-    @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  
-  body {
-    @apply bg-light-secondary text-dark-secondary;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    line-height: 1.7;
-    padding: 0;
-    margin: 0;
-  }
-    h1, h2 {
-      color: var(--color-heading);
-      font-weight: 600;
-      letter-spacing: -0.02em;
+      }
     }
-    h1 {
-    @apply text-dark font-bold text-4xl mb-6;
-    text-align: center;
-  }
-    h2 {
-    @apply text-dark font-semibold text-2xl my-8;
-  }
-    p {
-      color: var(--color-text-secondary);
-      margin-bottom: 1rem;
-    }
-    ul {
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-    }
-    li {
-      margin-bottom: 0.5rem;
-    }
-    a {
-    @apply text-primary no-underline;
-    transition: color 0.2s;
-  }
-  a:hover {
-    @apply text-primary/80;
-  }
-    .container {
-    @apply max-w-[1200px] mx-auto py-16 px-5;
-    background-color: var(--color-bg-container);
-    border-radius: 1rem;
-    box-shadow: var(--shadow-md);
-  }
-    .footer {
-      text-align: center;
-      margin-top: 2rem;
-      color: var(--color-text-tertiary);
-      font-size: 0.875rem;
-    }
-  </style>
+  </script>
 </head>
-<body>
-  <div class="container">
-    <h1>谛听记（ditNote）隐私政策</h1>
-    <p><strong>发布日期：2025年6月16日</strong> | <strong>生效日期：2025年6月16日</strong></p>
-    <p>欢迎使用谛听记（ditNote）APP（以下简称“本APP”）。我们致力于保护您的隐私和个人信息。本隐私政策说明我们如何收集、使用、存储、保护和分享您的信息，以及您享有的权利。请在使用本APP前仔细阅读本政策。</p>
+<body class="bg-lightblue text-gray-700 font-sans antialiased">
 
-    <h2>1. 我们收集的信息</h2>
-    <p>为实现谛听记（ditNote）的主要功能（获取蓝牙录音笔音频、语音转文字、文字归纳总结和记录），我们可能收集以下信息：</p>
-    <ul>
-      <li><strong>音频数据</strong>：通过蓝牙从录音笔获取的音频文件，仅在您授权后用于语音转文字及相关AI处理。</li>
-      <li><strong>文本数据</strong>：语音转文字生成的文本、归纳总结内容及您手动输入的记录内容。</li>
-      <li><strong>设备信息</strong>：包括设备型号、操作系统版本、蓝牙地址、IP地址等，用于确保蓝牙连接和APP功能正常运行。</li>
-      <li><strong>使用数据</strong>：APP使用日志、功能使用频率、偏好设置等，用于优化用户体验和服务性能。</li>
-      <li><strong>账户信息</strong>：如您注册账户，可能收集用户名、邮箱或手机号等信息。</li>
-      <li><strong>其他信息</strong>：您在反馈、客服沟通中主动提供的信息。</li>
-    </ul>
-
-    <h2>2. 信息的使用目的</h2>
-    <p>我们收集的信息用于以下目的：</p>
-    <ul>
-      <li>通过蓝牙连接录音笔，获取音频并传输至大模型进行语音转文字处理。</li>
-      <li>对转录文本进行AI归纳、总结和记录，优化您的使用体验。</li>
-      <li>分析使用数据以改进APP功能和性能。</li>
-      <li>提供技术支持、处理用户咨询或反馈。</li>
-      <li>发送服务相关通知，如功能更新或政策变更。</li>
-      <li>遵守适用的法律法规要求。</li>
-    </ul>
-
-    <h2>3. 信息共享与披露</h2>
-    <p>我们不会在未经您明确同意的情况下向第三方分享您的个人信息（包括音频和文本数据），除非：</p>
-    <ul>
-      <li>与提供语音转文字和AI处理的服务商共享必要数据，这些服务商受严格保密协议约束，仅为提供服务处理数据。</li>
-      <li>根据法律法规、司法或行政要求必须披露。</li>
-      <li>为维护本APP的合法权益或保护用户安全。</li>
-    </ul>
-
-    <h2>4. 数据存储与安全</h2>
-    <p>我们采用行业标准的安全措施（如AES-256加密、TLS传输协议）保护您的个人信息。音频和文本数据默认存储于您的设备本地，仅在您选择云端处理或存储时上传至我们的服务器，上传过程使用加密通道。</p>
-    <p>数据存储期限与服务目的相关，超出必要期限或您请求删除的数据将被安全删除或匿名化处理。我们使用差分隐私技术确保AI处理过程中的数据隐私。</p>
-
-    <h2>5. 您的权利</h2>
-    <p>您对个人信息享有以下权利：</p>
-    <ul>
-      <li><strong>访问与更正</strong>：随时查看或修改账户中的个人信息。</li>
-      <li><strong>删除</strong>：请求删除您的音频、文本或其他个人信息，除非法律要求保留。</li>
-      <li><strong>撤回同意</strong>：随时撤回对数据收集或使用的同意，可能影响语音转文字或云存储功能。</li>
-      <li><strong>数据可携性</strong>：请求获取您的个人信息副本（如转录文本或记录）。</li>
-    </ul>
-    <p>如需行使上述权利，请通过本APP内“设置-隐私”页面或联系我们的客服（邮箱：contact@lynse-ai.com）提交请求。</p>
-
-    <h2>6. 第三方服务</h2>
-    <p>本APP使用第三方服务（如大模型语音处理、云存储）处理部分功能。这些服务有其独立隐私政策，我们建议您在使用前仔细阅读相关条款。</p>
-
-    <h2>7. 儿童隐私</h2>
-    <p>本APP不面向14岁以下儿童提供服务。如发现未经监护人同意收集了儿童信息，我们将立即删除相关数据。</p>
-
-    <h2>8. 政策更新</h2>
-    <p>我们可能根据法律法规或服务需求更新本隐私政策，更新版本将在发布后7天生效。我们将通过APP推送通知或官网公告告知变更内容。继续使用本APP即表示您同意更新后的政策。</p>
-
-    <h2>9. 联系我们</h2>
-    <p>如对本隐私政策有任何疑问或建议，请通过以下方式联系我们：</p>
-    <ul>
-      <li>邮箱：<a href="mailto:contact@lynse-ai.com">contact@lynse-ai.com</a></li>
-      <li>官网：<a href="https://www.ditnote.com">www.ditnote.com</a></li>
-    </ul>
-
-    <div class="footer">
-      <p>© 2025 谛听记（ditNote） 版权所有</p>
+  <!-- Header -->
+  <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex-shrink-0">
+          <a href="/" title="返回首页">
+            <img class="h-10 w-auto" src="/images/logo.png" alt="Lynse Logo">
+          </a>
+        </div>
+        <a href="/" class="text-sm font-semibold text-primary hover:text-accent transition-colors">
+          返回首页
+        </a>
+      </div>
     </div>
-  </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="py-16 sm:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 bg-white/70 backdrop-blur-md p-8 sm:p-12 rounded-2xl shadow-lg border border-white/50">
+      
+      <div class="text-center mb-10">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
+          <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">“谛听记”</span> 隐私政策
+        </h1>
+        <p class="mt-4 text-sm text-gray-500">
+          <strong>发布日期：2025年6月16日</strong> | <strong>生效日期：2025年6月16日</strong>
+        </p>
+      </div>
+      
+      <div class="prose prose-blue max-w-none text-gray-600 prose-h2:text-2xl prose-h2:font-bold prose-h2:mb-4 prose-h2:mt-8 prose-p:leading-relaxed prose-li:my-1">
+        <p>欢迎使用 <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-bold">“谛听记”</span> APP（以下简称“本APP”）。我们致力于保护您的隐私和个人信息。本隐私政策说明我们如何收集、使用、存储、保护和分享您的信息，以及您享有的权利。请在使用本APP前仔细阅读本政策。</p>
+
+        <h2>1. 我们收集的信息</h2>
+        <p>为实现 <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-bold">“谛听记”</span> 的主要功能（获取蓝牙录音笔音频、语音转文字、文字归纳总结和记录），我们可能收集以下信息：</p>
+        <ul>
+          <li><strong>音频数据</strong>：通过蓝牙从录音笔获取的音频文件，仅在您授权后用于语音转文字及相关AI处理。</li>
+          <li><strong>文本数据</strong>：语音转文字生成的文本、归纳总结内容及您手动输入的记录内容。</li>
+          <li><strong>设备信息</strong>：包括设备型号、操作系统版本、蓝牙地址、IP地址等，用于确保蓝牙连接和APP功能正常运行。</li>
+          <li><strong>使用数据</strong>：APP使用日志、功能使用频率、偏好设置等，用于优化用户体验和服务性能。</li>
+          <li><strong>账户信息</strong>：如您注册账户，可能收集用户名、邮箱或手机号等信息。</li>
+          <li><strong>其他信息</strong>：您在反馈、客服沟通中主动提供的信息。</li>
+        </ul>
+
+        <h2>2. 信息的使用目的</h2>
+        <p>我们收集的信息用于以下目的：</p>
+        <ul>
+          <li>通过蓝牙连接录音笔，获取音频并传输至大模型进行语音转文字处理。</li>
+          <li>对转录文本进行AI归纳、总结和记录，优化您的使用体验。</li>
+          <li>分析使用数据以改进APP功能和性能。</li>
+          <li>提供技术支持、处理用户咨询或反馈。</li>
+          <li>发送服务相关通知，如功能更新或政策变更。</li>
+          <li>遵守适用的法律法规要求。</li>
+        </ul>
+
+        <h2>3. 信息共享与披露</h2>
+        <p>我们不会在未经您明确同意的情况下向第三方分享您的个人信息（包括音频和文本数据），除非：</p>
+        <ul>
+          <li>与提供语音转文字和AI处理的服务商共享必要数据，这些服务商受严格保密协议约束，仅为提供服务处理数据。</li>
+          <li>根据法律法规、司法或行政要求必须披露。</li>
+          <li>为维护本APP的合法权益或保护用户安全。</li>
+        </ul>
+
+        <h2>4. 数据存储与安全</h2>
+        <p>我们采用行业标准的安全措施（如AES-256加密、TLS传输协议）保护您的个人信息。音频和文本数据默认存储于您的设备本地，仅在您选择云端处理或存储时上传至我们的服务器，上传过程使用加密通道。</p>
+        <p>数据存储期限与服务目的相关，超出必要期限或您请求删除的数据将被安全删除或匿名化处理。我们使用差分隐私技术确保AI处理过程中的数据隐私。</p>
+
+        <h2>5. 您的权利</h2>
+        <p>您对个人信息享有以下权利：</p>
+        <ul>
+          <li><strong>访问与更正</strong>：随时查看或修改账户中的个人信息。</li>
+          <li><strong>删除</strong>：请求删除您的音频、文本或其他个人信息，除非法律要求保留。</li>
+          <li><strong>撤回同意</strong>：随时撤回对数据收集或使用的同意，可能影响语音转文字或云存储功能。</li>
+          <li><strong>数据可携性</strong>：请求获取您的个人信息副本（如转录文本或记录）。</li>
+        </ul>
+        <p>如需行使上述权利，请通过本APP内"设置-隐私"页面或联系我们的客服（邮箱：<a href="mailto:contact@lynse-ai.com" class="text-primary hover:underline">contact@lynse-ai.com</a>）提交请求。</p>
+
+        <h2>6. 第三方服务</h2>
+        <p>本APP使用第三方服务（如大模型语音处理、云存储）处理部分功能。这些服务有其独立隐私政策，我们建议您在使用前仔细阅读相关条款。</p>
+
+        <h2>7. 儿童隐私</h2>
+        <p>本APP不面向14岁以下儿童提供服务。如发现未经监护人同意收集了儿童信息，我们将立即删除相关数据。</p>
+
+        <h2>8. 政策更新</h2>
+        <p>我们可能根据法律法规或服务需求更新本隐私政策，更新版本将在发布后7天生效。我们将通过APP推送通知或官网公告告知变更内容。继续使用本APP即表示您同意更新后的政策。</p>
+
+        <h2>9. 联系我们</h2>
+        <p>如对本隐私政策有任何疑问或建议，请通过以下方式联系我们：</p>
+        <ul>
+          <li>邮箱：<a href="mailto:contact@lynse-ai.com" class="text-primary hover:underline">contact@lynse-ai.com</a></li>
+          <li>官网：<a href="https://www.ditnote.com" class="text-primary hover:underline">www.ditnote.com</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="text-center py-8">
+    <p class="text-sm text-gray-500">© 2025 <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-bold">“谛听记”</span> 版权所有</p>
+  </footer>
+
 </body>
 </html>

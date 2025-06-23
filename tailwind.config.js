@@ -40,7 +40,7 @@ export default {
           DEFAULT: '#212529', // 深灰色（标题）
           secondary: '#495057', // 中灰色（正文）
           tertiary: '#868e96', // 浅灰色（次要信息）
-          bg: '#2D3436',    // 深灰色背景
+          bg: '#282f3b',    // 深灰色背景
         },
         light: {
           DEFAULT: '#FFFFFF', // 白色
