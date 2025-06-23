@@ -16,8 +16,8 @@ function App() {
   // Update page title based on language
   React.useEffect(() => {
     document.title = language === 'en' 
-      ? 'DtingNote - AI Bluetooth Recording Card'
-      : '谛听记 - AI蓝牙录音卡';
+      ? 'Lynse AI MemoCard  - AI Bluetooth Recording Card'
+      : 'Lynse AI 闪记卡 - 智能录音转写设备';
     
     // Add smooth scrolling for the entire page
     document.documentElement.style.scrollBehavior = 'smooth';
