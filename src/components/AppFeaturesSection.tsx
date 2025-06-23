@@ -10,7 +10,7 @@ const AppFeaturesSection: React.FC<AppFeaturesSectionProps> = ({ language }) => 
     {
       icon: <FileText />,
       title: "Speech to Text",
-      description: "Advanced AI-powered transcription with support for 30+ languages and real-time processing.",
+      description: "Advanced AI-powered transcription with support for 70+ languages and real-time processing.",
       screenshot: "./images/features/stt-demo.png"
     },
     {
@@ -29,7 +29,7 @@ const AppFeaturesSection: React.FC<AppFeaturesSectionProps> = ({ language }) => 
     {
       icon: <FileText />,
       title: "语音转文字",
-      description: "支持30多种语言的高级AI驱动转录，实时处理。",
+      description: "支持70多种语言的高级AI驱动转录，实时处理。",
       screenshot: "./images/features/stt-demo.png"
     },
     {
@@ -51,12 +51,12 @@ const AppFeaturesSection: React.FC<AppFeaturesSectionProps> = ({ language }) => 
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            {language === 'en' ? 'Powerful AI Features' : '“谛听记”强大的AI功能'}
+            {language === 'en' ? 'Powerful AI Features' : '"谛听记"强大的AI功能'}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             {language === 'en'
               ? 'Transform your recordings into actionable insights with our advanced AI features in "DitNote".'
-              : '使用“谛听记”的高级AI功能将录音转化为可操作的见解。'}
+              : '使用"谛听记"的高级AI功能将录音转化为可操作的见解。'}
           </p>
         </div>
 

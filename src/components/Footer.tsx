@@ -16,7 +16,7 @@ const Footer: FC<FooterProps> = ({ language }) => {
           {/* Brand and Social */}
           <div className="sm:col-span-2 md:col-span-1">
             <Link href="#" className="mb-4 inline-block">
-              <img src="/images/logo.png" alt="Lynse Logo" className="h-10 opacity-90" />
+              <img src="/images/logo.png" alt="Lynse Logo" className="h-8 filter brightness-0 invert" />
             </Link>
             <p className="text-gray-400 mb-4 text-base">
               <BrandName size="md">Lynse</BrandName> {language === 'en' ? 'AI flash card' : 'AI 闪记卡'}
@@ -26,6 +26,11 @@ const Footer: FC<FooterProps> = ({ language }) => {
               <a href="#" className="text-gray-400 hover:text-white transition-colors"><Twitter size={20} /></a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors"><Instagram size={20} /></a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={20} /></a>
+            </div>
+            <div className="mt-6 pl-0">
+              {window.location.pathname !== '/' && window.location.pathname !== '/download' && (
+                <DownloadButtons language={language} />
+              )}
             </div>
           </div>
 
@@ -65,7 +70,7 @@ const Footer: FC<FooterProps> = ({ language }) => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <a href="/download" className="text-gray-400 hover:text-white transition-colors">
                   {language === 'en' ? 'Related News' : '软件下载'}
                 </a>
               </li>

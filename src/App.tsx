@@ -9,6 +9,7 @@ import TestimonialsSection from './components/TestimonialsSection';
 import FAQSection from './components/FAQSection';
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
+import DownloadPage from './components/ui/DownloadPage';
 
 function App() {
   const [language, setLanguage] = useState<'en' | 'zh'>('zh');
@@ -30,6 +31,17 @@ function App() {
   const handleLanguageChange = (newLanguage: 'en' | 'zh') => {
     setLanguage(newLanguage);
   };
+
+  // 路由判断：如果是 /download 则渲染下载页，否则渲染主页
+  if (window.location.pathname === '/download') {
+    return (
+      <div className="font-sans">
+        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <DownloadPage language={language} />
+        <Footer language={language} />
+      </div>
+    );
+  }
 
   return (
     <div className="font-sans">

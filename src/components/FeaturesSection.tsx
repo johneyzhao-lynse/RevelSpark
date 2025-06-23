@@ -16,7 +16,7 @@ interface FeatureCardProps {
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, index }) => {
   return (
     <div 
-      className="bg-gradient-to-br from-white/70 to-blue-50/60 backdrop-blur-2xl rounded-2xl p-6 shadow-2xl border border-white/40 hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1"
+      className="w-full h-[150px] bg-gradient-to-br from-white/70 to-blue-50/60 backdrop-blur-2xl rounded-xl p-3 shadow-xl border border-white/40 hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1 flex items-center"
       style={{ 
         animationDelay: `${index * 100}ms`,
         animation: 'fadeInUp 0.8s ease-out forwards',
@@ -24,13 +24,13 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, ind
         transform: 'translateY(20px)'
       }}
     >
-      <div className="flex items-start gap-4">
-        <div className="p-3 bg-white/50 rounded-full">
-          {React.cloneElement(icon as React.ReactElement, { size: 24, className: 'text-primary' })}
+      <div className="flex items-start gap-2 w-full">
+        <div className="p-1.5 bg-white/50 rounded-full flex-shrink-0">
+          {React.cloneElement(icon as React.ReactElement, { size: 18, className: 'text-primary' })}
         </div>
-        <div className="flex-1">
-          <h3 className="text-lg font-bold text-gray-900 mb-2">{title}</h3>
-          <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm font-bold text-gray-900 mb-1 truncate">{title}</h3>
+          <p className="text-gray-600 text-xs leading-snug">{description}</p>
         </div>
       </div>
     </div>
@@ -114,7 +114,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
 
   return (
     <section id="features" className="py-24 bg-gradient-to-b from-paleblue via-lightblue to-white">
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             {language === 'en' ? 'Smart Features for Smart Recording' : '智能录音的智能特性'}
@@ -126,32 +126,33 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12 items-start">
-          <div className="w-full lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8">
-            {features.slice(0, 6).map((feature, index) => (
-              <FeatureCard
-                key={index}
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-                index={index}
-              />
-            ))}
+        <div className="flex flex-col lg:flex-row gap-8 items-start">
+          <div className="w-full lg:w-1/2 flex flex-col items-center justify-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-[700px] mx-auto">
+              {features.slice(0, 6).map((feature, index) => (
+                <FeatureCard
+                  key={index}
+                  icon={feature.icon}
+                  title={feature.title}
+                  description={feature.description}
+                  index={index}
+                />
+              ))}
+            </div>
           </div>
-          
-          <div className="w-full lg:w-1/2 sticky top-24">
-            <div className="bg-white/50 backdrop-blur-xl rounded-2xl shadow-2xl p-4 border border-white/40">
+          <div className="w-full lg:w-1/2 flex flex-col items-center justify-start">
+            <div className="bg-gradient-to-br from-white/70 to-blue-50/60 backdrop-blur-2xl rounded-2xl p-6 shadow-2xl border border-white/40 hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1 w-[480px] h-[480px] max-w-full mx-auto flex items-center justify-center overflow-visible">
               <img 
                 src="./images/recording-card.png" 
                 alt={language === 'en' ? 'Lynse AI Recording Card' : 'Lynse AI 闪记卡'}
-                className="w-full h-auto object-contain"
+                className="w-[420px] h-[420px] object-contain rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105 bg-transparent"
                 style={{
-                  filter: 'drop-shadow(0 10px 15px rgba(26, 109, 255, 0.15))',
+                  filter: 'drop-shadow(0 10px 24px rgba(26, 109, 255, 0.18))',
                 }}
               />
             </div>
           </div>
-      </div>
+        </div>
       </div>
 
       <style>{`

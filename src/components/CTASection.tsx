@@ -24,7 +24,7 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               {language === 'en'
                 ? 'Transform Your Recording Experience Today'
-                : '今天就改变您的录音体验'}
+        : <span className="text-[#D9ba84]">今天就改变您的录音体验</span>}
             </h2>
             <p className="text-lg text-blue-100 mb-8">
               {language === 'en'
@@ -79,7 +79,7 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
             <div className="mb-6">
               <div className="flex justify-between items-center mb-2">
                 <h3 className="text-2xl font-bold">
-                  {language === 'en' ? <><BrandName size="lg">Lynse</BrandName> Pro</> : <><BrandName size="lg">Lynse</BrandName> 专业版</>}
+                  {language === 'en' ? <><BrandName size="lg">Lynse</BrandName> Pro</> : <><BrandName size="lg">Lynse</BrandName> <span className="text-[#D9BA84]">专业版</span></>}
                 </h3>
                 <span className="text-lg font-medium px-3 py-1 bg-blue-500 rounded-full text-white">
                   {language === 'en' ? 'Best Value' : '最佳价值'}
