@@ -24,7 +24,7 @@ const DownloadButtons: React.FC<DownloadButtonsProps> = ({ className, language }
   return (
     <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 ${className}`}>
       <a href="#" className="transform transition-transform hover:scale-105" title={appStore.title}>
-        <img src="/images/download/App_Store_Badge_US-UK_black.svg" alt={appStore.alt} className="h-7 w-auto" />
+        <img src="/images/download/app-store-badge.png" alt={appStore.alt} className="h-7 w-auto" />
       </a>
       <a href="#" className="transform transition-transform hover:scale-105" title={googlePlay.title}>
         <img src="/images/download/google-play-badge.png" alt={googlePlay.alt} className="h-7 w-auto" />
