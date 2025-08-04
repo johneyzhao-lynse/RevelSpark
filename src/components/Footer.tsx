@@ -127,20 +127,28 @@ const Footer: FC<FooterProps> = ({ language }) => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-gray-500 mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Lynse Inc. All rights reserved.
-          </p>
-          <div className="flex space-x-6">
-            <a href="/policy/privacy-policy.html" className="text-sm text-gray-500 hover:text-white">
-              {language === 'en' ? 'Privacy Policy' : '隐私政策'}
-            </a>
-            <a href="#" className="text-sm text-gray-500 hover:text-white">
-              {language === 'en' ? 'Terms of Service' : '服务条款'}
-            </a>
-            <a href="#" className="text-sm text-gray-500 hover:text-white">
-              {language === 'en' ? 'Cookie Policy' : 'Cookie 政策'}
-            </a>
+        <div className="mt-12 pt-8 border-t border-gray-700">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <p className="text-sm text-gray-500 mb-0">
+                &copy; {new Date().getFullYear()} 深圳灵识智能科技有限公司 版权所有
+              </p>
+              <span className="text-sm text-gray-500 hidden md:inline">|</span>
+              <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-white transition-colors">
+                粤ICP备2025424446号-2
+              </a>
+            </div>
+            <div className="flex md:flex-row space-x-6 mt-4 md:mt-0">
+              <a href="/policy/privacy-policy.html" className="text-sm text-gray-500 hover:text-white">
+                {language === 'en' ? 'Privacy Policy' : '隐私政策'}
+              </a>
+              <a href="#" className="text-sm text-gray-500 hover:text-white">
+                {language === 'en' ? 'Terms of Service' : '服务条款'}
+              </a>
+              <a href="#" className="text-sm text-gray-500 hover:text-white">
+                {language === 'en' ? 'Cookie Policy' : 'Cookie 政策'}
+              </a>
+            </div>
           </div>
         </div>
       </div>
