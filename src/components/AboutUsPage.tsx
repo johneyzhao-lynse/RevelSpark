@@ -1,12 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from './ui/Link';
 import { FaPhone } from 'react-icons/fa';
+import { Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface AboutUsPageProps {
   language: 'en' | 'zh';
 }
 
 const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [subscribeSuccess, setSubscribeSuccess] = useState(false);
+  
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+  
+  const handleSubscribe = () => {
+    if (!email) {
+      setEmailError('请输入正确的邮箱地址');
+      setSubscribeSuccess(false);
+      return;
+    }
+    
+    if (!validateEmail(email)) {
+      setEmailError('请输入正确的邮箱地址');
+      setSubscribeSuccess(false);
+      return;
+    }
+    
+    // In a real application, you would send this to your backend
+    // For now, we'll just log it and show an alert
+    console.log('Subscribing email:', email);
+    // alert(`Thank you for subscribing with ${email}!`);
+    setEmail('');
+    setEmailError('');
+    setSubscribeSuccess(true);
+  };
+
   const content = {
     en: {
       title: "About Us",
@@ -148,50 +181,96 @@ const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Contact Info */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h3 className="text-2xl font-bold text-primary mb-6">
-                {currentContent.address}
-              </h3>
-              <p className="text-gray-700 mb-6 leading-relaxed">
-                {currentContent.addressDetail}
-              </p>
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-3 text-gray-700">
-                  <FaPhone className="w-5 h-5 text-primary" />
-                  <span>电话：17621502813 赵先生</span>
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Contact Info with Newsletter */}
+            <div className="flex flex-col gap-8">
+              <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
+                <h3 className="text-2xl font-bold text-primary mb-6">
+                  {language === 'en' ? 'Contact Us' : '联系我们'}
+                </h3>
+                <div className="space-y-4 mb-6">
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <FaPhone className="w-5 h-5 text-primary" />
+                    <span>{language === 'en' ? 'Phone: 17621502813 Mr. Zhao' : '电话：17621502813 赵先生'}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-gray-700">
+                    <Mail className="w-5 h-5 text-primary" />
+                    <span>contact@lynse-ai.com</span>
+                  </div>
                 </div>
-                <a 
-                  href="mailto:support@lynse-ai.com" 
-                  className="bg-gradient-to-r from-logo-blue to-logo-cyan hover:from-accent hover:to-cyanaccent text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all transform hover:scale-105 text-center"
-                >
-                  support@lynse-ai.com
-                </a>
-                <Link 
-                  href="/" 
-                  className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-lg font-semibold transition-all text-center"
-                >
-                  返回主页
-                </Link>
+                
+                {/* Newsletter Subscription */}
+                <div className="mt-8 pt-6 border-t border-gray-100">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-3">
+                    {language === 'en' ? 'Subscribe to our newsletter' : '订阅我们的邮件'}
+                  </h4>
+                  <p className="text-gray-600 text-sm mb-4">
+                    {language === 'en' ? 'Get the latest updates and news about Lynse AI.' : '获取关于Lynse AI的最新更新和资讯。'}
+                  </p>
+                  <div className="relative flex flex-col">
+                    <div className="flex">
+                      <input
+                        type="email"
+                        placeholder={language === 'en' ? 'Your email address' : '您的邮箱地址'}
+                        className="border border-gray-300 rounded-l-lg px-4 py-2 w-full focus:ring-2 focus:ring-primary focus:outline-none text-sm"
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                          // Show error message in real-time during input
+                          if (e.target.value && !validateEmail(e.target.value)) {
+                            setEmailError('请输入正确的邮箱地址');
+                          } else {
+                            setEmailError('');
+                          }
+                          if (subscribeSuccess) setSubscribeSuccess(false);
+                        }}
+                        onBlur={() => {
+                          // Hide success message when user leaves the input field
+                          if (subscribeSuccess) setSubscribeSuccess(false);
+                        }}
+                      />
+                      <button 
+                        className="bg-primary hover:bg-primary-dark text-white px-4 rounded-r-lg font-medium transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                        onClick={handleSubscribe}
+                        disabled={!email}
+                      >
+                        {language === 'en' ? 'Subscribe' : '订阅'}
+                      </button>
+                    </div>
+                    {emailError && (
+                      <p className="text-red-500 text-sm mt-2">{emailError}</p>
+                    )}
+                    {subscribeSuccess && (
+                      <p className="text-green-500 text-sm mt-2">订阅成功</p>
+                    )}
+                  </div>
+                </div>
+                
+                <div className="flex flex-col gap-4 mt-8">
+                  <a 
+                    href="mailto:support@lynse-ai.com" 
+                    className="bg-gradient-to-r from-logo-blue to-logo-cyan hover:from-accent hover:to-cyanaccent text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all transform hover:scale-105 text-center block"
+                  >
+                    {language === 'en' ? 'Support Email: support@lynse-ai.com' : '支持邮箱：support@lynse-ai.com'}
+                  </a>
+                </div>
               </div>
             </div>
             
             {/* Map */}
-            <div className="bg-white rounded-2xl p-4 shadow-lg h-96">
-              <div className="w-full h-full rounded-xl overflow-hidden relative">
-                <iframe
-                  src="https://uri.amap.com/marker?position=113.884964,22.549949&name=易尚创意科技大厦&src=l Lynse AI&coordinate=gaode&callnative=0"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="深圳市易尚创意科技大厦"
-                  className="transition-opacity duration-300"
-                ></iframe>
-                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent pointer-events-none"></div>
+            <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
+              <h3 className="text-2xl font-bold text-primary mb-6">
+                {language === 'en' ? 'Our Location' : '我们的位置'}
+              </h3>
+              <div className="h-96 overflow-hidden rounded-lg">
+                <div className="w-full h-full relative">
+                  <img 
+                    src="/images/address.jpg" 
+                    alt="深圳市易尚创意科技大厦" 
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent pointer-events-none"></div>
+                </div>
               </div>
             </div>
           </div>
