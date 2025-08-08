@@ -21,6 +21,10 @@ export const Link: React.FC<LinkProps> = ({ href, className = '', children, onCl
             element.scrollIntoView({ behavior: 'smooth' });
             if (onClick) onClick();
           }
+        } else if (!href.startsWith('http') && !href.startsWith('mailto:')) {
+          // Handle internal routing
+          if (onClick) onClick();
+          // Let the browser handle the navigation for internal routes
         } else if (onClick) {
           onClick();
         }

@@ -47,6 +47,7 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
   };
 
   const isDownloadPage = window.location.pathname === '/download';
+  const isAboutPage = window.location.pathname === '/about';
 
   // 旗舰店链接配置
   const storeLinks = [
@@ -99,7 +100,7 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
             <img src="/images/logo.png" alt="lynse logo" className="max-w-[150px] h-[45px] w-auto object-contain mr-3" />
           </Link>
         </div>
-        {isDownloadPage ? (
+        {isDownloadPage || isAboutPage ? (
           <div className="flex items-center space-x-4">
             <button
               className="flex items-center text-base font-medium bg-transparent px-2 py-1 rounded-lg hover:bg-lightblue/60 transition-all"
@@ -120,21 +121,32 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
           <React.Fragment>
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-10">
-              <Link href="#product" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                {language === 'en' ? 'Product' : '产品'}
-              </Link>
-              <Link href="#features" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                {language === 'en' ? 'Features' : '特性'}
-              </Link>
-              <Link href="#specs" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                {language === 'en' ? 'Specs' : '规格'}
-              </Link>
-              <Link href="#testimonials" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                {language === 'en' ? 'Reviews' : '评价'}
-              </Link>
-              <Link href="#faq" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                {language === 'en' ? 'FAQ' : '常见问题'}
-              </Link>
+              {isAboutPage ? (
+                <Link href="/" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
+                  {language === 'en' ? 'Back to Home' : '返回主页'}
+                </Link>
+              ) : (
+                <>
+                  <Link href="#product" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
+                    {language === 'en' ? 'Product' : '产品'}
+                  </Link>
+                  <Link href="#features" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
+                    {language === 'en' ? 'Features' : '特性'}
+                  </Link>
+                  <Link href="#specs" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
+                    {language === 'en' ? 'Specs' : '规格'}
+                  </Link>
+                  <Link href="#testimonials" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
+                    {language === 'en' ? 'Reviews' : '评价'}
+                  </Link>
+                  <Link href="#faq" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
+                    {language === 'en' ? 'FAQ' : '常见问题'}
+                  </Link>
+                  <Link href="/about" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
+                    {language === 'en' ? 'About Us' : '关于我们'}
+                  </Link>
+                </>
+              )}
               <button
                 className="flex items-center text-base font-medium bg-transparent px-2 py-1 rounded-lg hover:bg-lightblue/60 transition-all"
                 onClick={toggleLanguage}
@@ -145,52 +157,54 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
               </button>
               
               {/* 立即购买按钮 - 调小尺寸并添加下拉菜单 */}
-              <div
-                className="relative"
-                onMouseEnter={openDropdown}
-                onMouseLeave={closeDropdown}
-              >
-                <button
-                  className="bg-gradient-to-r from-logo-blue to-logo-cyan hover:from-accent hover:to-cyanaccent text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-logo-blue flex items-center min-w-[90px]"
-                >
-                  <ShoppingBag size={16} className="mr-2" />
-                  {language === 'en' ? 'Buy Now' : '立即购买'}
-                </button>
-                {/* 下拉菜单 */}
+              {!isAboutPage && (
                 <div
-                  className={`absolute top-full left-0 mt-2 w-44 bg-white/60 rounded-xl shadow-2xl border border-gray-100 backdrop-blur-lg transition-all duration-300 z-50 ${
-                    isDropdownOpen
-                      ? 'opacity-100 translate-y-0 pointer-events-auto'
-                      : 'opacity-0 -translate-y-2 pointer-events-none'
-                  }`}
+                  className="relative"
+                  onMouseEnter={openDropdown}
+                  onMouseLeave={closeDropdown}
                 >
-                  <div className="p-2">
-                    <div className="text-xs text-gray-600 mb-2 px-2">
-                      {language === 'en' ? 'Choose your store:' : '选择购买渠道:'}
+                  <button
+                    className="bg-gradient-to-r from-logo-blue to-logo-cyan hover:from-accent hover:to-cyanaccent text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-logo-blue flex items-center min-w-[90px]"
+                  >
+                    <ShoppingBag size={16} className="mr-2" />
+                    {language === 'en' ? 'Buy Now' : '立即购买'}
+                  </button>
+                  {/* 下拉菜单 */}
+                  <div
+                    className={`absolute top-full left-0 mt-2 w-44 bg-white/60 rounded-xl shadow-2xl border border-gray-100 backdrop-blur-lg transition-all duration-300 z-50 ${
+                      isDropdownOpen
+                        ? 'opacity-100 translate-y-0 pointer-events-auto'
+                        : 'opacity-0 -translate-y-2 pointer-events-none'
+                    }`}
+                  >
+                    <div className="p-2">
+                      <div className="text-xs text-gray-600 mb-2 px-2">
+                        {language === 'en' ? 'Choose your store:' : '选择购买渠道:'}
+                      </div>
+                      {storeLinks.map((store, index) => (
+                        <a
+                          key={index}
+                          href={store.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center p-2 rounded-lg hover:bg-gray-100/70 transition-all duration-200 group"
+                        >
+                          <span className="mr-2">
+                            {typeof store.icon === 'string' ? (
+                              <span className="text-base">{store.icon}</span>
+                            ) : (
+                              store.icon
+                            )}
+                          </span>
+                          <span className="text-sm text-gray-700 font-medium group-hover:text-primary transition-colors">
+                            {store.name}
+                          </span>
+                        </a>
+                      ))}
                     </div>
-                    {storeLinks.map((store, index) => (
-                      <a
-                        key={index}
-                        href={store.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center p-2 rounded-lg hover:bg-gray-100/70 transition-all duration-200 group"
-                      >
-                        <span className="mr-2">
-                          {typeof store.icon === 'string' ? (
-                            <span className="text-base">{store.icon}</span>
-                          ) : (
-                            store.icon
-                          )}
-                        </span>
-                        <span className="text-sm text-gray-700 font-medium group-hover:text-primary transition-colors">
-                          {store.name}
-                        </span>
-                      </a>
-                    ))}
                   </div>
                 </div>
-              </div>
+              )}
             </nav>
             
             {/* Mobile Menu Button */}
@@ -215,47 +229,60 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
             {isMenuOpen && (
               <div className="md:hidden bg-white/95 shadow-xl backdrop-blur-md rounded-b-2xl">
                 <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col space-y-4">
-                  <Link href="#product" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
-                    {language === 'en' ? 'Product' : '产品'}
-                  </Link>
-                  <Link href="#features" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
-                    {language === 'en' ? 'Features' : '特性'}
-                  </Link>
-                  <Link href="#specs" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
-                    {language === 'en' ? 'Specs' : '规格'}
-                  </Link>
-                  <Link href="#testimonials" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
-                    {language === 'en' ? 'Reviews' : '评价'}
-                  </Link>
-                  <Link href="#faq" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
-                    {language === 'en' ? 'FAQ' : '常见问题'}
-                  </Link>
+                  {isAboutPage ? (
+                    <Link href="/" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
+                      {language === 'en' ? 'Back to Home' : '返回主页'}
+                    </Link>
+                  ) : (
+                    <>
+                      <Link href="#product" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
+                        {language === 'en' ? 'Product' : '产品'}
+                      </Link>
+                      <Link href="#features" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
+                        {language === 'en' ? 'Features' : '特性'}
+                      </Link>
+                      <Link href="#specs" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
+                        {language === 'en' ? 'Specs' : '规格'}
+                      </Link>
+                      <Link href="#testimonials" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
+                        {language === 'en' ? 'Reviews' : '评价'}
+                      </Link>
+                      <Link href="#faq" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
+                        {language === 'en' ? 'FAQ' : '常见问题'}
+                      </Link>
+                      <Link href="/about" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
+                        {language === 'en' ? 'About Us' : '关于我们'}
+                      </Link>
+                    </>
+                  )}
                   
                   {/* Mobile 立即购买按钮 */}
-                  <div className="space-y-2">
-                    <div className="text-xs text-gray-500 px-2">
-                      {language === 'en' ? 'Choose your store:' : '选择购买渠道:'}
+                  {!isAboutPage && (
+                    <div className="space-y-2">
+                      <div className="text-xs text-gray-500 px-2">
+                        {language === 'en' ? 'Choose your store:' : '选择购买渠道:'}
+                      </div>
+                      {storeLinks.map((store, index) => (
+                        <a
+                          key={index}
+                          href={store.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all"
+                          onClick={toggleMenu}
+                        >
+                          <span className="mr-2">
+                            {typeof store.icon === 'string' ? (
+                              <span className="text-base">{store.icon}</span>
+                            ) : (
+                              store.icon
+                            )}
+                          </span>
+                          <span className="text-sm text-gray-700 font-medium">{store.name}</span>
+                        </a>
+                      ))}
                     </div>
-                    {storeLinks.map((store, index) => (
-                      <a
-                        key={index}
-                        href={store.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all"
-                        onClick={toggleMenu}
-                      >
-                        <span className="mr-2">
-                          {typeof store.icon === 'string' ? (
-                            <span className="text-base">{store.icon}</span>
-                          ) : (
-                            store.icon
-                          )}
-                        </span>
-                        <span className="text-sm text-gray-700 font-medium">{store.name}</span>
-                      </a>
-                    ))}
-                  </div>
+                  )}
                 </div>
               </div>
             )}

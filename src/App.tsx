@@ -10,6 +10,7 @@ import FAQSection from './components/FAQSection';
 import CTASection from './components/CTASection';
 import Footer from './components/Footer';
 import DownloadPage from './components/ui/DownloadPage';
+import AboutUsPage from './components/AboutUsPage';
 
 function App() {
   const [language, setLanguage] = useState<'en' | 'zh'>('zh');
@@ -32,12 +33,23 @@ function App() {
     setLanguage(newLanguage);
   };
 
-  // 路由判断：如果是 /download 则渲染下载页，否则渲染主页
-  if (window.location.pathname === '/download') {
+  // 路由判断
+  const pathname = window.location.pathname;
+  if (pathname === '/download') {
     return (
       <div className="font-sans">
         <Header language={language} onLanguageChange={handleLanguageChange} />
         <DownloadPage language={language} />
+        <Footer language={language} />
+      </div>
+    );
+  }
+  
+  if (pathname === '/about') {
+    return (
+      <div className="font-sans">
+        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <AboutUsPage language={language} />
         <Footer language={language} />
       </div>
     );

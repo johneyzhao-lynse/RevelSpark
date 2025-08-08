@@ -1,7 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import { Link } from './ui/Link';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone } from 'lucide-react';
-import DownloadButtons from './ui/DownloadButtons';
+import { Facebook, Twitter, Instagram, Linkedin, Mail, Building } from 'lucide-react';
 import BrandName from './ui/BrandName';
 
 interface FooterProps {
@@ -9,6 +8,7 @@ interface FooterProps {
 }
 
 const Footer: FC<FooterProps> = ({ language }) => {
+  const [email, setEmail] = useState('');
   return (
     <footer id="contact" className="bg-dark-bg text-gray-300 pt-16 pb-8 border-t border-gray-700">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -16,30 +16,26 @@ const Footer: FC<FooterProps> = ({ language }) => {
           {/* Brand and Social */}
           <div className="sm:col-span-2 md:col-span-1">
             <Link href="#" className="mb-4 inline-block">
-              <img src="/images/logo.png" alt="Lynse Logo" className="h-8 filter brightness-0 invert" />
+              <img src="/images/logo.png" alt="Lynse Logo" className="h-6 filter brightness-0 invert" />
             </Link>
-            <p className="text-gray-400 mb-4 text-base">
-              <BrandName size="md">Lynse</BrandName> {language === 'en' ? 'AI flash card' : 'AI 闪记卡'}
+            <p className="text-gray-400 mb-3 text-sm">
+              <BrandName size="sm">Lynse</BrandName> {language === 'en' ? 'AI flash card' : 'AI 闪记卡'}
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Facebook size={20} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Twitter size={20} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Instagram size={20} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={20} /></a>
+            <div className="flex space-x-3">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Facebook size={16} /></a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Twitter size={16} /></a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Instagram size={16} /></a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={16} /></a>
             </div>
-            <div className="mt-6 pl-0">
-              {window.location.pathname !== '/' && window.location.pathname !== '/download' && (
-                <DownloadButtons language={language} />
-              )}
-            </div>
+
           </div>
 
           {/* Quick Purchase */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-white">
+            <h3 className="text-lg font-bold mb-3 text-white">
               {language === 'en' ? 'Quick Purchase' : '产品购买'}
             </h3>
-            <ul className="space-y-3 list-none pl-0">
+            <ul className="space-y-2 list-none pl-0 text-sm">
               <li>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   {language === 'en' ? 'Taobao Store' : '淘宝旗舰店'}
@@ -55,10 +51,10 @@ const Footer: FC<FooterProps> = ({ language }) => {
 
           {/* Support */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-white">
+            <h3 className="text-lg font-bold mb-3 text-white">
               {language === 'en' ? 'Support' : '服务与支持'}
             </h3>
-            <ul className="space-y-3 list-none pl-0">
+            <ul className="space-y-2 list-none pl-0 text-sm">
               <li>
                 <a href="/support/support-center.html" className="text-gray-400 hover:text-white transition-colors">
                   {language === 'en' ? 'Support Center' : '支持中心'}
@@ -79,14 +75,14 @@ const Footer: FC<FooterProps> = ({ language }) => {
 
           {/* About Lynse */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-white">
+            <h3 className="text-lg font-bold mb-3 text-white">
               {language === 'en' ? 'About Lynse' : '关于 Lynse'}
             </h3>
-            <ul className="space-y-3 list-none pl-0">
+            <ul className="space-y-2 list-none pl-0 text-sm">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
                   {language === 'en' ? 'About Us' : '关于我们'}
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="/policy/privacy-policy.html" className="text-gray-400 hover:text-white transition-colors">
@@ -98,58 +94,74 @@ const Footer: FC<FooterProps> = ({ language }) => {
           
           {/* Contact */}
           <div className="sm:col-span-2 md:col-span-1">
-             <h3 className="text-xl font-bold mb-4 text-white">
+             <h3 className="text-lg font-bold mb-3 text-white">
                 {language === 'en' ? 'Contact Us' : '联系我们'}
               </h3>
-              <div className="space-y-3">
-                <div className="flex items-start">
-                  <Mail className="text-gray-400 mr-3 mt-1" size={18} />
-                  <p className="text-gray-300">contact@lynse-ai.com</p>
+              <div className="space-y-2 text-sm">
+                  <div className="flex items-start">
+                    <Mail className="text-gray-400 mr-2 mt-1.5" size={14} />
+                    <p className="text-gray-300">contact@lynse-ai.com</p>
+                  </div>
+                  <div className="flex items-start">
+                    <Building className="text-gray-400 mr-2 mt-0.6" size={20} />
+                    <p className="text-gray-300">
+                      {language === 'en' 
+                        ? 'henzhen Baoan District Jia an South Road No.22 Yishang Creative Technology Building 1608'
+                        : '深圳市宝安区甲岸南路22号易尚创意科技大厦1608'
+                      }
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-start">
-                  <Phone className="text-gray-400 mr-3 mt-1" size={18} />
-                  <p className="text-gray-300">+1 (86) 15618981688</p>
-                </div>
-              </div>
-              <div className="mt-4">
-                <p className="text-gray-400 mb-2 text-sm">{language === 'en' ? 'Subscribe to our newsletter' : '订阅我们的新闻通讯'}</p>
-                <div className="flex">
+              {language === 'en' && (
+              <div className="mt-3">
+                <p className="text-gray-400 mb-1 text-sm">Subscribe to our newsletter</p>
+                <p className="text-gray-500 mb-2 text-xs">Get the latest updates first</p>
+                <div className="relative flex">
                   <input
                     type="email"
-                    placeholder={language === 'en' ? 'Your email address' : '您的电子邮件地址'}
-                    className="bg-gray-700 text-white placeholder-gray-500 rounded-l-md px-4 py-2 w-full focus:ring-2 focus:ring-logo-blue/50 focus:outline-none text-sm"
+                    placeholder="Your email address"
+                    className="bg-gray-700 text-white placeholder-gray-500 rounded-md px-3 py-2 w-full focus:ring-2 focus:ring-logo-blue/50 focus:outline-none text-sm pr-10"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                   />
-                  <button className="bg-gradient-to-r from-logo-blue to-logo-cyan hover:from-accent hover:to-cyanaccent text-white py-2 px-4 rounded-r-md font-bold transition-all shadow-md text-sm">
-                    {language === 'en' ? 'Subscribe' : '订阅'}
+                  <button 
+                    className="absolute right-0 top-0 bottom-0 px-3 flex items-center justify-center bg-transparent hover:bg-gray-600 rounded-r-md transition-colors"
+                    disabled={!email}
+                  >
+                    <Mail 
+                      size={16} 
+                      className={email ? 'text-logo-blue' : 'text-gray-500'} 
+                    />
                   </button>
                 </div>
               </div>
+            )}
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="flex flex-col md:flex-row items-center gap-4">
-              <p className="text-sm text-gray-500 mb-0">
-                &copy; {new Date().getFullYear()} 深圳灵识智能科技有限公司 版权所有
-              </p>
-              <span className="text-sm text-gray-500 hidden md:inline">|</span>
-              <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-500 hover:text-white transition-colors">
-                粤ICP备2025424446号-2
-              </a>
+              <div className="flex flex-col md:flex-row items-center gap-3">
+                <p className="text-xs text-gray-500 mb-0">
+                  &copy; {new Date().getFullYear()} 深圳灵识智能科技有限公司 版权所有
+                </p>
+                <span className="text-xs text-gray-500 hidden md:inline">|</span>
+                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 hover:text-white transition-colors">
+                  粤ICP备2025424446号-2
+                </a>
+              </div>
+              <div className="flex md:flex-row space-x-4 mt-3 md:mt-0">
+                <a href="/policy/privacy-policy.html" className="text-xs text-gray-500 hover:text-white">
+                  {language === 'en' ? 'Privacy Policy' : '隐私政策'}
+                </a>
+                <a href="#" className="text-xs text-gray-500 hover:text-white">
+                  {language === 'en' ? 'Terms of Service' : '服务条款'}
+                </a>
+                <a href="#" className="text-xs text-gray-500 hover:text-white">
+                  {language === 'en' ? 'Cookie Policy' : 'Cookie 政策'}
+                </a>
+              </div>
             </div>
-            <div className="flex md:flex-row space-x-6 mt-4 md:mt-0">
-              <a href="/policy/privacy-policy.html" className="text-sm text-gray-500 hover:text-white">
-                {language === 'en' ? 'Privacy Policy' : '隐私政策'}
-              </a>
-              <a href="#" className="text-sm text-gray-500 hover:text-white">
-                {language === 'en' ? 'Terms of Service' : '服务条款'}
-              </a>
-              <a href="#" className="text-sm text-gray-500 hover:text-white">
-                {language === 'en' ? 'Cookie Policy' : 'Cookie 政策'}
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </footer>
