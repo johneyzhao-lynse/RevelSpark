@@ -90,6 +90,10 @@ export default {
         'logo-blue': '#1A6DFF',
         'logo-cyan': '#19E0E6',
       }),
+      // 在theme.extend中添加
+      width: {
+        '300': '300px',
+      }
     },
   },
   plugins: [],

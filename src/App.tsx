@@ -11,6 +11,7 @@ import CTASection from './components/CTASection';
 import Footer from './components/Footer';
 import DownloadPage from './components/ui/DownloadPage';
 import AboutUsPage from './components/AboutUsPage';
+import TestQRCode from './components/ui/TestQRCode';
 
 function App() {
   const [language, setLanguage] = useState<'en' | 'zh'>('zh');
@@ -40,6 +41,16 @@ function App() {
       <div className="font-sans">
         <Header language={language} onLanguageChange={handleLanguageChange} />
         <DownloadPage language={language} />
+        <Footer language={language} />
+      </div>
+    );
+  }
+  
+  if (pathname === '/test-qrcode') {
+    return (
+      <div className="font-sans">
+        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <TestQRCode />
         <Footer language={language} />
       </div>
     );

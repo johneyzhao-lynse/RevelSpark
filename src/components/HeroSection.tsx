@@ -42,14 +42,11 @@ const HeroSection: FC<HeroSectionProps> = ({ language }: HeroSectionProps) => {
               {/* 立即订购按钮及商城弹窗 */}
               <OrderDropdownButton language={language} />
               <Link
-                href="#features"
+                href="/download"
                 className="px-10 py-2 border-2 border-logo-blue text-logo-blue rounded-full font-bold text-lg bg-white/80 hover:bg-lightblue transition-all"
               >
-                {language === 'en' ? 'Learn More' : '了解更多'}
+                {language === 'en' ? 'Download App' : '下载应用'}
               </Link>
-            </div>
-            <div className="mt-8 border-t border-primary/20 pt-6 flex justify-center lg:justify-start">
-              <DownloadButtons language={language} />
             </div>
           </div>
           <div className="relative mx-auto lg:mx-0 flex items-center justify-center p-4">
@@ -57,7 +54,7 @@ const HeroSection: FC<HeroSectionProps> = ({ language }: HeroSectionProps) => {
             <img
               src="/images/product-showcase.png"
               alt="Lynse AI flash card"
-              className="w-full max-w-md lg:max-w-lg object-contain transition-all duration-500 transform hover:scale-105"
+              className="w-full max-w-[600px] lg:max-w-[720px] object-contain transition-all duration-500 transform hover:scale-105"
               style={{
                 filter: 'drop-shadow(0 25px 25px rgba(26, 109, 255, 0.2))',
               }}
