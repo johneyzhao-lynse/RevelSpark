@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "2USQ24BJ8M.com.lynseai.dting",
+        "paths": [
+          "/hometip/*",
+          "/homeindex/*"
+        ]
+      }
+    ]
+  }
+}
