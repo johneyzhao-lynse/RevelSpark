@@ -12,6 +12,9 @@ import Footer from './components/Footer';
 import DownloadPage from './components/ui/DownloadPage';
 import AboutUsPage from './components/AboutUsPage';
 import TestQRCode from './components/ui/TestQRCode';
+import SolutionsPage from './components/SolutionsPage';
+import QuickStartGuidePage from './pages/QuickStartGuidePage';
+import SupportCenterPage from './pages/SupportCenterPage';
 
 function App() {
   const [language, setLanguage] = useState<'en' | 'zh'>('zh');
@@ -65,6 +68,38 @@ function App() {
       </div>
     );
   }
+  
+  if (pathname === '/solutions') {
+    return (
+      <div className="font-sans">
+        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <SolutionsPage language={language} />
+        <Footer language={language} />
+      </div>
+    );
+  }
+  
+  if (pathname === '/SupportCenterPage' || pathname === '/support/support-center.html') {
+    return (
+      <div className="font-sans">
+        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <SupportCenterPage />
+        <Footer language={language} />
+      </div>
+    );
+  }
+  
+  if (pathname === '/QuickStartGuidePage' || pathname === '/support/quick-start') {
+    return (
+      <div className="font-sans">
+        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <QuickStartGuidePage />
+        <Footer language={language} />
+      </div>
+    );
+  }
+  
+
 
   return (
     <div className="font-sans">

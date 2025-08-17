@@ -1,6 +1,18 @@
-import React, { useState, useEffect, FC } from 'react';
-import { Menu, X, Globe, ShoppingBag, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect, useRef, FC, useCallback } from 'react';
+import { Menu, X, Globe, ShoppingBag } from 'lucide-react';
 import { Link } from './ui/Link';
+
+// 假设这些是自定义Tailwind类的定义
+// 实际项目中应在Tailwind配置文件中定义这些颜色
+const customColors = {
+  'lightblue': '#e6f0ff',
+  'logo-blue': '#1a6dff',
+  'logo-cyan': '#36cfff',
+  'accent': '#0a5fff',
+  'cyanaccent': '#00c4ff',
+  'primary': '#1a6dff',
+  'secondary': '#00c4ff',
+};
 
 interface HeaderProps {
   language: 'en' | 'zh';
@@ -12,19 +24,23 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   // 延迟关闭定时器
-  const dropdownCloseTimer = React.useRef<number | null>(null);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  const dropdownCloseTimer = useRef<NodeJS.Timeout | null>(null);
 
+  // 使用useCallback和防抖优化滚动处理
+  const handleScroll = useCallback(() => {
+    // 简单的防抖实现
+    if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    scrollTimeout.current = setTimeout(() => {
+      setIsScrolled(window.scrollY > 20);
+    }, 100);
+  }, []);
+
+  // 监听滚动事件以更改标题样式
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleLanguage = () => onLanguageChange(language === 'en' ? 'zh' : 'en');
@@ -100,71 +116,87 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
             <img src="/images/logo.png" alt="lynse logo" className="max-w-[150px] h-[45px] w-auto object-contain mr-3" />
           </Link>
         </div>
-        {isDownloadPage || isAboutPage ? (
-          <div className="flex items-center space-x-4">
-            <button
-              className="flex items-center text-base font-medium bg-transparent px-2 py-1 rounded-lg hover:bg-lightblue/60 transition-all"
-              onClick={toggleLanguage}
-              aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
-            >
-              <Globe size={18} className="mr-1 text-primary" />
-              <span className="text-primary">{language === 'en' ? 'EN / 中文' : '中文 / EN'}</span>
-            </button>
-            <Link
-              href="/"
-              className="bg-gradient-to-r from-logo-blue to-logo-cyan hover:from-accent hover:to-cyanaccent text-white px-5 py-2 rounded-full text-base font-bold shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-logo-blue"
-            >
-              {language === 'en' ? 'Back to Home' : '返回主页'}
-            </Link>
-          </div>
-        ) : (
-          <React.Fragment>
+        <React.Fragment>
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-10">
-              {isAboutPage ? (
-                <Link href="/" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                  {language === 'en' ? 'Back to Home' : '返回主页'}
-                </Link>
-              ) : (
-                <>
-                  <Link href="#product" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                    {language === 'en' ? 'Product' : '产品'}
+                <div className="flex items-center space-x-10">
+                  {/* Lynse Note Product Directory Dropdown */}
+                  <div className="relative group">
+                    <button
+                      className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60 flex items-center"
+                    >
+                      {language === 'en' ? 'Lynse Note' : 'Lynse Note'}
+                      <svg 
+                        className="ml-1 w-4 h-4 transition-transform duration-200 group-hover:rotate-180" 
+                        fill="none" 
+                        viewBox="0 0 24 24" 
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                      <Link
+                        href="/#product"
+                        className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                      >
+                        {language === 'en' ? 'Product' : '产品'}
+                      </Link>
+                      <Link
+                        href="/#features"
+                        className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                      >
+                        {language === 'en' ? 'Features' : '特性'}
+                      </Link>
+                      <Link
+                        href="/#specs"
+                        className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                      >
+                        {language === 'en' ? 'Specs' : '规格'}
+                      </Link>
+                      <Link
+                        href="/#testimonials"
+                        className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                      >
+                        {language === 'en' ? 'Reviews' : '评价'}
+                      </Link>
+                      <Link
+                        href="/#faq"
+                        className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                      >
+                        {language === 'en' ? 'FAQ' : '常见问题'}
+                      </Link>
+                    </div>
+                  </div>
+                  
+                  <Link href="/solutions" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
+                    {language === 'en' ? 'Solutions' : '解决方案'}
                   </Link>
-                  <Link href="#features" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                    {language === 'en' ? 'Features' : '特性'}
-                  </Link>
-                  <Link href="#specs" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                    {language === 'en' ? 'Specs' : '规格'}
-                  </Link>
-                  <Link href="#testimonials" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                    {language === 'en' ? 'Reviews' : '评价'}
-                  </Link>
-                  <Link href="#faq" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                    {language === 'en' ? 'FAQ' : '常见问题'}
+                  <Link href="/support/support-center.html" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
+                    {language === 'en' ? 'Support Center' : '支持中心'}
                   </Link>
                   <Link href="/about" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
                     {language === 'en' ? 'About Us' : '关于我们'}
                   </Link>
-                </>
-              )}
-              <button
-                className="flex items-center text-base font-medium bg-transparent px-2 py-1 rounded-lg hover:bg-lightblue/60 transition-all"
-                onClick={toggleLanguage}
-                aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
-              >
-                <Globe size={18} className="mr-1 text-primary" />
-                <span className="text-primary">{language === 'en' ? 'EN / 中文' : '中文 / EN'}</span>
-              </button>
+                  <button
+                    className="flex items-center text-base font-medium bg-transparent px-2 py-1 rounded-lg hover:bg-lightblue/60 transition-all"
+                    onClick={toggleLanguage}
+                    aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
+                  >
+                    <Globe size={18} className="mr-1 text-primary" />
+
+                    <span className="text-primary">{language === 'en' ? 'EN / 中文' : '中文 / EN'}</span>
+                  </button>
+                </div>
               
               {/* 立即购买按钮 - 调小尺寸并添加下拉菜单 */}
-              {!isAboutPage && (
-                <div
-                  className="relative"
-                  onMouseEnter={openDropdown}
-                  onMouseLeave={closeDropdown}
-                >
+              <div
+                className="relative"
+                onMouseEnter={openDropdown}
+                onMouseLeave={closeDropdown}
+              >
                   <button
-                    className="bg-gradient-to-r from-logo-blue to-logo-cyan hover:from-accent hover:to-cyanaccent text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-logo-blue flex items-center min-w-[90px]"
+                    className={`bg-gradient-to-r from-logo-blue to-logo-cyan hover:from-accent hover:to-cyanaccent text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-logo-blue flex items-center min-w-[90px]`}
                   >
                     <ShoppingBag size={16} className="mr-2" />
                     {language === 'en' ? 'Buy Now' : '立即购买'}
@@ -204,7 +236,6 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                     </div>
                   </div>
                 </div>
-              )}
             </nav>
             
             {/* Mobile Menu Button */}
@@ -235,22 +266,72 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                     </Link>
                   ) : (
                     <>
-                      <Link href="#product" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
-                        {language === 'en' ? 'Product' : '产品'}
+                      <div className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 cursor-pointer flex justify-between items-center"
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                        <span>{language === 'en' ? 'Lynse Note' : 'Lynse Note'}</span>
+                        <svg 
+                          className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} 
+                          fill="none" 
+                          viewBox="0 0 24 24" 
+                          stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                      {isDropdownOpen && (
+                        <div className="pl-4 space-y-1">
+                          <Link
+                            href="#product"
+                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                            onClick={toggleMenu}
+                          >
+                            {language === 'en' ? 'Product' : '产品'}
+                          </Link>
+                          <Link
+                            href="#features"
+                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                            onClick={toggleMenu}
+                          >
+                            {language === 'en' ? 'Features' : '特性'}
+                          </Link>
+                          <Link
+                            href="#specs"
+                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                            onClick={toggleMenu}
+                          >
+                            {language === 'en' ? 'Specs' : '规格'}
+                          </Link>
+                          <Link
+                            href="#testimonials"
+                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                            onClick={toggleMenu}
+                          >
+                            {language === 'en' ? 'Reviews' : '评价'}
+                          </Link>
+                          <Link
+                            href="#faq"
+                            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                            onClick={toggleMenu}
+                          >
+                            {language === 'en' ? 'FAQ' : '常见问题'}
+                          </Link>
+                        </div>
+                      )}
+                      <Link
+                        href="/solutions"
+                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                        onClick={toggleMenu}
+                      >
+                        {language === 'en' ? 'Solutions' : '解决方案'}
                       </Link>
-                      <Link href="#features" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
-                        {language === 'en' ? 'Features' : '特性'}
-                      </Link>
-                      <Link href="#specs" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
-                        {language === 'en' ? 'Specs' : '规格'}
-                      </Link>
-                      <Link href="#testimonials" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
-                        {language === 'en' ? 'Reviews' : '评价'}
-                      </Link>
-                      <Link href="#faq" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
-                        {language === 'en' ? 'FAQ' : '常见问题'}
-                      </Link>
-                      <Link href="/about" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
+                      <a
+                        href="/support/support-center.html"
+                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                        onClick={toggleMenu}
+                      >
+                        {language === 'en' ? 'Support' : '支持'}
+                      </a>
+                      <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50" onClick={toggleMenu}>
                         {language === 'en' ? 'About Us' : '关于我们'}
                       </Link>
                     </>
@@ -287,7 +368,6 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
               </div>
             )}
           </React.Fragment>
-        )}
       </div>
     </header>
   );

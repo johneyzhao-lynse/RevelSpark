@@ -3,6 +3,7 @@ import { Link } from './ui/Link';
 import { FaPhone } from 'react-icons/fa';
 import { Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Header from './Header';
 
 interface AboutUsPageProps {
   language: 'en' | 'zh';
@@ -91,6 +92,7 @@ const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+      <Header language={language} onLanguageChange={() => {}} />
       {/* Hero Section */}
       <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-r from-blue-50 via-white to-cyan-50 transition-all duration-1000 ease-in-out">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
