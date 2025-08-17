@@ -30,19 +30,19 @@ const AppFeaturesSection: React.FC<AppFeaturesSectionProps> = ({ language }) => 
       icon: <FileText />,
       title: "语音转文字",
       description: "支持70多种语言的高级AI驱动转录，实时处理。",
-      screenshot: "./images/features/stt-demo.png"
+      screenshot: "./images/features/stt.png"
     },
     {
       icon: <Sparkles />,
       title: "智能概要",
       description: "获取长录音的智能概览，突出显示重要主题和讨论。",
-      screenshot: "./images/features/summary-demo.png"
+      screenshot: "./images/features/summary.png"
     },
     {
       icon: <ListChecks />,
       title: "行动项目提取",
       description: "自动识别并列出录音中的行动项目、截止日期和任务分配。",
-      screenshot: "./images/features/stt-demo.png"
+      screenshot: "./images/features/mind.png"
     }
   ];
 
@@ -60,24 +60,24 @@ const AppFeaturesSection: React.FC<AppFeaturesSectionProps> = ({ language }) => 
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-white/70 to-blue-50/60 backdrop-blur-2xl rounded-2xl p-6 shadow-2xl border border-white/40 hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1"
+              className="bg-gradient-to-br from-white/80 to-blue-50/70 backdrop-blur-2xl rounded-xl p-5 shadow-lg border border-white/30 hover:shadow-primary/10 transition-all duration-300 transform hover:-translate-y-0.5"
             >
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-3 bg-white/50 rounded-full">
-                  {React.cloneElement(feature.icon, { className: 'w-8 h-8 text-primary' })}
+              <div className="flex items-center gap-3 mb-3">
+                <div className="p-2.5 bg-white/50 rounded-full">
+                  {React.cloneElement(feature.icon, { className: 'w-6 h-6 text-primary' })}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">{feature.title}</h3>
+                <h3 className="text-lg font-bold text-gray-900">{feature.title}</h3>
               </div>
-              <p className="text-gray-600 mb-6 min-h-[72px]">{feature.description}</p>
-              <div className="rounded-xl overflow-hidden bg-white/40 p-2 backdrop-blur-md ring-1 ring-white/70 shadow-lg">
+              <p className="text-gray-600 mb-4 text-sm min-h-[60px]">{feature.description}</p>
+              <div className="rounded-lg overflow-hidden">
                 <img 
                   src={feature.screenshot} 
                   alt={feature.title}
-                  className="w-full h-auto object-cover rounded-md"
+                  className="w-full h-auto object-cover rounded shadow-sm"
                 />
               </div>
             </div>
