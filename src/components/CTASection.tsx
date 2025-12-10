@@ -36,7 +36,7 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
               <div className="flex items-center">
                 <Check className="text-cyan-300 mr-2" size={20} />
                 <span>
-                  {language === 'en' ? 'Free premium DitNote app subscription (1 year)' : '免费谛听记高级版订阅（1年）'}
+                  {language === 'en' ? 'Free premium DitNote app subscription (1 year)' : '免费灵光闪记高级版订阅（1年）'}
                 </span>
               </div>
               <div className="flex items-center">

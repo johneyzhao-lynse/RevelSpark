@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 const SupportCenterPage = () => {
   const [language, setLanguage] = useState<'en' | 'zh'>('zh');
-  
+
   const handleLanguageChange = (newLanguage: 'en' | 'zh') => {
     setLanguage(newLanguage);
   };
@@ -11,17 +11,17 @@ const SupportCenterPage = () => {
   return (
     <div className="bg-blue-50 text-gray-700 font-sans antialiased min-h-screen flex flex-col">
       <Header language={language} onLanguageChange={handleLanguageChange} />
-      
+
       <main className="py-16 sm:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           {/* Hero Section */}
           <div className="text-center mb-16">
             <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-6">
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">"谛听记"</span> 支持中心
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">"灵光闪记"</span> 支持中心
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              我们在这里为您提供全方位的技术支持和服务，让您更好地使用 AI 闪记卡和"谛听记"APP
+              我们在这里为您提供全方位的技术支持和服务，让您更好地使用 AI 闪记卡和"灵光闪记"APP
             </p>
           </div>
 
@@ -65,13 +65,13 @@ const SupportCenterPage = () => {
           <section id="faq" className="mb-16">
             <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/50 p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">常见问题</h2>
-              
+
               <div className="space-y-6">
                 <div className="border-b border-gray-200 pb-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">如何连接 AI 闪记卡？</h3>
                   <p className="text-gray-600 leading-relaxed">
                     1. 确保您的手机蓝牙已开启<br />
-                    2. 打开"谛听记"APP<br />
+                    2. 打开"灵光闪记"APP<br />
                     3. 点击"添加设备"<br />
                     4. 按照屏幕提示完成配对
                   </p>
@@ -80,21 +80,21 @@ const SupportCenterPage = () => {
                 <div className="border-b border-gray-200 pb-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">录音文件保存在哪里？</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    录音文件默认保存在"谛听记"APP的本地存储中。您也可以选择开启云同步功能，将文件备份到云端。
+                    录音文件默认保存在"灵光闪记"APP的本地存储中。您也可以选择开启云同步功能，将文件备份到云端。
                   </p>
                 </div>
 
                 <div className="border-b border-gray-200 pb-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">支持哪些语言转写？</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    "谛听记"支持30多种语言的语音转写，包括中文（简体和繁体）、英语、日语、韩语、法语、德语、西班牙语等。
+                    "灵光闪记"支持30多种语言的语音转写，包括中文（简体和繁体）、英语、日语、韩语、法语、德语、西班牙语等。
                   </p>
                 </div>
 
                 <div className="border-b border-gray-200 pb-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">如何导出转写文本？</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    在"谛听记"APP中，选择要导出的录音文件，点击"导出"按钮，可以选择导出为TXT、DOCX或PDF格式。
+                    在"灵光闪记"APP中，选择要导出的录音文件，点击"导出"按钮，可以选择导出为TXT、DOCX或PDF格式。
                   </p>
                 </div>
 
@@ -108,7 +108,7 @@ const SupportCenterPage = () => {
                 <div className="pb-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">如何更新固件？</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    在"谛听记"APP中，进入"设置" → "设备管理" → "固件更新"，按照提示完成更新。
+                    在"灵光闪记"APP中，进入"设置" → "设备管理" → "固件更新"，按照提示完成更新。
                   </p>
                 </div>
               </div>
@@ -119,7 +119,7 @@ const SupportCenterPage = () => {
           <section id="contact" className="mb-16">
             <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/50 p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">联系我们</h2>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">客服联系方式</h3>
@@ -128,7 +128,7 @@ const SupportCenterPage = () => {
                       <svg className="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                       </svg>
-                      <span className="text-gray-600">邮箱：<a href="mailto:contact@lynse-ai.com" className="text-blue-600 hover:underline">contact@lynse-ai.com</a></span>
+                      <span className="text-gray-600">邮箱：<a href="mailto:contact@lynse.ai" className="text-blue-600 hover:underline">contact@lynse.ai</a></span>
                     </div>
                     <div className="flex items-center">
                       <svg className="w-5 h-5 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -165,7 +165,7 @@ const SupportCenterPage = () => {
           <section id="guides" className="mb-16">
             <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/50 p-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">使用指南</h2>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="bg-gradient-to-br from-white/50 to-blue-50/60 rounded-xl p-6 border border-white/40">
                   <div className="text-blue-600 mb-4">
@@ -188,14 +188,14 @@ const SupportCenterPage = () => {
                   <p className="text-gray-600 mb-4">探索AI闪记卡的全部高级功能</p>
                   <a href="/support/advanced-features" className="text-blue-600 hover:text-indigo-600 font-medium">查看指南 →</a>
                 </div>
-                
+
                 {/* 可以根据需要添加更多指南卡片 */}
               </div>
             </div>
           </section>
         </div>
       </main>
-      
+
     </div>
   );
 };

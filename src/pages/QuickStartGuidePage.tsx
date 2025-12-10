@@ -74,10 +74,10 @@ const QuickStartGuidePage = () => {
             <div className="prose prose-lg max-w-none text-gray-700">
               {/* 文章内容 */}
               <section className="mb-12">
-                <h2 className="text-2xl font-bold text-primary mb-5">谛听记 (ditnote NOTE)</h2>
+                <h2 className="text-2xl font-bold text-primary mb-5">灵光闪记 (ditnote NOTE)</h2>
                 
                 <div className="bg-lightblue rounded-xl p-4 lg:p-6 mb-6">
-                  <img src="/hc/article_attachments/12343807217295" alt="谛听记设备图示" className="w-full h-auto rounded-lg shadow-sm mb-4"/>
+                  <img src="/hc/article_attachments/12343807217295" alt="灵光闪记设备图示" className="w-full h-auto rounded-lg shadow-sm mb-4"/>
                   
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>

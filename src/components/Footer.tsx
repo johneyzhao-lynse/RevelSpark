@@ -91,28 +91,28 @@ const Footer: FC<FooterProps> = ({ language }) => {
               </li>
             </ul>
           </div>
-          
+
           {/* Contact */}
           <div className="sm:col-span-2 md:col-span-1">
-             <h3 className="text-lg font-bold mb-3 text-white">
-                {language === 'en' ? 'Contact Us' : '联系我们'}
-              </h3>
-              <div className="space-y-2 text-sm">
-                  <div className="flex items-start">
-                    <Mail className="text-gray-400 mr-2 mt-1.5" size={14} />
-                    <p className="text-gray-300">contact@lynse-ai.com</p>
-                  </div>
-                  <div className="flex items-start">
-                    <Building className="text-gray-400 mr-2 mt-0.6" size={20} />
-                    <p className="text-gray-300">
-                      {language === 'en' 
-                        ? 'henzhen Baoan District Jia an South Road No.22 Yishang Creative Technology Building 1608'
-                        : '深圳市宝安区甲岸南路22号易尚创意科技大厦1608'
-                      }
-                    </p>
-                  </div>
-                </div>
-              {language === 'en' && (
+            <h3 className="text-lg font-bold mb-3 text-white">
+              {language === 'en' ? 'Contact Us' : '联系我们'}
+            </h3>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-start">
+                <Mail className="text-gray-400 mr-2 mt-1.5" size={14} />
+                <p className="text-gray-300">contact@lynse.ai</p>
+              </div>
+              <div className="flex items-start">
+                <Building className="text-gray-400 mr-2 mt-0.6" size={20} />
+                <p className="text-gray-300">
+                  {language === 'en'
+                    ? '2nd Floor, No. 25-1 Hongcao Road, Xuhui District, Shanghai, China'
+                    : '上海市徐汇区虹漕路25-1号2楼，邮编：200233'
+                  }
+                </p>
+              </div>
+            </div>
+            {language === 'en' && (
               <div className="mt-3">
                 <p className="text-gray-400 mb-1 text-sm">Subscribe to our newsletter</p>
                 <p className="text-gray-500 mb-2 text-xs">Get the latest updates first</p>
@@ -124,13 +124,13 @@ const Footer: FC<FooterProps> = ({ language }) => {
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                   />
-                  <button 
+                  <button
                     className="absolute right-0 top-0 bottom-0 px-3 flex items-center justify-center bg-transparent hover:bg-gray-600 rounded-r-md transition-colors"
                     disabled={!email}
                   >
-                    <Mail 
-                      size={16} 
-                      className={email ? 'text-logo-blue' : 'text-gray-500'} 
+                    <Mail
+                      size={16}
+                      className={email ? 'text-logo-blue' : 'text-gray-500'}
                     />
                   </button>
                 </div>
@@ -141,27 +141,21 @@ const Footer: FC<FooterProps> = ({ language }) => {
 
         <div className="mt-12 pt-8 border-t border-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="flex flex-col md:flex-row items-center gap-3">
-                <p className="text-xs text-gray-500 mb-0">
-                  &copy; {new Date().getFullYear()} 深圳灵识智能科技有限公司 版权所有
-                </p>
-                <span className="text-xs text-gray-500 hidden md:inline">|</span>
-                <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="text-xs text-gray-500 hover:text-white transition-colors">
-                  粤ICP备2025424446号-2
-                </a>
-              </div>
-              <div className="flex md:flex-row space-x-4 mt-3 md:mt-0">
-                <a href="/policy/privacy-policy.html" className="text-xs text-gray-500 hover:text-white">
-                  {language === 'en' ? 'Privacy Policy' : '隐私政策'}
-                </a>
-                <a href="#" className="text-xs text-gray-500 hover:text-white">
-                  {language === 'en' ? 'Terms of Service' : '服务条款'}
-                </a>
-                <a href="#" className="text-xs text-gray-500 hover:text-white">
-                  {language === 'en' ? 'Cookie Policy' : 'Cookie 政策'}
-                </a>
-              </div>
+            <p className="text-xs text-gray-500 mb-0">
+              &copy; {new Date().getFullYear()} 上海天启灵光科技有限公司 版权所有
+            </p>
+            <div className="flex md:flex-row space-x-4 mt-3 md:mt-0">
+              <a href="/policy/privacy-policy.html" className="text-xs text-gray-500 hover:text-white">
+                {language === 'en' ? 'Privacy Policy' : '隐私政策'}
+              </a>
+              <a href="#" className="text-xs text-gray-500 hover:text-white">
+                {language === 'en' ? 'Terms of Service' : '服务条款'}
+              </a>
+              <a href="#" className="text-xs text-gray-500 hover:text-white">
+                {language === 'en' ? 'Cookie Policy' : 'Cookie 政策'}
+              </a>
             </div>
+          </div>
         </div>
       </div>
     </footer>

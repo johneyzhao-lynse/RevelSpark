@@ -133,13 +133,12 @@ const OrderDropdownButton: FC<{ language: 'en' | 'zh' }> = ({ language }) => {
       <button
         className="px-8 py-2 bg-gradient-to-r from-logo-blue to-logo-cyan text-white rounded-full font-bold text-lg shadow-xl hover:scale-105 hover:shadow-2xl transition-all flex items-center min-w-[90px]"
       >
-        <svg className="mr-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 6.5V5.5C6.5 3.84315 7.84315 2.5 9.5 2.5C11.1569 2.5 12.5 3.84315 12.5 5.5V6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><rect x="3.5" y="6.5" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M8.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><path d="M11.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
+        <svg className="mr-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 6.5V5.5C6.5 3.84315 7.84315 2.5 9.5 2.5C11.1569 2.5 12.5 3.84315 12.5 5.5V6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /><rect x="3.5" y="6.5" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.5" /><path d="M8.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><path d="M11.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
         {language === 'en' ? 'Buy Now' : '立即购买'}
       </button>
       <div
-        className={`absolute top-full left-0 mt-2 w-44 bg-white/60 rounded-xl shadow-2xl border border-gray-100 backdrop-blur-lg transition-all duration-300 z-50 ${
-          open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
-        }`}
+        className={`absolute top-full left-0 mt-2 w-44 bg-white/60 rounded-xl shadow-2xl border border-gray-100 backdrop-blur-lg transition-all duration-300 z-50 ${open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
+          }`}
       >
         <div className="p-2">
           <div className="text-xs text-gray-600 mb-2 px-2">

@@ -108,7 +108,7 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
     {
       icon: <Smartphone />,
       title: "配套应用",
-      description: "通过谛听记APP传送、组织和编辑您的录音，并使用AI功能进行转写、总结和分享。"
+      description: "通过灵光闪记APP传送、组织和编辑您的录音，并使用AI功能进行转写、总结和分享。"
     }
   ];
 

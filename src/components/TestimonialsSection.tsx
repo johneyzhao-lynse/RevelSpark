@@ -62,7 +62,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
       role: "Graduate Student",
       image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       rating: 4,
-      text: <><BrandName>Lynse</BrandName>卡。谛听记APP使搜索转录变得容易，多语言支持对我的国际研究非常完美。</>
+      text: <><BrandName>Lynse</BrandName>卡。灵光闪记APP使搜索转录变得容易，多语言支持对我的国际研究非常完美。</>
     },
     {
       name: "David Kim",
@@ -91,7 +91,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
       role: "研究生",
       image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       rating: 4,
-      text: <><BrandName>Lynse</BrandName>卡。谛听记APP使搜索转录变得容易，多语言支持对我的国际研究非常完美。</>
+      text: <><BrandName>Lynse</BrandName>卡。灵光闪记APP使搜索转录变得容易，多语言支持对我的国际研究非常完美。</>
     },
     {
       name: "金大卫",

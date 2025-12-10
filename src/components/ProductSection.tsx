@@ -146,7 +146,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
                         <div className="w-3/4 h-1 bg-blue-100 rounded-full mt-2"></div>
                         <div className="w-1/2 h-1 bg-blue-100 rounded-full mt-3"></div>
                         <div className="font-bold text-blue-600 mt-6">DtingNote</div>
-                        <div className="text-xs text-gray-500">谛听记</div>
+                        <div className="text-xs text-gray-500">灵光闪记</div>
                       </div>
                     </div>
                   </div>

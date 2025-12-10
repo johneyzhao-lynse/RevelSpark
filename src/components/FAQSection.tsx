@@ -86,11 +86,11 @@ const FAQSection: React.FC<FAQSectionProps> = ({ language }) => {
     },
     {
       question: "可以不使用智能手机吗？",
-      answer: <><BrandName>Lynse</BrandName>卡可以作为独立设备使用。您可以录制，设备将存储音频和转录内容。但是，与谛听记APP配对可提供额外功能，如组织、编辑、翻译和共享功能。</>
+      answer: <><BrandName>Lynse</BrandName>卡可以作为独立设备使用。您可以录制，设备将存储音频和转录内容。但是，与灵光闪记APP配对可提供额外功能，如组织、编辑、翻译和共享功能。</>
     },
     {
       question: "包装盒内包含什么？",
-      answer: <><BrandName>Lynse</BrandName> AI闪记卡、1根USB-C充电线、1个保护套、1份快速入门指南和一张保修卡。谛听记APP可免费下载，适用于iOS和Android。</>
+      answer: <><BrandName>Lynse</BrandName> AI闪记卡、1根USB-C充电线、1个保护套、1份快速入门指南和一张保修卡。灵光闪记APP可免费下载，适用于iOS和Android。</>
     }
   ];
 
