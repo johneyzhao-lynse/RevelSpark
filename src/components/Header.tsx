@@ -2,17 +2,7 @@ import React, { useState, useEffect, useRef, FC, useCallback } from 'react';
 import { Menu, X, Globe, ShoppingBag } from 'lucide-react';
 import { Link } from './ui/Link';
 
-// 假设这些是自定义Tailwind类的定义
-// 实际项目中应在Tailwind配置文件中定义这些颜色
-const customColors = {
-  'lightblue': '#e6f0ff',
-  'logo-blue': '#1a6dff',
-  'logo-cyan': '#36cfff',
-  'accent': '#0a5fff',
-  'cyanaccent': '#00c4ff',
-  'primary': '#1a6dff',
-  'secondary': '#00c4ff',
-};
+
 
 interface HeaderProps {
   language: 'en' | 'zh';
@@ -45,7 +35,7 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleLanguage = () => onLanguageChange(language === 'en' ? 'zh' : 'en');
 
-  const toggleDropdown = () => setIsDropdownOpen((v) => !v);
+
   const openDropdown = () => {
     if (dropdownCloseTimer.current) {
       clearTimeout(dropdownCloseTimer.current);
@@ -62,7 +52,7 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
     }, 100); // 100ms延迟
   };
 
-  const isDownloadPage = window.location.pathname === '/download';
+
   const isAboutPage = window.location.pathname === '/about';
 
   // 旗舰店链接配置
@@ -105,14 +95,15 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/70 shadow-lg backdrop-blur-xl border-b border-lightblue py-2' : 'bg-gradient-to-b from-lightblue to-white/80 py-6'
-        }`}
-      style={{ boxShadow: isScrolled ? '0 4px 24px 0 rgba(26,109,255,0.08)' : 'none' }}
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-[1000] transition-all duration-300 border-b rounded-full px-4 ${isScrolled
+        ? 'bg-white/80 backdrop-blur-[16px] border-black/10 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)]'
+        : 'bg-white/70 backdrop-blur-[12px] border-black/[0.08] py-3 shadow-[0_4px_20px_rgba(0,0,0,0.05)]'
+        } w-fit max-w-[95vw] md:max-w-[90vw] whitespace-nowrap flex justify-center`}
     >
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+      <div className="w-full flex items-center justify-between gap-4 md:gap-8 px-2">
         <div className="flex items-center select-none">
           <Link href="/">
-            <img src="/images/logo.png" alt="lynse logo" className="max-w-[150px] h-[45px] w-auto object-contain mr-3" />
+            <img src="/images/logo.png" alt="lynse logo" className="h-[32px] w-auto object-contain mr-2" />
           </Link>
         </div>
         <React.Fragment>
@@ -203,8 +194,8 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
               {/* 下拉菜单 */}
               <div
                 className={`absolute top-full left-0 mt-2 w-44 bg-white/60 rounded-xl shadow-2xl border border-gray-100 backdrop-blur-lg transition-all duration-300 z-50 ${isDropdownOpen
-                    ? 'opacity-100 translate-y-0 pointer-events-auto'
-                    : 'opacity-0 -translate-y-2 pointer-events-none'
+                  ? 'opacity-100 translate-y-0 pointer-events-auto'
+                  : 'opacity-0 -translate-y-2 pointer-events-none'
                   }`}
               >
                 <div className="p-2">
