@@ -45,3 +45,5 @@ coverage/
 
 # Docker相关
 .dockerignore
+Dockerfile
+nginx.conf
