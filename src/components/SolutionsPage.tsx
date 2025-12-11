@@ -66,7 +66,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ language }) => {
   const currentContent = content[language];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-16">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 pt-32 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -84,7 +84,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ language }) => {
         {/* Solutions Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {currentContent.solutions.map((solution, index) => (
-            <div 
+            <div
               key={index}
               className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
