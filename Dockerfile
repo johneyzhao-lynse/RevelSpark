@@ -27,6 +27,8 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # 暴露80端口
 EXPOSE 80
+# 如果需要SSL支持，取消注释以下行
+EXPOSE 443
 
 # 启动Nginx
 CMD ["nginx", "-g", "daemon off;"]
