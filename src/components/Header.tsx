@@ -95,25 +95,25 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
 
   return (
     <header
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-[1000] transition-all duration-300 border-b rounded-full px-4 ${isScrolled
-        ? 'bg-white/80 backdrop-blur-[16px] border-black/10 py-2 shadow-[0_4px_20px_rgba(0,0,0,0.08)]'
-        : 'bg-white/70 backdrop-blur-[12px] border-black/[0.08] py-3 shadow-[0_4px_20px_rgba(0,0,0,0.05)]'
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-[1000] transition-all duration-500 border rounded-full px-4 ${isScrolled
+        ? 'bg-white/90 backdrop-blur-xl border-gray-200/50 py-2.5 shadow-glass'
+        : 'bg-white/70 backdrop-blur-md border-gray-200/30 py-3 shadow-sm'
         } w-fit max-w-[95vw] md:max-w-[90vw] whitespace-nowrap flex justify-center`}
     >
       <div className="w-full flex items-center justify-between gap-4 md:gap-8 px-2">
         <div className="flex items-center select-none">
-          <Link href="/">
-            <img src="/images/logo.png" alt="lynse logo" className="h-[32px] w-auto object-contain mr-2" />
+          <Link href="/" className="group">
+            <img src="/images/logo.png" alt="lynse logo" className="h-[32px] w-auto object-contain mr-2 transition-transform duration-300 group-hover:scale-105" />
           </Link>
         </div>
         <React.Fragment>
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-10">
-            <div className="flex items-center space-x-10">
+          <nav className="hidden md:flex items-center space-x-8">
+            <div className="flex items-center space-x-8">
               {/* Lynse Note Product Directory Dropdown */}
               <div className="relative group">
                 <button
-                  className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60 flex items-center"
+                  className="text-text-primary text-base font-semibold hover:text-primary-600 transition-all px-3 py-2 rounded-xl hover:bg-primary-50/50 flex items-center"
                 >
                   {language === 'en' ? 'Lynse Note' : 'Lynse Note'}
                   <svg
@@ -125,57 +125,56 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                <div className="absolute left-0 mt-3 w-48 glass-card py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform group-hover:translate-y-0 translate-y-2">
                   <Link
                     href="/#product"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-4 py-2.5 text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all duration-200 rounded-lg mx-1"
                   >
                     {language === 'en' ? 'Product' : '产品'}
                   </Link>
                   <Link
                     href="/#features"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-4 py-2.5 text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all duration-200 rounded-lg mx-1"
                   >
                     {language === 'en' ? 'Features' : '特性'}
                   </Link>
                   <Link
                     href="/#specs"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-4 py-2.5 text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all duration-200 rounded-lg mx-1"
                   >
                     {language === 'en' ? 'Specs' : '规格'}
                   </Link>
                   <Link
                     href="/#testimonials"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-4 py-2.5 text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all duration-200 rounded-lg mx-1"
                   >
                     {language === 'en' ? 'Reviews' : '评价'}
                   </Link>
                   <Link
                     href="/#faq"
-                    className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200"
+                    className="block px-4 py-2.5 text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all duration-200 rounded-lg mx-1"
                   >
                     {language === 'en' ? 'FAQ' : '常见问题'}
                   </Link>
                 </div>
               </div>
 
-              <Link href="/solutions" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
+              <Link href="/solutions" className="text-text-primary text-base font-semibold hover:text-primary-600 transition-all px-3 py-2 rounded-xl hover:bg-primary-50/50">
                 {language === 'en' ? 'Solutions' : '解决方案'}
               </Link>
-              <Link href="/support/support-center.html" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                {language === 'en' ? 'Support Center' : '支持中心'}
+              <Link href="/support/support-center.html" className="text-text-primary text-base font-semibold hover:text-primary-600 transition-all px-3 py-2 rounded-xl hover:bg-primary-50/50">
+                {language === 'en' ? 'Support' : '支持'}
               </Link>
-              <Link href="/about" className="text-primary text-lg font-semibold hover:text-secondary hover:underline underline-offset-8 decoration-2 decoration-secondary transition-all px-2 py-1 rounded-lg hover:bg-lightblue/60">
-                {language === 'en' ? 'About Us' : '关于我们'}
+              <Link href="/about" className="text-text-primary text-base font-semibold hover:text-primary-600 transition-all px-3 py-2 rounded-xl hover:bg-primary-50/50">
+                {language === 'en' ? 'About' : '关于'}
               </Link>
               <button
-                className="flex items-center text-base font-medium bg-transparent px-2 py-1 rounded-lg hover:bg-lightblue/60 transition-all"
+                className="flex items-center text-base font-medium text-text-secondary hover:text-primary-600 px-3 py-2 rounded-xl hover:bg-primary-50/50 transition-all"
                 onClick={toggleLanguage}
                 aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
               >
-                <Globe size={18} className="mr-1 text-primary" />
-
-                <span className="text-primary">{language === 'en' ? 'EN / 中文' : '中文 / EN'}</span>
+                <Globe size={16} className="mr-1.5" />
+                <span>{language === 'en' ? 'EN' : '中文'}</span>
               </button>
             </div>
 
@@ -186,21 +185,21 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
               onMouseLeave={closeDropdown}
             >
               <button
-                className={`bg-gradient-to-r from-logo-blue to-logo-cyan hover:from-accent hover:to-cyanaccent text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-logo-blue flex items-center min-w-[90px]`}
+                className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-glass hover:shadow-glow transition-all duration-300 flex items-center hover:scale-105"
               >
                 <ShoppingBag size={16} className="mr-2" />
                 {language === 'en' ? 'Buy Now' : '立即购买'}
               </button>
               {/* 下拉菜单 */}
               <div
-                className={`absolute top-full left-0 mt-2 w-44 bg-white/60 rounded-xl shadow-2xl border border-gray-100 backdrop-blur-lg transition-all duration-300 z-50 ${isDropdownOpen
+                className={`absolute top-full left-0 mt-3 w-48 glass-card py-2 transition-all duration-300 z-50 ${isDropdownOpen
                   ? 'opacity-100 translate-y-0 pointer-events-auto'
                   : 'opacity-0 -translate-y-2 pointer-events-none'
                   }`}
               >
                 <div className="p-2">
-                  <div className="text-xs text-gray-600 mb-2 px-2">
-                    {language === 'en' ? 'Choose your store:' : '选择购买渠道:'}
+                  <div className="text-xs text-text-tertiary mb-2 px-2 font-medium">
+                    {language === 'en' ? 'Choose store:' : '选择购买渠道:'}
                   </div>
                   {storeLinks.map((store, index) => (
                     <a
@@ -208,16 +207,16 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                       href={store.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center p-2 rounded-lg hover:bg-gray-100/70 transition-all duration-200 group"
+                      className="flex items-center p-2.5 rounded-lg hover:bg-primary-50/70 transition-all duration-200 group"
                     >
-                      <span className="mr-2">
+                      <span className="mr-3">
                         {typeof store.icon === 'string' ? (
                           <span className="text-base">{store.icon}</span>
                         ) : (
                           store.icon
                         )}
                       </span>
-                      <span className="text-sm text-gray-700 font-medium group-hover:text-primary transition-colors">
+                      <span className="text-sm text-text-secondary font-medium group-hover:text-primary-600 transition-colors">
                         {store.name}
                       </span>
                     </a>
@@ -228,34 +227,34 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center md:hidden">
+          <div className="flex items-center md:hidden gap-2">
             <button
               onClick={toggleLanguage}
-              className="mr-2 p-2 rounded-full hover:bg-lightblue/60 transition-all"
+              className="p-2 rounded-xl hover:bg-primary-50/50 transition-all"
               aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
             >
-              <Globe size={22} className="text-primary" />
+              <Globe size={20} className="text-text-primary" />
             </button>
-            <button onClick={toggleMenu} aria-label="Toggle menu" className="p-2 rounded-full hover:bg-lightblue/60 transition-all">
+            <button onClick={toggleMenu} aria-label="Toggle menu" className="p-2 rounded-xl hover:bg-primary-50/50 transition-all">
               {isMenuOpen ? (
-                <X size={28} className="text-primary" />
+                <X size={24} className="text-text-primary" />
               ) : (
-                <Menu size={28} className="text-primary" />
+                <Menu size={24} className="text-text-primary" />
               )}
             </button>
           </div>
 
           {/* Mobile Navigation Dropdown */}
           {isMenuOpen && (
-            <div className="md:hidden bg-white/95 shadow-xl backdrop-blur-md rounded-b-2xl">
-              <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col space-y-4">
+            <div className="md:hidden glass-card rounded-b-3xl mt-4">
+              <div className="max-w-7xl mx-auto px-4 py-6 flex flex-col space-y-3">
                 {isAboutPage ? (
-                  <Link href="/" className="text-primary text-lg font-semibold" onClick={toggleMenu}>
+                  <Link href="/" className="text-text-primary text-lg font-semibold px-4 py-3 rounded-xl hover:bg-primary-50/50" onClick={toggleMenu}>
                     {language === 'en' ? 'Back to Home' : '返回主页'}
                   </Link>
                 ) : (
                   <>
-                    <div className="px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 cursor-pointer flex justify-between items-center"
+                    <div className="px-4 py-3 rounded-xl text-base font-medium text-text-primary hover:bg-primary-50/50 cursor-pointer flex justify-between items-center transition-all"
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                       <span>{language === 'en' ? 'Lynse Note' : 'Lynse Note'}</span>
                       <svg
@@ -271,35 +270,35 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                       <div className="pl-4 space-y-1">
                         <Link
                           href="#product"
-                          className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                          className="block px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all"
                           onClick={toggleMenu}
                         >
                           {language === 'en' ? 'Product' : '产品'}
                         </Link>
                         <Link
                           href="#features"
-                          className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                          className="block px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all"
                           onClick={toggleMenu}
                         >
                           {language === 'en' ? 'Features' : '特性'}
                         </Link>
                         <Link
                           href="#specs"
-                          className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                          className="block px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all"
                           onClick={toggleMenu}
                         >
                           {language === 'en' ? 'Specs' : '规格'}
                         </Link>
                         <Link
                           href="#testimonials"
-                          className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                          className="block px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all"
                           onClick={toggleMenu}
                         >
                           {language === 'en' ? 'Reviews' : '评价'}
                         </Link>
                         <Link
                           href="#faq"
-                          className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                          className="block px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all"
                           onClick={toggleMenu}
                         >
                           {language === 'en' ? 'FAQ' : '常见问题'}
@@ -308,28 +307,28 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                     )}
                     <Link
                       href="/solutions"
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                      className="block px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all"
                       onClick={toggleMenu}
                     >
                       {language === 'en' ? 'Solutions' : '解决方案'}
                     </Link>
                     <a
                       href="/support/support-center.html"
-                      className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                      className="block px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all"
                       onClick={toggleMenu}
                     >
                       {language === 'en' ? 'Support' : '支持'}
                     </a>
-                    <Link href="/about" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50" onClick={toggleMenu}>
-                      {language === 'en' ? 'About Us' : '关于我们'}
+                    <Link href="/about" className="block px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all" onClick={toggleMenu}>
+                      {language === 'en' ? 'About' : '关于'}
                     </Link>
                   </>
                 )}
 
                 {/* Mobile 立即购买按钮 */}
                 {!isAboutPage && (
-                  <div className="space-y-2">
-                    <div className="text-xs text-gray-500 px-2">
+                  <div className="pt-4 space-y-2 border-t border-gray-200/50">
+                    <div className="text-xs text-text-tertiary px-4 font-medium">
                       {language === 'en' ? 'Choose your store:' : '选择购买渠道:'}
                     </div>
                     {storeLinks.map((store, index) => (
@@ -338,17 +337,17 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                         href={store.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-all"
+                        className="flex items-center p-3 bg-primary-50/30 rounded-xl hover:bg-primary-50/70 transition-all"
                         onClick={toggleMenu}
                       >
-                        <span className="mr-2">
+                        <span className="mr-3">
                           {typeof store.icon === 'string' ? (
                             <span className="text-base">{store.icon}</span>
                           ) : (
                             store.icon
                           )}
                         </span>
-                        <span className="text-sm text-gray-700 font-medium">{store.name}</span>
+                        <span className="text-sm text-text-secondary font-medium">{store.name}</span>
                       </a>
                     ))}
                   </div>

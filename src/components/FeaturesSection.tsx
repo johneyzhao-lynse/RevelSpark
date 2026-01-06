@@ -15,22 +15,22 @@ interface FeatureCardProps {
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, index }) => {
   return (
-    <div 
-      className="w-full h-[150px] bg-gradient-to-br from-white/70 to-blue-50/60 backdrop-blur-2xl rounded-xl p-3 shadow-xl border border-white/40 hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1 flex items-center"
-      style={{ 
+    <div
+      className="w-full h-[150px] glass-card glass-card-hover p-4 flex items-center group cursor-pointer"
+      style={{
         animationDelay: `${index * 100}ms`,
         animation: 'fadeInUp 0.8s ease-out forwards',
         opacity: 0,
         transform: 'translateY(20px)'
       }}
     >
-      <div className="flex items-start gap-2 w-full">
-        <div className="p-1.5 bg-white/50 rounded-full flex-shrink-0">
-          {React.cloneElement(icon as React.ReactElement, { size: 18, className: 'text-primary' })}
+      <div className="flex items-start gap-3 w-full">
+        <div className="p-2.5 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+          {React.cloneElement(icon as React.ReactElement, { size: 20, className: 'text-primary-600' })}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-bold text-gray-900 mb-1 truncate">{title}</h3>
-          <p className="text-gray-600 text-xs leading-snug">{description}</p>
+          <h3 className="text-base font-bold text-text-primary mb-1.5 truncate group-hover:text-primary-600 transition-colors">{title}</h3>
+          <p className="text-text-tertiary text-sm leading-snug line-clamp-2">{description}</p>
         </div>
       </div>
     </div>
@@ -113,23 +113,23 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
   ];
 
   return (
-    <section id="features" className="py-24 bg-gradient-to-b from-paleblue via-lightblue to-white">
-      <div className="container mx-auto px-4 md:px-6 max-w-6xl">
+    <section id="features" className="py-24 bg-gradient-to-b from-surface-darker via-surface-light to-surface">
+      <div className="section-container">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-6 animate-fade-in-up opacity-0-initial">
             {language === 'en' ? 'Smart Features for Smart Recording' : '智能录音的智能特性'}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            {language === 'en' 
-              ? 'Experience the future of audio recording with features designed to transform how you capture and use spoken words.' 
+          <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto animate-fade-in-up opacity-0-initial delay-200">
+            {language === 'en'
+              ? 'Experience the future of audio recording with features designed to transform how you capture and use spoken words.'
               : '体验录音的未来，这些功能旨在改变您捕捉和使用口语的方式。'}
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
+        <div className="flex flex-col lg:flex-row gap-12 items-start">
           <div className="w-full lg:w-1/2 flex flex-col items-center justify-start">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-[700px] mx-auto">
-              {features.slice(0, 6).map((feature, index) => (
+              {features.map((feature, index) => (
                 <FeatureCard
                   key={index}
                   icon={feature.icon}
@@ -140,33 +140,29 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
               ))}
             </div>
           </div>
-          <div className="w-full lg:w-1/2 flex flex-col items-center justify-start">
-            <div className="bg-gradient-to-br from-white/70 to-blue-50/60 backdrop-blur-2xl rounded-2xl p-6 shadow-2xl border border-white/40 hover:shadow-primary/20 transition-all duration-300 transform hover:-translate-y-1 w-[480px] h-[480px] max-w-full mx-auto flex items-center justify-center overflow-visible">
-              <img 
-                src="./images/recording-card.png" 
-                alt={language === 'en' ? 'Lynse AI Recording Card' : 'Lynse AI 闪记卡'}
-                className="w-[420px] h-[420px] object-contain rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105 bg-transparent"
-                style={{
-                  filter: 'drop-shadow(0 10px 24px rgba(26, 109, 255, 0.18))',
-                }}
-              />
+          <div className="w-full lg:w-1/2 flex flex-col items-center justify-center">
+            <div className="relative">
+              {/* Background decoration */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-secondary-500/10 rounded-3xl blur-3xl"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-[350px] h-[350px] border border-primary-100 rounded-full animate-[spin_40s_linear_infinite]"></div>
+              </div>
+
+              {/* Product card */}
+              <div className="relative glass-card p-8 rounded-3xl w-[480px] h-[480px] max-w-full mx-auto flex items-center justify-center">
+                <img
+                  src="./images/recording-card.png"
+                  alt={language === 'en' ? 'Lynse AI Recording Card' : 'Lynse AI 闪记卡'}
+                  className="w-[420px] h-[420px] object-contain transition-transform duration-500 hover:scale-105 animate-float"
+                  style={{
+                    filter: 'drop-shadow(0 20px 40px rgba(26, 109, 255, 0.2))',
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   );
 };

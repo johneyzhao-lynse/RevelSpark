@@ -1,7 +1,6 @@
 import React, { FC, useState, useRef } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Sparkles } from 'lucide-react';
 import { Link } from './ui/Link';
-import DownloadButtons from './ui/DownloadButtons';
 import BrandName from './ui/BrandName';
 
 interface HeroSectionProps {
@@ -12,61 +11,121 @@ const HeroSection: FC<HeroSectionProps> = ({ language }: HeroSectionProps) => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-lightblue via-paleblue to-white"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden animated-gradient"
     >
-      {/* Background Gradient & Decorative Circles */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-logo-blue rounded-full filter blur-3xl opacity-30"></div>
-        <div className="absolute bottom-1/3 left-1/3 w-64 h-64 bg-logo-cyan rounded-full filter blur-3xl opacity-30"></div>
-        <div className="absolute -top-20 -left-20 w-80 h-80 bg-lightblue rounded-full filter blur-2xl opacity-40"></div>
+      {/* Enhanced Background with Animated Orbs */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Primary gradient orbs */}
+        <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-primary-500/20 to-secondary-500/20 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-[400px] h-[400px] bg-gradient-to-tr from-secondary-500/15 to-primary-500/15 rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+
+        {/* Grid pattern overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(26,109,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(26,109,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
+
+        {/* Floating particles */}
+        <div className="absolute top-20 right-20 w-2 h-2 bg-primary-500/40 rounded-full animate-float"></div>
+        <div className="absolute top-40 left-1/4 w-1.5 h-1.5 bg-secondary-500/30 rounded-full animate-float-delayed"></div>
+        <div className="absolute bottom-40 right-1/3 w-2.5 h-2.5 bg-primary-500/20 rounded-full animate-float"></div>
       </div>
+
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10 pt-24 pb-12 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-8">
-              <span className="block">
-                <span className="bg-gradient-to-r from-logo-blue to-logo-cyan bg-clip-text text-transparent">
+          {/* Left Content */}
+          <div className="text-center lg:text-left space-y-8">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-50 to-secondary-50 border border-primary-200/50 backdrop-blur-sm animate-fade-in-up opacity-0-initial">
+              <Sparkles className="w-4 h-4 text-primary-500" />
+              <span className="text-sm font-medium text-primary-700">
+                {language === 'en' ? 'AI-Powered Recording Revolution' : 'AI 驱动的录音革命'}
+              </span>
+            </div>
+
+            {/* Main Heading */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight animate-fade-in-up opacity-0-initial delay-200">
+              <span className="block mb-2">
+                <span className="gradient-text">
                   {language === 'en'
-                    ? 'Record, Transcribe, Summarize'
-                    : '记录, 转写, 总结'}
+                    ? 'Record, Transcribe,'
+                    : '记录, 转写,'}
                 </span>
-                <br />
+              </span>
+              <span className="block text-text-primary">
+                {language === 'en' ? 'Summarize' : '总结'}
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-primary mb-10 max-w-xl mx-auto lg:mx-0">
+
+            {/* Subtitle */}
+            <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-xl mx-auto lg:mx-0 animate-fade-in-up opacity-0-initial delay-300">
               {language === 'en'
-                ? <><BrandName size="xl">Lynse</BrandName> AI recording card: effortless audio capture & AI transcription.</>
-                : <><BrandName size="xl">Lynse</BrandName> AI 闪记卡：轻松录音，AI 智能转写。</>}
+                ? (
+                  <>
+                    <BrandName size="xl">Lynse</BrandName> AI recording card: effortless audio capture &{' '}
+                    <span className="text-primary-600 font-semibold">AI-powered transcription</span>.
+                  </>
+                )
+                : (
+                  <>
+                    <BrandName size="xl">Lynse</BrandName> AI 闪记卡：轻松录音，{' '}
+                    <span className="text-primary-600 font-semibold">AI 智能转写</span>。
+                  </>
+                )}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              {/* 立即订购按钮及商城弹窗 */}
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4 animate-fade-in-up opacity-0-initial delay-400 items-stretch">
               <OrderDropdownButton language={language} />
               <Link
                 href="/download"
-                className="px-10 py-2 border-2 border-logo-blue text-logo-blue rounded-full font-bold text-lg bg-white/80 hover:bg-lightblue transition-all"
+                className="group h-[50px] px-8 border-2 border-primary-500 text-primary-600 rounded-full font-bold text-base bg-white/90 backdrop-blur-sm hover:bg-primary-50 hover:shadow-glow transition-all duration-300 flex items-center justify-center whitespace-nowrap"
               >
                 {language === 'en' ? 'Download App' : '下载应用'}
               </Link>
             </div>
+
+            {/* Trust badges */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-6 animate-fade-in-up opacity-0-initial delay-500">
+              <div className="flex items-center gap-2 text-sm text-text-tertiary">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                {language === 'en' ? '30+ Languages Supported' : '支持 30+ 种语言'}
+              </div>
+              <div className="flex items-center gap-2 text-sm text-text-tertiary">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                {language === 'en' ? 'Bank-Level Security' : '银行级安全'}
+              </div>
+            </div>
           </div>
-          <div className="relative mx-auto lg:mx-0 flex items-center justify-center p-4">
-            {/* Product Image */}
-            <img
-              src="/images/product-showcase.png"
-              alt="Lynse AI flash card"
-              className="w-full max-w-[600px] lg:max-w-[720px] object-contain transition-all duration-500 transform hover:scale-105"
-              style={{
-                filter: 'drop-shadow(0 25px 25px rgba(26, 109, 255, 0.2))',
-              }}
-            />
+
+          {/* Right Content - Product Showcase */}
+          <div className="relative mx-auto lg:mx-0 flex items-center justify-center p-4 animate-scale-in opacity-0-initial">
+            {/* Background decorative ring */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-[500px] h-[500px] border border-primary-100 rounded-full animate-[spin_30s_linear_infinite]"></div>
+              <div className="absolute w-[400px] h-[400px] border border-secondary-100 rounded-full animate-[spin_25s_linear_infinite_reverse]"></div>
+              <div className="absolute w-[300px] h-[300px] bg-gradient-to-br from-primary-50 to-secondary-50 rounded-full blur-3xl"></div>
+            </div>
+
+            {/* Product Image with enhanced shadow */}
+            <div className="relative z-10 group">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-3xl blur-3xl group-hover:blur-3xl transition-all duration-500"></div>
+              <img
+                src="/images/product-showcase.png"
+                alt="Lynse AI flash card"
+                className="relative w-full max-w-[600px] lg:max-w-[720px] object-contain transition-all duration-700 transform group-hover:scale-105 group-hover:-rotate-2"
+                style={{
+                  filter: 'drop-shadow(0 30px 40px rgba(26, 109, 255, 0.25))',
+                }}
+              />
+            </div>
           </div>
         </div>
+
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-logo-blue flex flex-col items-center">
-          <span className="text-base mb-2 opacity-80">
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-primary-600 flex flex-col items-center animate-fade-in-up opacity-0-initial delay-600">
+          <span className="text-sm mb-2 opacity-70">
             {language === 'en' ? 'Scroll to explore' : '向下滚动探索'}
           </span>
-          <ChevronDown className="animate-bounce" size={28} />
+          <ChevronDown className="animate-bounce" size={24} />
         </div>
       </div>
     </section>
@@ -131,7 +190,7 @@ const OrderDropdownButton: FC<{ language: 'en' | 'zh' }> = ({ language }) => {
   return (
     <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <button
-        className="px-8 py-2 bg-gradient-to-r from-logo-blue to-logo-cyan text-white rounded-full font-bold text-lg shadow-xl hover:scale-105 hover:shadow-2xl transition-all flex items-center min-w-[90px]"
+        className="h-[50px] px-8 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-full font-bold text-base shadow-glass hover:shadow-glow hover:scale-105 transition-all duration-300 flex items-center justify-center min-w-[130px]"
       >
         <svg className="mr-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 6.5V5.5C6.5 3.84315 7.84315 2.5 9.5 2.5C11.1569 2.5 12.5 3.84315 12.5 5.5V6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /><rect x="3.5" y="6.5" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.5" /><path d="M8.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><path d="M11.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
         {language === 'en' ? 'Buy Now' : '立即购买'}

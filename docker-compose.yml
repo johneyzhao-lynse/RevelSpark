@@ -5,16 +5,19 @@ services:
     build: .
     container_name: lynse-web
     ports:
-      - "8080:80"
+      - "80:80"
+      - "443:443"
     restart: unless-stopped
     environment:
       - NODE_ENV=production
+    volumes:
+      - /lynse/ssl:/etc/nginx/ssl:ro
     # 可选：挂载日志目录（如果需要）
     # volumes:
     #   - ./logs:/var/log/nginx
     # 可选：添加健康检查
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      test: ["CMD", "curl", "-f", "https://localhost"]
       interval: 30s
       timeout: 10s
       retries: 3

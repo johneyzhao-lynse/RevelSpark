@@ -12,7 +12,7 @@ const SupportCenterPage = () => {
     <div className="bg-blue-50 text-gray-700 font-sans antialiased min-h-screen flex flex-col">
       <Header language={language} onLanguageChange={handleLanguageChange} />
 
-      <main className="py-16 sm:py-24">
+      <main className="pt-28 pb-16 sm:pt-32 sm:pb-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Hero Section */}
