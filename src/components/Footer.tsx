@@ -85,10 +85,16 @@ const Footer: FC<FooterProps> = ({ language }) => {
                 </Link>
               </li>
               <li>
-                <a href="/policy/privacy-policy.html" className="text-gray-400 hover:text-white transition-colors">
-                  {language === 'en' ? 'Privacy Policy' : '相关资讯'}
+                <a href="/policy/privacy-cn.html" className="text-gray-400 hover:text-white transition-colors">
+                  {language === 'en' ? 'Privacy Policy' : '隐私政策'}
                 </a>
               </li>
+              <li>
+                <a href="/policy/user-agreement-cn.html" className="text-gray-400 hover:text-white transition-colors">
+                  {language === 'en' ? 'User Agreement' : '用户协议'}
+                </a>
+              </li>
+
             </ul>
           </div>
 
@@ -142,18 +148,16 @@ const Footer: FC<FooterProps> = ({ language }) => {
         <div className="mt-12 pt-8 border-t border-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-xs text-gray-500 mb-0">
-              &copy; {new Date().getFullYear()} 上海天启灵光科技有限公司 版权所有
+              &copy; {new Date().getFullYear()} 上海天启灵光科技有限公司 版权所有 | 备案号：沪ICP备2025155002号
             </p>
             <div className="flex md:flex-row space-x-4 mt-3 md:mt-0">
-              <a href="/policy/privacy-policy.html" className="text-xs text-gray-500 hover:text-white">
+              <a href="/policy/privacy-cn.html" className="text-xs text-gray-500 hover:text-white">
                 {language === 'en' ? 'Privacy Policy' : '隐私政策'}
               </a>
-              <a href="#" className="text-xs text-gray-500 hover:text-white">
-                {language === 'en' ? 'Terms of Service' : '服务条款'}
+              <a href="/policy/user-agreement-cn.html" className="text-xs text-gray-500 hover:text-white">
+                {language === 'en' ? 'Terms of Service' : '用户协议'}
               </a>
-              <a href="#" className="text-xs text-gray-500 hover:text-white">
-                {language === 'en' ? 'Cookie Policy' : 'Cookie 政策'}
-              </a>
+
             </div>
           </div>
         </div>
