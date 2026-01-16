@@ -45,4 +45,8 @@ coverage/
 
 # Docker相关
 .dockerignore
+<<<<<<< HEAD
+=======
+Dockerfile
+>>>>>>> 02b7a5c503df5a403466e2a58d0d46427a32b077
 nginx.conf

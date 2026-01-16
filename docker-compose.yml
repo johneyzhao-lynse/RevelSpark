@@ -6,17 +6,29 @@ services:
     container_name: lynse-web
     ports:
       - "80:80"
+<<<<<<< HEAD
       # 如果需要SSL支持，取消注释以下行
+=======
+>>>>>>> 02b7a5c503df5a403466e2a58d0d46427a32b077
       - "443:443"
     restart: unless-stopped
     environment:
       - NODE_ENV=production
+<<<<<<< HEAD
     volumes:
       # 如果需要SSL支持，确保服务器上存在此目录并包含证书文件
       - /lynse/ssl:/etc/nginx/ssl:ro
     # 可选：挂载日志目录（如果需要）
     # volumes:
     # - ./logs:/var/log/nginx
+=======
+    # 挂载目录配置
+    volumes:
+      # 可选：挂载日志目录
+      # - ./logs:/var/log/nginx
+      # SSL证书挂载（替换为您的实际证书路径）
+      # - /path/to/ssl:/etc/nginx/ssl:ro
+>>>>>>> 02b7a5c503df5a403466e2a58d0d46427a32b077
     # 可选：添加健康检查
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost"]
