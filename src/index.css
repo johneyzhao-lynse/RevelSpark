@@ -58,13 +58,69 @@
 }
 
 @layer components {
-  /* Glassmorphism card utility */
+  /* Premium Glassmorphism card utility */
   .glass-card {
-    @apply bg-glass backdrop-blur-xl border border-white/40 rounded-2xl shadow-glass;
+    @apply bg-white/70 backdrop-blur-xl border border-white/60 rounded-3xl shadow-glass relative overflow-hidden;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.5) 100%
+    );
+  }
+
+  .glass-card::before {
+    content: '';
+    @apply absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500;
+    background: linear-gradient(
+      135deg,
+      rgba(26, 109, 255, 0.05) 0%,
+      rgba(25, 224, 230, 0.05) 100%
+    );
+    pointer-events: none;
   }
 
   .glass-card-hover {
-    @apply hover:shadow-glass-hover hover:scale-[1.02] transition-all duration-300;
+    @apply transition-all duration-300 ease-out cursor-pointer;
+  }
+
+  .glass-card-hover:hover {
+    @apply shadow-glass-hover;
+    transform: translateY(-4px);
+  }
+
+  .glass-card-hover:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Aurora gradient background */
+  .aurora-bg {
+    @apply relative overflow-hidden;
+    background: linear-gradient(
+      135deg,
+      rgba(26, 109, 255, 0.02) 0%,
+      rgba(25, 224, 230, 0.03) 25%,
+      rgba(0, 196, 167, 0.02) 50%,
+      rgba(25, 224, 230, 0.03) 75%,
+      rgba(26, 109, 255, 0.02) 100%
+    );
+    background-size: 400% 400%;
+    animation: auroraShift 20s ease infinite;
+  }
+
+  .aurora-bg::before {
+    content: '';
+    @apply absolute inset-0 opacity-30;
+    background: radial-gradient(
+      ellipse at 20% 50%,
+      rgba(26, 109, 255, 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 50%,
+      rgba(25, 224, 230, 0.08) 0%,
+      transparent 50%
+    );
+    animation: auroraFloat 15s ease-in-out infinite;
   }
 
   /* Gradient text utility */
@@ -86,17 +142,52 @@
     @apply container mx-auto px-4 md:px-6 max-w-7xl;
   }
 
-  /* Animated gradient background */
+  /* Animated gradient background - Enhanced */
   .animated-gradient {
     @apply relative overflow-hidden;
     background: linear-gradient(
       135deg,
-      rgba(26, 109, 255, 0.03) 0%,
-      rgba(25, 224, 230, 0.03) 50%,
-      rgba(26, 109, 255, 0.03) 100%
+      rgba(26, 109, 255, 0.04) 0%,
+      rgba(25, 224, 230, 0.04) 25%,
+      rgba(0, 196, 167, 0.03) 50%,
+      rgba(25, 224, 230, 0.04) 75%,
+      rgba(26, 109, 255, 0.04) 100%
     );
     background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 20s ease infinite;
+  }
+
+  /* Premium gradient text with shimmer */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-500 via-secondary-500 to-primary-500 bg-clip-text text-transparent;
+    background-size: 200% auto;
+    animation: textShimmer 4s linear infinite;
+  }
+
+  /* Enhanced button styles */
+  .btn-primary {
+    @apply px-8 py-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-full font-semibold shadow-lg hover:shadow-glow transition-all duration-300 ease-out relative overflow-hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .btn-primary:hover::before {
+    @apply opacity-100;
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-secondary {
+    @apply px-8 py-4 bg-white/90 backdrop-blur-md text-primary-600 border-2 border-primary-500/20 rounded-full font-semibold hover:bg-white hover:border-primary-500 hover:shadow-glow transition-all duration-300 ease-out;
+  }
+
+  .btn-secondary:active {
+    transform: scale(0.98);
   }
 }
 
@@ -122,6 +213,28 @@
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+  }
+
+  @keyframes auroraShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  @keyframes auroraFloat {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
+
+  @keyframes textShimmer {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
   }
 
   @keyframes slideInLeft {

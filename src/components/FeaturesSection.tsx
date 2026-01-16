@@ -16,7 +16,7 @@ interface FeatureCardProps {
 const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, index }) => {
   return (
     <div
-      className="w-full h-[150px] glass-card glass-card-hover p-4 flex items-center group cursor-pointer"
+      className="w-full h-[150px] glass-card glass-card-hover p-5 flex items-center group cursor-pointer relative overflow-hidden"
       style={{
         animationDelay: `${index * 100}ms`,
         animation: 'fadeInUp 0.8s ease-out forwards',
@@ -24,13 +24,16 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, ind
         transform: 'translateY(20px)'
       }}
     >
-      <div className="flex items-start gap-3 w-full">
-        <div className="p-2.5 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+      {/* Hover glow effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/0 via-secondary-500/0 to-mint/0 group-hover:from-primary-500/5 group-hover:via-secondary-500/5 group-hover:to-mint/5 transition-all duration-500"></div>
+
+      <div className="flex items-start gap-4 w-full relative z-10">
+        <div className="p-3 bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl flex-shrink-0 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-inner-soft">
           {React.cloneElement(icon as React.ReactElement, { size: 20, className: 'text-primary-600' })}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-base font-bold text-text-primary mb-1.5 truncate group-hover:text-primary-600 transition-colors">{title}</h3>
-          <p className="text-text-tertiary text-sm leading-snug line-clamp-2">{description}</p>
+          <h3 className="text-base font-bold text-text-primary mb-1.5 truncate group-hover:text-primary-600 transition-colors duration-300">{title}</h3>
+          <p className="text-text-tertiary text-sm leading-snug line-clamp-2 group-hover:text-text-secondary transition-colors duration-300">{description}</p>
         </div>
       </div>
     </div>
@@ -113,10 +116,10 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
   ];
 
   return (
-    <section id="features" className="py-24 bg-gradient-to-b from-surface-darker via-surface-light to-surface">
+    <section id="features" className="py-32 bg-gradient-to-b from-surface-darker via-surface-light to-surface aurora-bg relative">
       <div className="section-container">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-6 animate-fade-in-up opacity-0-initial">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 animate-fade-in-up opacity-0-initial">
             {language === 'en' ? 'Smart Features for Smart Recording' : '智能录音的智能特性'}
           </h2>
           <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto animate-fade-in-up opacity-0-initial delay-200">

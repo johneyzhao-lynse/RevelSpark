@@ -96,8 +96,8 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
   return (
     <header
       className={`fixed top-6 left-1/2 -translate-x-1/2 z-[1000] transition-all duration-500 border rounded-full px-4 ${isScrolled
-        ? 'bg-white/90 backdrop-blur-xl border-gray-200/50 py-2.5 shadow-glass'
-        : 'bg-white/70 backdrop-blur-md border-gray-200/30 py-3 shadow-sm'
+        ? 'bg-white/90 backdrop-blur-xl border-gray-200/50 py-3 shadow-premium'
+        : 'bg-white/75 backdrop-blur-md border-gray-200/40 py-3.5 shadow-glass'
         } w-fit max-w-[95vw] md:max-w-[90vw] whitespace-nowrap flex justify-center`}
     >
       <div className="w-full flex items-center justify-between gap-4 md:gap-8 px-2">
@@ -159,17 +159,17 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                 </div>
               </div>
 
-              <Link href="/solutions" className="text-text-primary text-base font-semibold hover:text-primary-600 transition-all px-3 py-2 rounded-xl hover:bg-primary-50/50">
+              <Link href="/solutions" className="text-text-primary text-base font-semibold hover:text-primary-600 transition-all duration-200 px-4 py-2.5 rounded-xl hover:bg-primary-50/50">
                 {language === 'en' ? 'Solutions' : '解决方案'}
               </Link>
-              <Link href="/support/support-center.html" className="text-text-primary text-base font-semibold hover:text-primary-600 transition-all px-3 py-2 rounded-xl hover:bg-primary-50/50">
+              <Link href="/SupportCenterPage" className="text-text-primary text-base font-semibold hover:text-primary-600 transition-all duration-200 px-4 py-2.5 rounded-xl hover:bg-primary-50/50">
                 {language === 'en' ? 'Support' : '支持'}
               </Link>
-              <Link href="/about" className="text-text-primary text-base font-semibold hover:text-primary-600 transition-all px-3 py-2 rounded-xl hover:bg-primary-50/50">
+              <Link href="/about" className="text-text-primary text-base font-semibold hover:text-primary-600 transition-all duration-200 px-4 py-2.5 rounded-xl hover:bg-primary-50/50">
                 {language === 'en' ? 'About' : '关于'}
               </Link>
               <button
-                className="flex items-center text-base font-medium text-text-secondary hover:text-primary-600 px-3 py-2 rounded-xl hover:bg-primary-50/50 transition-all"
+                className="flex items-center text-base font-semibold text-text-secondary hover:text-primary-600 px-4 py-2.5 rounded-xl hover:bg-primary-50/50 transition-all duration-200"
                 onClick={toggleLanguage}
                 aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
               >
@@ -178,28 +178,29 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
               </button>
             </div>
 
-            {/* 立即购买按钮 - 调小尺寸并添加下拉菜单 */}
+            {/* 立即购买按钮 - Enhanced */}
             <div
               className="relative"
               onMouseEnter={openDropdown}
               onMouseLeave={closeDropdown}
             >
               <button
-                className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-glass hover:shadow-glow transition-all duration-300 flex items-center hover:scale-105"
+                className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold shadow-premium hover:shadow-glow-lg transition-all duration-300 flex items-center hover:scale-105 relative overflow-hidden group"
               >
-                <ShoppingBag size={16} className="mr-2" />
-                {language === 'en' ? 'Buy Now' : '立即购买'}
+                <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <ShoppingBag size={16} className="mr-2 relative z-10" />
+                <span className="relative z-10">{language === 'en' ? 'Buy Now' : '立即购买'}</span>
               </button>
-              {/* 下拉菜单 */}
+              {/* 下拉菜单 - Enhanced */}
               <div
-                className={`absolute top-full left-0 mt-3 w-48 glass-card py-2 transition-all duration-300 z-50 ${isDropdownOpen
+                className={`absolute top-full left-0 mt-3 w-48 glass-card py-2 transition-all duration-300 z-50 shadow-premium ${isDropdownOpen
                   ? 'opacity-100 translate-y-0 pointer-events-auto'
                   : 'opacity-0 -translate-y-2 pointer-events-none'
                   }`}
               >
-                <div className="p-2">
-                  <div className="text-xs text-text-tertiary mb-2 px-2 font-medium">
-                    {language === 'en' ? 'Choose store:' : '选择购买渠道:'}
+                <div className="p-2.5">
+                  <div className="text-xs text-text-tertiary mb-2 px-2 font-semibold tracking-wide uppercase">
+                    {language === 'en' ? 'Choose store' : '选择渠道'}
                   </div>
                   {storeLinks.map((store, index) => (
                     <a
@@ -207,9 +208,9 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                       href={store.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center p-2.5 rounded-lg hover:bg-primary-50/70 transition-all duration-200 group"
+                      className="flex items-center p-2.5 rounded-xl hover:bg-primary-50/70 transition-all duration-200 group hover:shadow-premium"
                     >
-                      <span className="mr-3">
+                      <span className="mr-3 flex-shrink-0">
                         {typeof store.icon === 'string' ? (
                           <span className="text-base">{store.icon}</span>
                         ) : (
@@ -312,13 +313,13 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                     >
                       {language === 'en' ? 'Solutions' : '解决方案'}
                     </Link>
-                    <a
-                      href="/support/support-center.html"
+                    <Link
+                      href="/SupportCenterPage"
                       className="block px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all"
                       onClick={toggleMenu}
                     >
                       {language === 'en' ? 'Support' : '支持'}
-                    </a>
+                    </Link>
                     <Link href="/about" className="block px-4 py-3 rounded-xl text-base font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50/50 transition-all" onClick={toggleMenu}>
                       {language === 'en' ? 'About' : '关于'}
                     </Link>

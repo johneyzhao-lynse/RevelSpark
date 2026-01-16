@@ -61,13 +61,13 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
   };
 
   return (
-    <section id="product" className="py-24 overflow-hidden bg-surface">
+    <section id="product" className="py-32 overflow-hidden bg-surface aurora-bg relative">
       <div className="section-container">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-6 animate-fade-in-up opacity-0-initial">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 animate-fade-in-up opacity-0-initial">
             {language === 'en' ? 'One Device, Endless Possibilities' : '一台设备，无限可能'}
           </h2>
-          <p className="text-lg text-text-secondary max-w-3xl mx-auto animate-fade-in-up opacity-0-initial delay-200">
+          <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto animate-fade-in-up opacity-0-initial delay-200">
             {language === 'en'
               ? 'Designed for professionals, students, journalists, and anyone who values efficient and accurate speech capture.'
               : '专为专业人士、学生、记者和任何重视高效、准确语音捕捉的人设计。'}
@@ -77,22 +77,25 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           {/* Left - Tab Content */}
           <div className="w-full lg:w-1/2 order-2 lg:order-1">
-            <div className="glass-card p-8 rounded-3xl animate-fade-in-up opacity-0-initial delay-300">
-              <div className="tabs flex border-b border-gray-200/50 mb-8 overflow-x-auto hide-scrollbar">
+            <div className="glass-card p-8 rounded-3xl animate-fade-in-up opacity-0-initial delay-300 shadow-premium hover:shadow-premium-hover transition-all duration-500">
+              <div className="tabs flex border-b border-gray-200/60 mb-8 overflow-x-auto hide-scrollbar gap-2">
                 {(Object.keys(tabs) as Array<keyof typeof tabs>).map((tab) => (
                   <button
                     key={tab}
-                    className={`px-5 py-3 text-sm font-medium whitespace-nowrap transition-all rounded-t-xl ${
+                    className={`px-5 py-3 text-sm font-semibold whitespace-nowrap transition-all rounded-t-xl relative ${
                       activeTab === tab
-                        ? 'text-primary-600 bg-primary-50/50 border-b-2 border-primary-500'
-                        : 'text-text-tertiary hover:text-primary-600 hover:bg-primary-50/30'
+                        ? 'text-primary-600 bg-primary-50/70 shadow-inner-soft'
+                        : 'text-text-tertiary hover:text-primary-600 hover:bg-primary-50/40'
                     }`}
                     onClick={() => setActiveTab(tab)}
                   >
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 relative z-10">
                       {React.cloneElement(tabs[tab].icon as React.ReactElement, { size: 18, className: activeTab === tab ? 'text-primary-600' : 'text-text-tertiary' })}
                       <span>{tabs[tab].title}</span>
                     </div>
+                    {activeTab === tab && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"></div>
+                    )}
                   </button>
                 ))}
               </div>
@@ -100,7 +103,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
               {/* Content for active tab */}
               <div className="tab-content">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="rounded-2xl p-3 bg-gradient-to-br from-primary-50 to-secondary-50">
+                  <div className="rounded-2xl p-3 bg-gradient-to-br from-primary-50 to-secondary-50 shadow-inner-soft">
                     {React.cloneElement(tabs[activeTab].icon as React.ReactElement, { size: 24, className: 'text-primary-600' })}
                   </div>
                   <div>
@@ -110,7 +113,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
                 </div>
 
                 {/* App Screenshot */}
-                <div className="mt-8 rounded-2xl overflow-hidden shadow-card">
+                <div className="mt-8 rounded-2xl overflow-hidden shadow-premium hover:shadow-premium-hover transition-all duration-500">
                   <img
                     src={tabs[activeTab].screenshot}
                     alt={`${tabs[activeTab].title} screenshot`}

@@ -56,9 +56,9 @@ const Footer: FC<FooterProps> = ({ language }) => {
             </h3>
             <ul className="space-y-2 list-none pl-0 text-sm">
               <li>
-                <a href="/support/support-center.html" className="text-gray-400 hover:text-white transition-colors">
-                  {language === 'en' ? 'Support Center' : '支持中心'}
-                </a>
+                <Link href="/SupportCenterPage" className="text-gray-400 hover:text-white transition-colors">
+                {language === 'en' ? 'Support Center' : '支持中心'}
+              </Link>
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">

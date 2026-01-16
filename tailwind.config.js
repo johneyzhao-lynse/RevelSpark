@@ -118,8 +118,12 @@ export default {
         'glass-hover': '0 12px 40px 0 rgba(31, 38, 135, 0.12)',
         'glow': '0 0 20px rgba(26, 109, 255, 0.3)',
         'glow-lg': '0 0 40px rgba(26, 109, 255, 0.4)',
+        'glow-xl': '0 0 60px rgba(26, 109, 255, 0.5)',
         'card': '0 4px 24px rgba(0, 0, 0, 0.06)',
         'card-hover': '0 12px 32px rgba(0, 0, 0, 0.1)',
+        'premium': '0 2px 16px rgba(26, 109, 255, 0.08), 0 8px 32px rgba(25, 224, 230, 0.06)',
+        'premium-hover': '0 4px 24px rgba(26, 109, 255, 0.12), 0 16px 48px rgba(25, 224, 230, 0.1)',
+        'inner-soft': 'inset 0 2px 8px rgba(0, 0, 0, 0.03)',
       },
       typography: {
         DEFAULT: {
