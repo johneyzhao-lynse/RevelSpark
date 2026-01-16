@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false, // 生产环境不生成 source map
-    minify: false, // 禁用压缩器以避免ES模块问题
+    minify: false, // 完全禁用压缩器
     // 代码分割优化
     rollupOptions: {
       output: {
