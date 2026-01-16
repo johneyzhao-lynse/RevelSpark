@@ -15,6 +15,10 @@ export default defineConfig({
         drop_console: true, // 移除所有 console
         drop_debugger: true, // 移除 debugger
         pure_funcs: ['console.log', 'console.info', 'console.debug'], // 移除特定函数
+        module: true, // 确保正确处理ES模块
+      },
+      mangle: {
+        module: true, // 确保正确处理ES模块
       },
     },
     // 代码分割优化
@@ -42,7 +46,7 @@ export default defineConfig({
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
         assetFileNames: (assetInfo) => {
-          const extType = assetInfo.name.split('.').at(-1) ?? '';
+          const extType = assetInfo.name?.split('.').at(-1) ?? '';
           if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
             return `assets/images/[name]-[hash][extname]`;
           }
