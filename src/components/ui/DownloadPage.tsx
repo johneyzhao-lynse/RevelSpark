@@ -8,12 +8,12 @@ const DownloadPage: React.FC<{ language: 'en' | 'zh' }> = ({ language }) => {
         {/* 左侧：下载按钮 */}
         <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 md:p-12">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 text-center">
-            {language === 'en' ? 'Download DitNote App' : '下载 灵光闪记 应用'}
+            {language === 'en' ? 'Download Spark Note App' : '下载 灵光记 应用'}
           </h1>
           <p className="text-gray-600 mb-8 text-center text-base md:text-lg">
             {language === 'en'
               ? 'Choose your platform and start using Lynse now!'
-              : '选择适合您的平台，立即体验 Lynse 智能闪记卡！'}
+              : '选择适合您的平台，立即体验 Lynse 灵光记！'}
           </p>
           <DownloadButtons language={language} />
         </div>

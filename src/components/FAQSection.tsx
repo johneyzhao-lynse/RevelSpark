@@ -61,16 +61,16 @@ const FAQSection: React.FC<FAQSectionProps> = ({ language }) => {
     },
     {
       question: "Can I use it without a smartphone?",
-      answer: <><BrandName>Lynse</BrandName> card functions as a standalone device. You can record, and the device will store the audio and transcriptions. However, pairing with the DitNote app provides additional features like organization, editing, translation, and sharing capabilities.</>
+      answer: <><BrandName>Lynse</BrandName> card functions as a standalone device. You can record, and the device will store the audio and transcriptions. However, pairing with the Spark Note app provides additional features like organization, editing, translation, and sharing capabilities.</>
     },
     {
       question: "What's in the box?",
-      answer: <><BrandName>Lynse</BrandName> AI recording card, 1 USB-C charging cable, 1 protective case, 1 quick start guide, and a warranty card. The DitNote app is available as a free download for iOS and Android.</>
+      answer: <><BrandName>Lynse</BrandName> AI recording card, 1 USB-C charging cable, 1 protective case, 1 quick start guide, and a warranty card. The Spark Note app is available as a free download for iOS and Android.</>
     }
   ] : [
     {
       question: "转录的准确性如何？",
-      answer: <><BrandName>Lynse</BrandName> AI 闪记卡在安静环境下对大多数语言的准确率可达95%以上。即使在嘈杂的环境中，我们先进的降噪技术也有助于保持高准确度。准确性可能会因口音、语音清晰度和背景噪音而略有不同。</>
+      answer: <><BrandName>Lynse</BrandName> 灵光记在安静环境下对大多数语言的准确率可达95%以上。即使在嘈杂的环境中，我们先进的降噪技术也有助于保持高准确度。准确性可能会因口音、语音清晰度和背景噪音而略有不同。</>
     },
     {
       question: "电池续航时间有多长？",
@@ -86,11 +86,11 @@ const FAQSection: React.FC<FAQSectionProps> = ({ language }) => {
     },
     {
       question: "可以不使用智能手机吗？",
-      answer: <><BrandName>Lynse</BrandName>卡可以作为独立设备使用。您可以录制，设备将存储音频和转录内容。但是，与灵光闪记APP配对可提供额外功能，如组织、编辑、翻译和共享功能。</>
+      answer: <><BrandName>Lynse</BrandName>卡可以作为独立设备使用。您可以录制，设备将存储音频和转录内容。但是，与灵光记配对可提供额外功能，如组织、编辑、翻译和共享功能。</>
     },
     {
       question: "包装盒内包含什么？",
-      answer: <><BrandName>Lynse</BrandName> AI闪记卡、1根USB-C充电线、1个保护套、1份快速入门指南和一张保修卡。灵光闪记APP可免费下载，适用于iOS和Android。</>
+      answer: <><BrandName>Lynse</BrandName> 灵光记、1根USB-C充电线、1个保护套、1份快速入门指南和一张保修卡。灵光记可免费下载，适用于iOS和Android。</>
     }
   ];
 
@@ -98,13 +98,13 @@ const FAQSection: React.FC<FAQSectionProps> = ({ language }) => {
     <section id="faq" className="py-18 bg-light-secondary">
       <div className="container mx-auto px-6 md:px-18">
         <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-3xl font-semibold text-dark mb-4 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             {language === 'en' ? 'Frequently Asked Questions' : '常见问题'}
           </h2>
-          <p className="text-base text-dark-secondary max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             {language === 'en'
               ? <><BrandName>Lynse</BrandName> AI recording card.</>
-              : <><BrandName>Lynse</BrandName> AI闪记卡的常见问题的答案。</>}
+              : <><BrandName>Lynse</BrandName> 灵光记的常见问题的答案。</>}
           </p>
         </div>
 

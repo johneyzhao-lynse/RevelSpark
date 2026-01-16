@@ -14,11 +14,11 @@ interface SpecItemProps {
 
 const SpecItem: React.FC<SpecItemProps> = ({ icon, title, value }) => {
   return (
-    <div className="flex items-start p-4 border-b border-gray-100 group hover:bg-blue-50 transition-colors rounded-lg">
-      <div className="text-blue-600 mr-4 mt-1">{icon}</div>
+    <div className="flex items-start p-4 border-b border-gray-100 group hover:bg-gray-50 transition-colors rounded-lg">
+      <div className="text-black mr-4 mt-1">{icon}</div>
       <div>
-        <h4 className="text-xs font-medium text-gray-600 leading-tight">{title}</h4>
-        <p className="text-sm font-bold text-gray-800 leading-snug">{value}</p>
+        <h4 className="text-sm font-medium text-gray-600 leading-tight">{title}</h4>
+        <p className="text-base font-bold text-gray-800 leading-snug">{value}</p>
       </div>
     </div>
   );
@@ -49,10 +49,10 @@ const SpecsSection: React.FC<SpecsSectionProps> = ({ language }) => {
     <section id="specs" className="py-24 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             {language === 'en' ? 'Technical Specifications' : '技术规格'}
           </h2>
-          <p className="text-base text-gray-700 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             {language === 'en'
               ? 'Powerful hardware combined with innovative software delivers exceptional performance.'
               : '强大的硬件与创新的软件相结合，提供卓越的性能。'}
@@ -60,9 +60,9 @@ const SpecsSection: React.FC<SpecsSectionProps> = ({ language }) => {
         </div>
 
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-md overflow-hidden">
-          <div className="p-6 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+          <div className="p-6 bg-gray-800 text-white">
             <h3 className="text-2xl font-bold text-white">
-              {language === 'en' ? <><BrandName size="lg">Lynse</BrandName> AI Recording Card</> : <><BrandName size="lg">Lynse</BrandName> AI 闪记卡</>}
+              {language === 'en' ? <><BrandName size="lg">Lynse</BrandName> Spark Note</> : <span className="text-[#D9BA84]">Spark Note</span>}
             </h3>
             <p className="text-light-secondary opacity-90">
               {language === 'en' ? 'Detailed specifications' : '详细规格'}

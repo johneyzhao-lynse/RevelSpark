@@ -8,17 +8,17 @@ interface CTASectionProps {
 
 const CTASection: React.FC<CTASectionProps> = ({ language }) => {
   return (
-    <section id="buy" className="py-24 bg-gradient-to-br from-blue-800 to-blue-600 text-white overflow-hidden relative">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10">
+    <section id="buy" className="py-24 bg-gray-900 text-white overflow-hidden relative">
+      {/* Decorative elements - 极简 */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-5">
         <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-white"></div>
         <div className="absolute bottom-12 left-12 w-64 h-64 rounded-full bg-white"></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
-            <span className="inline-block py-1 px-3 rounded-full bg-blue-500 text-sm font-medium mb-6">
+            <span className="inline-block py-2 px-4 rounded-full bg-white text-black text-sm font-semibold mb-6">
               {language === 'en' ? 'Limited Time Offer' : '限时优惠'}
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
@@ -26,7 +26,7 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
                 ? 'Transform Your Recording Experience Today'
         : <span className="text-[#D9ba84]">今天就改变您的录音体验</span>}
             </h2>
-            <p className="text-lg text-blue-100 mb-8">
+            <p className="text-base md:text-lg text-gray-300 mb-8">
               {language === 'en'
                 ? 'Be among the first to experience the future of audio recording and transcription with early bird pricing and exclusive benefits.'
                 : '成为最先体验音频录制和转写未来的人之一，享受早鸟价格和独家优惠。'}
@@ -34,25 +34,25 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
 
             <div className="space-y-4 mb-8">
               <div className="flex items-center">
-                <Check className="text-cyan-300 mr-2" size={20} />
+                <Check className="text-white mr-2" size={20} />
                 <span>
-                  {language === 'en' ? 'Free premium DitNote app subscription (1 year)' : '免费灵光闪记高级版订阅（1年）'}
+                  {language === 'en' ? 'Free premium Spark Note app subscription (1 year)' : '免费灵光记高级版订阅（1年）'}
                 </span>
               </div>
               <div className="flex items-center">
-                <Check className="text-cyan-300 mr-2" size={20} />
+                <Check className="text-white mr-2" size={20} />
                 <span>
                   {language === 'en' ? 'Extended 3-year warranty' : '延长3年保修'}
                 </span>
               </div>
               <div className="flex items-center">
-                <Check className="text-cyan-300 mr-2" size={20} />
+                <Check className="text-white mr-2" size={20} />
                 <span>
                   {language === 'en' ? 'Priority access to future firmware updates' : '优先获取未来固件更新'}
                 </span>
               </div>
               <div className="flex items-center">
-                <Check className="text-cyan-300 mr-2" size={20} />
+                <Check className="text-white mr-2" size={20} />
                 <span>
                   {language === 'en' ? 'Exclusive protective case included' : '含专属保护套'}
                 </span>
@@ -62,7 +62,7 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
             <div className="flex flex-col sm:flex-row gap-4">
               <OrderDropdownButtonCTA language={language} />
               <div className="flex items-center justify-center sm:justify-start">
-                <ShieldCheck className="mr-2 text-cyan-300" size={20} />
+                <ShieldCheck className="mr-2 text-white" size={20} />
                 <span className="text-sm">
                   {language === 'en' ? '30-day money-back guarantee' : '30天退款保证'}
                 </span>
@@ -70,24 +70,24 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
             </div>
           </div>
 
-          <div className="bg-blue-700/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+          <div className="bg-gray-800 rounded-2xl p-8 border border-gray-700 lg:-mt-[20px]">
             <div className="mb-6">
               <div className="flex justify-between items-center mb-2">
                 <h3 className="text-2xl font-bold">
-                  {language === 'en' ? <><BrandName size="lg">Lynse</BrandName> Pro</> : <><BrandName size="lg">Lynse</BrandName> <span className="text-[#D9BA84]">专业版</span></>}
+                  {language === 'en' ? <><BrandName size="lg">Lynse</BrandName> Pro</> : <span className="text-[#D9BA84]">"灵光记"</span>}
                 </h3>
-                <span className="text-lg font-medium px-3 py-1 bg-blue-500 rounded-full text-white">
+                <span className="text-sm font-semibold px-4 py-2 bg-white text-black rounded-full">
                   {language === 'en' ? 'Best Value' : '最佳价值'}
                 </span>
               </div>
               <div className="flex items-baseline mb-4">
                 <span className="text-4xl font-bold">$149</span>
                 <span className="text-lg line-through ml-2 opacity-70">$199</span>
-                <span className="ml-2 text-cyan-300 font-medium">
+                <span className="ml-2 text-gray-400 font-medium">
                   {language === 'en' ? 'Save $50' : '节省$50'}
                 </span>
               </div>
-              <p className="text-blue-100 mb-6">
+              <p className="text-gray-300 mb-6">
                 {language === 'en'
                   ? 'Complete recording solution with premium features and extended storage.'
                   : '完整的录音解决方案，具有高级功能和扩展存储。'}
@@ -96,37 +96,37 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
 
             <div className="space-y-3 mb-6">
               <div className="flex items-center">
-                <Check className="text-cyan-300 mr-2" size={18} />
+                <Check className="text-white mr-2" size={18} />
                 <span className="text-sm">
-                  {language === 'en' ? <><BrandName>Lynse</BrandName> AI Recording Card (32GB)</> : <><BrandName>Lynse</BrandName> AI 闪记卡（32GB）</>}
+                  {language === 'en' ? <><BrandName>Lynse</BrandName> Spark Note (32GB)</> : '灵光闪记卡（32GB）'}
                 </span>
               </div>
               <div className="flex items-center">
-                <Check className="text-cyan-300 mr-2" size={18} />
+                <Check className="text-white mr-2" size={18} />
                 <span className="text-sm">
                   {language === 'en' ? 'Premium Leather Protective Case' : '高级皮革保护套'}
                 </span>
               </div>
               <div className="flex items-center">
-                <Check className="text-cyan-300 mr-2" size={18} />
+                <Check className="text-white mr-2" size={18} />
                 <span className="text-sm">
                   {language === 'en' ? '1-Year Premium Cloud Storage (100GB)' : '1年高级云存储（100GB）'}
                 </span>
               </div>
               <div className="flex items-center">
-                <Check className="text-cyan-300 mr-2" size={18} />
+                <Check className="text-white mr-2" size={18} />
                 <span className="text-sm">
                   {language === 'en' ? 'Unlimited Transcription Minutes' : '无限转录分钟数'}
                 </span>
               </div>
               <div className="flex items-center">
-                <Check className="text-cyan-300 mr-2" size={18} />
+                <Check className="text-white mr-2" size={18} />
                 <span className="text-sm">
                   {language === 'en' ? 'Advanced Analytics & Summaries' : '高级分析和摘要'}
                 </span>
               </div>
               <div className="flex items-center">
-                <Check className="text-cyan-300 mr-2" size={18} />
+                <Check className="text-white mr-2" size={18} />
                 <span className="text-sm">
                   {language === 'en' ? 'Priority Customer Support' : '优先客户支持'}
                 </span>
@@ -135,12 +135,12 @@ const CTASection: React.FC<CTASectionProps> = ({ language }) => {
 
             <a
               href="#"
-              className="block w-full py-3 bg-white text-blue-900 rounded-full font-medium text-base text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all"
+              className="block w-full h-[52px] bg-white text-black rounded-full font-bold text-base text-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all flex items-center justify-center"
             >
               {language === 'en' ? 'Pre-order Pro Package' : '预购专业套餐'}
             </a>
 
-            <p className="text-center text-sm mt-4 text-blue-100">
+            <p className="text-center text-sm mt-4 text-gray-400">
               {language === 'en'
                 ? 'Ships worldwide • Estimated delivery: October 2025'
                 : '全球发货 • 预计送达时间：2025年10月'}
@@ -210,13 +210,13 @@ const OrderDropdownButtonCTA: React.FC<{ language: 'en' | 'zh' }> = ({ language 
   return (
     <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <button
-        className="px-8 py-2 bg-white text-blue-900 rounded-full font-bold text-base shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all min-w-[90px] flex items-center"
+        className="h-[52px] px-8 bg-white hover:bg-gray-100 text-black rounded-full font-bold text-base shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all min-w-[140px] flex items-center justify-center"
       >
         <svg className="mr-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 6.5V5.5C6.5 3.84315 7.84315 2.5 9.5 2.5C11.1569 2.5 12.5 3.84315 12.5 5.5V6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><rect x="3.5" y="6.5" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M8.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/><path d="M11.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
         {language === 'en' ? 'Buy Now' : '立即购买'}
       </button>
       <div
-        className={`absolute top-full left-0 mt-2 w-44 bg-white/60 rounded-xl shadow-2xl border border-gray-100 backdrop-blur-lg transition-all duration-300 z-50 ${
+        className={`absolute top-full left-0 mt-2 w-44 bg-white/95 rounded-xl shadow-2xl border border-gray-200 backdrop-blur-lg transition-all duration-300 z-50 ${
           open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
         }`}
       >
@@ -239,7 +239,7 @@ const OrderDropdownButtonCTA: React.FC<{ language: 'en' | 'zh' }> = ({ language 
                   store.icon
                 )}
               </span>
-              <span className="text-sm text-gray-700 font-medium group-hover:text-primary transition-colors">
+              <span className="text-sm text-gray-700 font-medium group-hover:text-black transition-colors">
                 {store.name}
               </span>
             </a>

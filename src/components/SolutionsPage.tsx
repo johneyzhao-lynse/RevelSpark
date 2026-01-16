@@ -66,7 +66,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ language }) => {
   const currentContent = content[language];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-16 pt-28">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-50 py-16 pt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -88,7 +88,7 @@ const SolutionsPage: React.FC<SolutionsPageProps> = ({ language }) => {
               key={index}
               className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
             >
-              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center text-white mb-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-r from-gray-700 to-gray-900 flex items-center justify-center text-white mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={solution.icon} />
                 </svg>

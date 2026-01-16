@@ -95,27 +95,31 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
 
   return (
     <header
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-[1000] transition-all duration-500 border rounded-full px-4 ${isScrolled
-        ? 'bg-white/80 backdrop-blur-xl border-gray-200/50 py-3 shadow-lg'
-        : 'bg-white/60 backdrop-blur-md border-white/40 py-3.5 shadow-glass'
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-[1000] transition-all duration-300 border rounded-full px-3 ${isScrolled
+        ? 'bg-white/60 backdrop-blur-2xl border-white/40 py-2 shadow-lg'
+        : 'bg-white/50 backdrop-blur-2xl border-white/30 py-2 shadow-md'
         } w-fit max-w-[95vw] md:max-w-[90vw] whitespace-nowrap flex justify-center`}
     >
-      <div className="w-full flex items-center justify-between gap-4 md:gap-8 px-2">
-        <div className="flex items-center select-none">
-          <Link href="/" className="group">
-            <img src="/logo/lynse-logo.png" alt="Lynse Logo" className="h-[32px] w-auto object-contain mr-2 transition-transform duration-300 group-hover:scale-105" />
-          </Link>
-        </div>
+      <div className="w-full flex items-center justify-between gap-2 md:gap-4 px-2">
+        {/* Logo - 左侧 */}
+        <Link href="/" className="flex-shrink-0">
+          <img
+            src="/logo/lynse-logo.png"
+            alt="Lynse Logo"
+            className="h-2.5 md:h-3 w-auto object-contain"
+          />
+        </Link>
+
         <React.Fragment>
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <div className="flex items-center space-x-8">
-              {/* Lynse Note Product Directory Dropdown */}
+          <nav className="hidden md:flex items-center space-x-5">
+            <div className="flex items-center space-x-5">
+              {/* Spark Note Product Directory Dropdown */}
               <div className="relative group">
                 <button
                   className="text-black text-base font-semibold hover:text-gray-700 transition-all px-3 py-2 rounded-xl hover:bg-gray-50 flex items-center"
                 >
-                  {language === 'en' ? 'Lynse Note' : 'Lynse Note'}
+                  Spark Note
                   <svg
                     className="ml-1 w-4 h-4 transition-transform duration-200 group-hover:rotate-180"
                     fill="none"
@@ -125,47 +129,47 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute left-0 mt-3 w-48 glass-card py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform group-hover:translate-y-0 translate-y-2">
+                <div className="absolute left-0 mt-3 w-48 bg-white/70 backdrop-blur-2xl rounded-2xl shadow-xl border border-white/40 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform group-hover:translate-y-0 translate-y-2">
                   <Link
                     href="/#product"
-                    className="block px-4 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 rounded-lg mx-1"
+                    className="block px-4 py-2.5 text-gray-600 hover:text-black hover:bg-gray-50 transition-all duration-300 rounded-lg mx-1"
                   >
                     {language === 'en' ? 'Product' : '产品'}
                   </Link>
                   <Link
                     href="/#features"
-                    className="block px-4 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 rounded-lg mx-1"
+                    className="block px-4 py-2.5 text-gray-600 hover:text-black hover:bg-gray-50 transition-all duration-300 rounded-lg mx-1"
                   >
                     {language === 'en' ? 'Features' : '特性'}
                   </Link>
                   <Link
                     href="/#specs"
-                    className="block px-4 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 rounded-lg mx-1"
+                    className="block px-4 py-2.5 text-gray-600 hover:text-black hover:bg-gray-50 transition-all duration-300 rounded-lg mx-1"
                   >
                     {language === 'en' ? 'Specs' : '规格'}
                   </Link>
                   <Link
                     href="/#testimonials"
-                    className="block px-4 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 rounded-lg mx-1"
+                    className="block px-4 py-2.5 text-gray-600 hover:text-black hover:bg-gray-50 transition-all duration-300 rounded-lg mx-1"
                   >
                     {language === 'en' ? 'Reviews' : '评价'}
                   </Link>
                   <Link
                     href="/#faq"
-                    className="block px-4 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 rounded-lg mx-1"
+                    className="block px-4 py-2.5 text-gray-600 hover:text-black hover:bg-gray-50 transition-all duration-300 rounded-lg mx-1"
                   >
                     {language === 'en' ? 'FAQ' : '常见问题'}
                   </Link>
                 </div>
               </div>
 
-              <Link href="/solutions" className="text-black text-base font-semibold hover:text-blue-600 transition-colors duration-300 px-4 py-2.5 rounded-xl hover:bg-blue-50">
+              <Link href="/solutions" className="text-black text-base font-semibold hover:text-gray-700 transition-colors duration-300 px-4 py-2.5 rounded-xl hover:bg-gray-50">
                 {language === 'en' ? 'Solutions' : '解决方案'}
               </Link>
-              <Link href="/SupportCenterPage" className="text-black text-base font-semibold hover:text-blue-600 transition-colors duration-300 px-4 py-2.5 rounded-xl hover:bg-blue-50">
+              <Link href="/SupportCenterPage" className="text-black text-base font-semibold hover:text-gray-700 transition-colors duration-300 px-4 py-2.5 rounded-xl hover:bg-gray-50">
                 {language === 'en' ? 'Support' : '支持'}
               </Link>
-              <Link href="/about" className="text-black text-base font-semibold hover:text-blue-600 transition-colors duration-300 px-4 py-2.5 rounded-xl hover:bg-blue-50">
+              <Link href="/about" className="text-black text-base font-semibold hover:text-gray-700 transition-colors duration-300 px-4 py-2.5 rounded-xl hover:bg-gray-50">
                 {language === 'en' ? 'About' : '关于'}
               </Link>
               <button
@@ -173,57 +177,9 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                 onClick={toggleLanguage}
                 aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
               >
-                <Globe size={16} className="mr-1.5" />
+                <Globe size={14} className="mr-1.5" />
                 <span>{language === 'en' ? 'EN' : '中文'}</span>
               </button>
-            </div>
-
-            {/* 立即购买按钮 - 蓝色渐变 */}
-            <div
-              className="relative"
-              onMouseEnter={openDropdown}
-              onMouseLeave={closeDropdown}
-            >
-              <button
-                className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 text-white px-6 py-2.5 rounded-full text-sm font-semibold shadow-premium hover:shadow-glow-lg transition-all duration-400 flex items-center hover:scale-105 relative overflow-hidden"
-              >
-                <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></span>
-                <ShoppingBag size={16} className="mr-2 relative z-10" />
-                <span className="relative z-10">{language === 'en' ? 'Buy Now' : '立即购买'}</span>
-              </button>
-              {/* 下拉菜单 - 蓝色accent */}
-              <div
-                className={`absolute top-full left-0 mt-3 w-48 glass-card py-2 transition-all duration-400 z-50 ${isDropdownOpen
-                  ? 'opacity-100 translate-y-0 pointer-events-auto'
-                  : 'opacity-0 -translate-y-2 pointer-events-none'
-                  }`}
-              >
-                <div className="p-2.5">
-                  <div className="text-xs text-gray-500 mb-2 px-2 font-semibold tracking-wide uppercase">
-                    {language === 'en' ? 'Choose store' : '选择渠道'}
-                  </div>
-                  {storeLinks.map((store, index) => (
-                    <a
-                      key={index}
-                      href={store.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center p-2.5 rounded-xl hover:bg-blue-50 transition-all duration-300 group"
-                    >
-                      <span className="mr-3 flex-shrink-0">
-                        {typeof store.icon === 'string' ? (
-                          <span className="text-base">{store.icon}</span>
-                        ) : (
-                          store.icon
-                        )}
-                      </span>
-                      <span className="text-sm text-gray-700 font-medium group-hover:text-blue-600 transition-colors">
-                        {store.name}
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </div>
             </div>
           </nav>
 
@@ -234,13 +190,13 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
               className="p-2 rounded-xl hover:bg-gray-50 transition-all"
               aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
             >
-              <Globe size={20} className="text-black" />
+              <Globe size={18} className="text-black" />
             </button>
             <button onClick={toggleMenu} aria-label="Toggle menu" className="p-2 rounded-xl hover:bg-gray-50 transition-all">
               {isMenuOpen ? (
-                <X size={24} className="text-black" />
+                <X size={20} className="text-black" />
               ) : (
-                <Menu size={24} className="text-black" />
+                <Menu size={20} className="text-black" />
               )}
             </button>
           </div>
@@ -255,9 +211,9 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                   </Link>
                 ) : (
                   <>
-                    <div className="px-4 py-3 rounded-xl text-base font-medium text-black hover:bg-gray-50 cursor-pointer flex justify-between items-center transition-all"
+                    <div className="px-4 py-3 rounded-xl text-sm font-medium text-black hover:bg-gray-50 cursor-pointer flex justify-between items-center transition-all"
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-                      <span>{language === 'en' ? 'Lynse Note' : 'Lynse Note'}</span>
+                      <span>Spark Note</span>
                       <svg
                         className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
                         fill="none"
@@ -271,35 +227,35 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                       <div className="pl-4 space-y-1">
                         <Link
                           href="#product"
-                          className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
+                          className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
                           onClick={toggleMenu}
                         >
                           {language === 'en' ? 'Product' : '产品'}
                         </Link>
                         <Link
                           href="#features"
-                          className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
+                          className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
                           onClick={toggleMenu}
                         >
                           {language === 'en' ? 'Features' : '特性'}
                         </Link>
                         <Link
                           href="#specs"
-                          className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
+                          className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
                           onClick={toggleMenu}
                         >
                           {language === 'en' ? 'Specs' : '规格'}
                         </Link>
                         <Link
                           href="#testimonials"
-                          className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
+                          className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
                           onClick={toggleMenu}
                         >
                           {language === 'en' ? 'Reviews' : '评价'}
                         </Link>
                         <Link
                           href="#faq"
-                          className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
+                          className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
                           onClick={toggleMenu}
                         >
                           {language === 'en' ? 'FAQ' : '常见问题'}
@@ -308,50 +264,22 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                     )}
                     <Link
                       href="/solutions"
-                      className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
+                      className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
                       onClick={toggleMenu}
                     >
                       {language === 'en' ? 'Solutions' : '解决方案'}
                     </Link>
                     <Link
                       href="/SupportCenterPage"
-                      className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
+                      className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
                       onClick={toggleMenu}
                     >
                       {language === 'en' ? 'Support' : '支持'}
                     </Link>
-                    <Link href="/about" className="block px-4 py-3 rounded-xl text-base font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all" onClick={toggleMenu}>
+                    <Link href="/about" className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all" onClick={toggleMenu}>
                       {language === 'en' ? 'About' : '关于'}
                     </Link>
                   </>
-                )}
-
-                {/* Mobile 立即购买按钮 - 极简黑白 */}
-                {!isAboutPage && (
-                  <div className="pt-4 space-y-2 border-t border-gray-200">
-                    <div className="text-xs text-gray-500 px-4 font-medium">
-                      {language === 'en' ? 'Choose your store:' : '选择购买渠道:'}
-                    </div>
-                    {storeLinks.map((store, index) => (
-                      <a
-                        key={index}
-                        href={store.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all"
-                        onClick={toggleMenu}
-                      >
-                        <span className="mr-3">
-                          {typeof store.icon === 'string' ? (
-                            <span className="text-base">{store.icon}</span>
-                          ) : (
-                            store.icon
-                          )}
-                        </span>
-                        <span className="text-sm text-gray-700 font-medium">{store.name}</span>
-                      </a>
-                    ))}
-                  </div>
                 )}
               </div>
             </div>

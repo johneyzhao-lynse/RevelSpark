@@ -91,10 +91,10 @@ const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
   const currentContent = content[language];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-50">
       <Header language={language} onLanguageChange={() => { }} />
       {/* Hero Section */}
-      <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-r from-blue-50 via-white to-cyan-50 transition-all duration-1000 ease-in-out">
+      <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-r from-gray-50 via-white to-gray-100 transition-all duration-1000 ease-in-out">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-12 md:gap-16 animate-fade-in-up">
             {/* Left Text Area */}
@@ -114,12 +114,12 @@ const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
             <div className="flex-1 flex justify-center transform transition-all duration-700 hover:scale-105">
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center">
                 {/* Abstract curve background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full opacity-50 blur-xl transition-all duration-1000 ease-in-out"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full opacity-50 blur-xl transition-all duration-1000 ease-in-out"></div>
 
                 {/* Enhanced 3D Logo Representation */}
                 <div className="relative z-10 w-48 h-48 sm:w-64 sm:h-64 flex items-center justify-center transform transition-all duration-700 hover:rotate-6">
                   {/* Outer rings */}
-                  <div className="absolute w-full h-full rounded-full border-4 border-blue-300 opacity-70 animate-pulse transition-all duration-1000 ease-in-out" style={{ transform: 'scale(0.8) rotate(45deg)' }}></div>
+                  <div className="absolute w-full h-full rounded-full border-4 border-gray-400 opacity-70 animate-pulse transition-all duration-1000 ease-in-out" style={{ transform: 'scale(0.8) rotate(45deg)' }}></div>
                   <div className="absolute w-full h-full rounded-full border-4 border-cyan-300 opacity-70 animate-pulse transition-all duration-1000 ease-in-out" style={{ transform: 'scale(0.9) rotate(-45deg)' }}></div>
 
                   {/* Middle rings */}
@@ -127,17 +127,17 @@ const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
                   <div className="absolute w-3/4 h-3/4 rounded-full border-3 border-cyan-400 opacity-80 transition-all duration-700 ease-in-out" style={{ transform: 'scale(0.9) rotate(-15deg)' }}></div>
 
                   {/* Inner core */}
-                  <div className="absolute w-1/2 h-1/2 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full shadow-lg flex items-center justify-center transform transition-all duration-500 hover:scale-110">
+                  <div className="absolute w-1/2 h-1/2 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full shadow-lg flex items-center justify-center transform transition-all duration-500 hover:scale-110">
                     <span className="text-white font-bold text-lg sm:text-xl">LA</span>
                   </div>
 
                   {/* Connection lines */}
-                  <div className="absolute w-12 h-1 sm:w-16 sm:h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-700 ease-in-out" style={{ transform: 'rotate(0deg)' }}></div>
-                  <div className="absolute w-12 h-1 sm:w-16 sm:h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-700 ease-in-out" style={{ transform: 'rotate(60deg)' }}></div>
-                  <div className="absolute w-12 h-1 sm:w-16 sm:h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-700 ease-in-out" style={{ transform: 'rotate(120deg)' }}></div>
+                  <div className="absolute w-12 h-1 sm:w-16 sm:h-1 bg-gradient-to-r from-gray-700 to-gray-900 rounded-full transition-all duration-700 ease-in-out" style={{ transform: 'rotate(0deg)' }}></div>
+                  <div className="absolute w-12 h-1 sm:w-16 sm:h-1 bg-gradient-to-r from-gray-700 to-gray-900 rounded-full transition-all duration-700 ease-in-out" style={{ transform: 'rotate(60deg)' }}></div>
+                  <div className="absolute w-12 h-1 sm:w-16 sm:h-1 bg-gradient-to-r from-gray-700 to-gray-900 rounded-full transition-all duration-700 ease-in-out" style={{ transform: 'rotate(120deg)' }}></div>
 
                   {/* Transparent base */}
-                  <div className="absolute bottom-0 w-24 h-3 sm:w-32 sm:h-4 bg-gradient-to-r from-blue-200 to-cyan-200 rounded-full opacity-60 transition-all duration-1000 ease-in-out" style={{ transform: 'translateY(50%)' }}></div>
+                  <div className="absolute bottom-0 w-24 h-3 sm:w-32 sm:h-4 bg-gradient-to-r from-gray-300 to-gray-400 rounded-full opacity-60 transition-all duration-1000 ease-in-out" style={{ transform: 'translateY(50%)' }}></div>
                 </div>
               </div>
             </div>
@@ -232,7 +232,7 @@ const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
                         }}
                       />
                       <button
-                        className="bg-primary hover:bg-primary-dark text-white px-4 rounded-r-lg font-medium transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-black hover:bg-black-dark text-white px-4 rounded-r-lg font-medium transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
                         onClick={handleSubscribe}
                         disabled={!email}
                       >
@@ -250,10 +250,10 @@ const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
 
                 <div className="flex flex-col gap-4 mt-8">
                   <a
-                    href="mailto:support@lynse-ai.com"
+                    href="mailto:support@lynse.ai"
                     className="bg-gradient-to-r from-logo-blue to-logo-cyan hover:from-accent hover:to-cyanaccent text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition-all transform hover:scale-105 text-center block"
                   >
-                    {language === 'en' ? 'Support Email: support@lynse-ai.com' : '支持邮箱：support@lynse-ai.com'}
+                    {language === 'en' ? 'Support Email: support@lynse.ai' : '支持邮箱：support@lynse.ai'}
                   </a>
                 </div>
               </div>
@@ -267,7 +267,7 @@ const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
               <div className="h-96 overflow-hidden rounded-lg">
                 <div className="w-full h-full relative">
                   <img
-                    src="/images/address.jpg"
+                    src="/images/address.webp"
                     alt="深圳市易尚创意科技大厦"
                     className="w-full h-full object-cover"
                   />

@@ -15,13 +15,12 @@ const Footer: FC<FooterProps> = ({ language }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
           {/* Brand and Social */}
           <div className="sm:col-span-2 md:col-span-1">
-            <Link href="#" className="mb-4 inline-block">
-              <img src="/logo/lynse-logo.png" alt="Lynse Logo" className="h-6 filter brightness-0 invert" />
-            </Link>
-            <p className="text-gray-400 mb-3 text-sm">
-              <BrandName size="sm">Lynse</BrandName> {language === 'en' ? 'AI flash card' : 'AI 闪记卡'}
-            </p>
-            <div className="flex space-x-3">
+            <div className="flex justify-center sm:justify-start">
+              <Link href="#" className="inline-block">
+                <img src="/logo/lynse-logo.png" alt="Lynse Logo" className="h-6 filter brightness-0 invert" />
+              </Link>
+            </div>
+            <div className="flex space-x-3 mt-4 justify-center sm:justify-start">
               <a href="#" className="text-gray-500 hover:text-white transition-colors"><Facebook size={16} /></a>
               <a href="#" className="text-gray-500 hover:text-white transition-colors"><Twitter size={16} /></a>
               <a href="#" className="text-gray-500 hover:text-white transition-colors"><Instagram size={16} /></a>

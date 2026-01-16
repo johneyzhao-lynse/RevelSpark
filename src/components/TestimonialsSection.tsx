@@ -62,7 +62,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
       role: "Graduate Student",
       image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       rating: 4,
-      text: <><BrandName>Lynse</BrandName>卡。灵光闪记APP使搜索转录变得容易，多语言支持对我的国际研究非常完美。</>
+      text: <><BrandName>Lynse</BrandName>卡。灵光记使搜索转录变得容易，多语言支持对我的国际研究非常完美。</>
     },
     {
       name: "David Kim",
@@ -91,7 +91,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
       role: "研究生",
       image: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       rating: 4,
-      text: <><BrandName>Lynse</BrandName>卡。灵光闪记APP使搜索转录变得容易，多语言支持对我的国际研究非常完美。</>
+      text: <><BrandName>Lynse</BrandName>卡。灵光记使搜索转录变得容易，多语言支持对我的国际研究非常完美。</>
     },
     {
       name: "金大卫",
@@ -131,13 +131,13 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
     <section id="testimonials" className="py-24 bg-white">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             {language === 'en' ? 'What Our Users Say' : '用户评价'}
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
             {language === 'en'
               ? <><BrandName>Lynse</BrandName> AI recording card.</>
-              : <><BrandName>Lynse</BrandName> AI闪记卡改变工作流程的专业人士的评价。</>}
+              : <><BrandName>Lynse</BrandName> 灵光记改变工作流程的专业人士的评价。</>}
           </p>
         </div>
 
@@ -169,7 +169,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
           </div>
 
           <button
-            className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-md text-blue-600 hover:text-blue-800 transition-colors"
+            className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-4 bg-white p-2 rounded-full shadow-md text-black hover:text-black transition-colors"
             onClick={handlePrev}
             aria-label="Previous testimonial"
           >
@@ -177,7 +177,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
           </button>
           
           <button
-            className="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-md text-blue-600 hover:text-blue-800 transition-colors"
+            className="absolute top-1/2 right-0 transform -translate-y-1/2 translate-x-4 bg-white p-2 rounded-full shadow-md text-black hover:text-black transition-colors"
             onClick={handleNext}
             aria-label="Next testimonial"
           >
@@ -190,7 +190,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ language }) =
             <button
               key={i}
               className={`w-2 h-2 rounded-full mx-1 transition-all ${
-                currentSlide === i ? 'bg-blue-600 w-6' : 'bg-gray-300'
+                currentSlide === i ? 'bg-black w-6' : 'bg-gray-300'
               }`}
               onClick={() => {
                 setAutoplay(false);
