@@ -9,28 +9,13 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false, // 生产环境不生成 source map
-    minify: false, // 完全禁用压缩器
-    terserOptions: {
-      compress: false,
-      mangle: false,
-    },
+    minify: 'terser', // 使用 terser 压缩
+    target: 'es2015', // 目标浏览器版本
     // 代码分割优化
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // React 核心
-          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
-            return 'react-vendor';
-          }
-          // 动画库
-          if (id.includes('node_modules/framer-motion/')) {
-            return 'motion';
-          }
-          // UI 图标库
-          if (id.includes('node_modules/lucide-react/')) {
-            return 'icons';
-          }
-          // 其他 node_modules
+          // 将所有第三方依赖打包到一个 vendor chunk 中，避免循环依赖
           if (id.includes('node_modules/')) {
             return 'vendor';
           }
@@ -48,9 +33,6 @@ export default defineConfig({
           }
           return `assets/[name]-[hash][extname]`;
         },
-        // 禁用压缩
-        compact: false,
-        minifyInternalExports: false,
       },
     },
     // Chunk 大小警告阈值 (KB)
