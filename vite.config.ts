@@ -9,18 +9,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false, // 生产环境不生成 source map
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // 移除所有 console
-        drop_debugger: true, // 移除 debugger
-        pure_funcs: ['console.log', 'console.info', 'console.debug'], // 移除特定函数
-        module: true, // 确保正确处理ES模块
-      },
-      mangle: {
-        module: true, // 确保正确处理ES模块
-      },
-    },
+    minify: 'esbuild',
     // 代码分割优化
     rollupOptions: {
       output: {
