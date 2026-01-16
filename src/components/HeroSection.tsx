@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from 'react';
+import { FC, useState, useRef } from 'react';
 import { ChevronDown, Sparkles } from 'lucide-react';
 import { Link } from './ui/Link';
 import BrandName from './ui/BrandName';
@@ -108,7 +108,7 @@ const HeroSection: FC<HeroSectionProps> = ({ language }: HeroSectionProps) => {
             <div className="relative z-10 group">
               <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-3xl blur-3xl group-hover:blur-3xl transition-all duration-500"></div>
               <img
-                src="/images/product-showcase.png"
+                src="/images/product-showcase.jpg"
                 alt="Lynse AI flash card"
                 className="relative w-full max-w-[600px] lg:max-w-[720px] object-contain transition-all duration-700 transform group-hover:scale-105 group-hover:-rotate-2"
                 style={{

@@ -82,11 +82,10 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
                 {(Object.keys(tabs) as Array<keyof typeof tabs>).map((tab) => (
                   <button
                     key={tab}
-                    className={`px-5 py-3 text-sm font-semibold whitespace-nowrap transition-all rounded-t-xl relative ${
-                      activeTab === tab
+                    className={`px-5 py-3 text-sm font-semibold whitespace-nowrap transition-all rounded-t-xl relative ${activeTab === tab
                         ? 'text-primary-600 bg-primary-50/70 shadow-inner-soft'
                         : 'text-text-tertiary hover:text-primary-600 hover:bg-primary-50/40'
-                    }`}
+                      }`}
                     onClick={() => setActiveTab(tab)}
                   >
                     <div className="flex items-center gap-2 relative z-10">
@@ -118,6 +117,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({ language }) => {
                     src={tabs[activeTab].screenshot}
                     alt={`${tabs[activeTab].title} screenshot`}
                     className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText, ListChecks, Sparkles, Download } from 'lucide-react';
+import { FileText, ListChecks, Sparkles } from 'lucide-react';
 
 interface AppFeaturesSectionProps {
   language: 'en' | 'zh';
@@ -11,38 +11,38 @@ const AppFeaturesSection: React.FC<AppFeaturesSectionProps> = ({ language }) => 
       icon: <FileText />,
       title: "Speech to Text",
       description: "Advanced AI-powered transcription with support for 70+ languages and real-time processing.",
-      screenshot: "./images/features/stt-demo.png"
+      screenshot: "./images/features/stt-demo.jpg"
     },
     {
       icon: <Sparkles />,
       title: "Smart Synopsis",
       description: "Get intelligent overviews of long recordings, with important topics and discussions highlighted.",
-      screenshot: "./images/features/summary-demo.png"
+      screenshot: "./images/features/summary-demo.jpg"
     },
     {
       icon: <ListChecks />,
       title: "Action Items Extraction",
       description: "Automatically identify and list action items, deadlines, and assignments from your recordings.",
-      screenshot: "./images/features/stt-demo.png"
+      screenshot: "./images/features/stt-demo.jpg"
     }
   ] : [
     {
       icon: <FileText />,
       title: "语音转文字",
       description: "支持70多种语言的高级AI驱动转录，实时处理。",
-      screenshot: "./images/features/stt.png"
+      screenshot: "./images/features/stt.jpg"
     },
     {
       icon: <Sparkles />,
       title: "智能概要",
       description: "获取长录音的智能概览，突出显示重要主题和讨论。",
-      screenshot: "./images/features/summary.png"
+      screenshot: "./images/features/summary.jpg"
     },
     {
       icon: <ListChecks />,
       title: "行动项目提取",
       description: "自动识别并列出录音中的行动项目、截止日期和任务分配。",
-      screenshot: "./images/features/mind.png"
+      screenshot: "./images/features/mind.jpg"
     }
   ];
 
@@ -74,10 +74,11 @@ const AppFeaturesSection: React.FC<AppFeaturesSectionProps> = ({ language }) => 
               </div>
               <p className="text-gray-600 mb-4 text-sm min-h-[60px]">{feature.description}</p>
               <div className="rounded-lg overflow-hidden">
-                <img 
-                  src={feature.screenshot} 
+                <img
+                  src={feature.screenshot}
                   alt={feature.title}
                   className="w-full h-auto object-cover rounded shadow-sm"
+                  loading="lazy"
                 />
               </div>
             </div>
@@ -87,5 +88,6 @@ const AppFeaturesSection: React.FC<AppFeaturesSectionProps> = ({ language }) => 
     </section>
   );
 };
+
 
 export default AppFeaturesSection;

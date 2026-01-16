@@ -1,6 +1,5 @@
 import React from 'react';
 import { MessageSquare, Mic, Zap, Share2, Languages, Lock, Wifi, Smartphone } from 'lucide-react';
-import BrandName from './ui/BrandName';
 
 interface FeaturesSectionProps {
   language: 'en' | 'zh';
@@ -154,12 +153,13 @@ const FeaturesSection: React.FC<FeaturesSectionProps> = ({ language }) => {
               {/* Product card */}
               <div className="relative glass-card p-8 rounded-3xl w-[480px] h-[480px] max-w-full mx-auto flex items-center justify-center">
                 <img
-                  src="./images/recording-card.png"
+                  src="./images/recording-card.jpg"
                   alt={language === 'en' ? 'Lynse AI Recording Card' : 'Lynse AI 闪记卡'}
                   className="w-[420px] h-[420px] object-contain transition-transform duration-500 hover:scale-105 animate-float"
                   style={{
-                    filter: 'drop-shadow(0 20px 40px rgba(26, 109, 255, 0.2))',
+                    filter: 'drop-shadow(0 20px 40px rgba(26, 109, 255, 0.25))',
                   }}
+                  loading="lazy"
                 />
               </div>
             </div>
