@@ -32,8 +32,8 @@ function App() {
   // Update page title based on language
   React.useEffect(() => {
     document.title = language === 'en'
-      ? 'Lynse Spark Note - AI Smart Recording Device'
-      : 'Lynse 灵光记 - 智能录音转写设备';
+      ? 'Lynse.ai - Capture Every Spark of Inspiration'
+      : 'Lynse.ai｜灵光记 - 让灵光记住每一次灵感';
 
     // Add smooth scrolling for the entire page
     document.documentElement.style.scrollBehavior = 'smooth';
