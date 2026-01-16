@@ -11,11 +11,34 @@ export default defineConfig({
     sourcemap: false, // 生产环境不生成 source map
     minify: 'terser', // 使用 terser 压缩
     target: 'es2015', // 目标浏览器版本
+    // Terser 压缩配置
+    terserOptions: {
+      compress: {
+        drop_console: true, // 移除 console.log
+        drop_debugger: true, // 移除 debugger
+        pure_funcs: ['console.log', 'console.info', 'console.debug'], // 移除特定函数调用
+      },
+      format: {
+        comments: false, // 移除注释
+      },
+    },
     // 代码分割优化
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // 将所有第三方依赖打包到一个 vendor chunk 中，避免循环依赖
+          // React 核心（稳定，很少变化）
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+            return 'react-vendor';
+          }
+          // 动画库（较大，单独分割）
+          if (id.includes('node_modules/framer-motion/')) {
+            return 'motion';
+          }
+          // 地图库（懒加载，单独分割）
+          if (id.includes('node_modules/leaflet/')) {
+            return 'leaflet';
+          }
+          // 其他 node_modules
           if (id.includes('node_modules/')) {
             return 'vendor';
           }

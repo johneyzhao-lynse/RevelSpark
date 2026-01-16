@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { Link } from './ui/Link';
-import { FaPhone } from 'react-icons/fa';
-import { Mail } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Header from './Header';
-import CompanyMap from './ui/CompanyMap';
+
+// 懒加载地图组件
+const CompanyMap = lazy(() => import('./ui/CompanyMap'));
 
 interface AboutUsPageProps {
   language: 'en' | 'zh';
@@ -193,7 +194,7 @@ const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
                 </h3>
                 <div className="space-y-4 mb-6">
                   <div className="flex items-center gap-3 text-gray-700">
-                    <FaPhone className="w-5 h-5 text-primary" />
+                    <Phone className="w-5 h-5 text-primary" />
                     <span>{language === 'en' ? 'Phone: 17621502813 Mr. Zhao' : '电话：17621502813 赵先生'}</span>
                   </div>
                   <div className="flex items-center gap-3 text-gray-700">
@@ -266,11 +267,24 @@ const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
                 {language === 'en' ? 'Our Location' : '我们的位置'}
               </h3>
               <div className="h-96 overflow-hidden rounded-lg">
-                <CompanyMap
-                  language={language}
-                  address={currentContent.addressDetail}
-                  className="h-full"
-                />
+                <Suspense
+                  fallback={
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg">
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="w-10 h-10 border-3 border-primary border-t-transparent rounded-full animate-spin"></div>
+                        <p className="text-sm text-gray-500">
+                          {language === 'en' ? 'Loading map...' : '加载地图中...'}
+                        </p>
+                      </div>
+                    </div>
+                  }
+                >
+                  <CompanyMap
+                    language={language}
+                    address={currentContent.addressDetail}
+                    className="h-full"
+                  />
+                </Suspense>
               </div>
               <div className="mt-4 flex items-start gap-3 text-sm text-gray-600">
                 <svg

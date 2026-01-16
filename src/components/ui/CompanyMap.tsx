@@ -37,11 +37,12 @@ const CompanyMap: React.FC<CompanyMapProps> = ({
       touchZoom: true,
     });
 
-    // 使用 CartoDB 的浅色主题（符合网站设计风格）
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd',
-      maxZoom: 20,
+    // 使用高德地图瓦片服务（国内访问更快，符合网站设计风格）
+    L.tileLayer('https://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+      attribution: '&copy; <a href="https://www.amap.com/">高德地图</a>',
+      subdomains: ['webrd01', 'webrd02', 'webrd03', 'webrd04'],
+      maxZoom: 19,
+      minZoom: 3,
     }).addTo(map);
 
     // 创建自定义图标（使用网站的主色调）
@@ -103,7 +104,7 @@ const CompanyMap: React.FC<CompanyMapProps> = ({
           ${address}
         </div>
         <a
-          href="https://maps.google.com/?q=${COMPANY_LOCATION.lat},${COMPANY_LOCATION.lng}"
+          href="https://uri.amap.com/marker?position=${COMPANY_LOCATION.lng},${COMPANY_LOCATION.lat}&name=Lynse AI"
           target="_blank"
           rel="noopener noreferrer"
           style="
@@ -120,7 +121,7 @@ const CompanyMap: React.FC<CompanyMapProps> = ({
           onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(26, 109, 255, 0.3)';"
           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';"
         >
-          ${language === 'en' ? 'Open in Google Maps' : '在谷歌地图中打开'}
+          ${language === 'en' ? 'Open in Amap' : '在高德地图中打开'}
         </a>
       </div>
     `;
