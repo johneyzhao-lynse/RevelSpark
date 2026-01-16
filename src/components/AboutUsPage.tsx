@@ -4,6 +4,7 @@ import { FaPhone } from 'react-icons/fa';
 import { Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Header from './Header';
+import CompanyMap from './ui/CompanyMap';
 
 interface AboutUsPageProps {
   language: 'en' | 'zh';
@@ -265,14 +266,33 @@ const AboutUsPage: React.FC<AboutUsPageProps> = ({ language }) => {
                 {language === 'en' ? 'Our Location' : '我们的位置'}
               </h3>
               <div className="h-96 overflow-hidden rounded-lg">
-                <div className="w-full h-full relative">
-                  <img
-                    src="/images/address.webp"
-                    alt="深圳市易尚创意科技大厦"
-                    className="w-full h-full object-cover"
+                <CompanyMap
+                  language={language}
+                  address={currentContent.addressDetail}
+                  className="h-full"
+                />
+              </div>
+              <div className="mt-4 flex items-start gap-3 text-sm text-gray-600">
+                <svg
+                  className="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent pointer-events-none"></div>
-                </div>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+                <p>{currentContent.addressDetail}</p>
               </div>
             </div>
           </div>
