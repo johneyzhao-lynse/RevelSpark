@@ -45,8 +45,20 @@ coverage/
 
 # Docker相关
 .dockerignore
-<<<<<<< HEAD
-=======
-Dockerfile
->>>>>>> 02b7a5c503df5a403466e2a58d0d46427a32b077
-nginx.conf
+
+# 开发工具
+.claude/
+*.tsbuildinfo
+
+# 临时文件
+*.tmp
+.cache/
+
+# 文档和说明（生产环境不需要）
+README.md
+CLAUDE.md
+TODO.md
+*.md
+
+# 根目录logo文件夹（已在public/logo中）
+logo/

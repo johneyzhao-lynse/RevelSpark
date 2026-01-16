@@ -13,19 +13,22 @@ const HeroSection: FC<HeroSectionProps> = ({ language }: HeroSectionProps) => {
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden animated-gradient aurora-bg"
     >
-      {/* Enhanced Background with Animated Orbs */}
+      {/* 背景：丰富色彩+科技感 */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Primary gradient orbs - Enhanced */}
-        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-primary-500/25 via-secondary-500/20 to-mint/15 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-secondary-500/20 via-primary-500/15 to-mint/10 rounded-full blur-3xl animate-float-delayed"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-r from-primary-500/15 via-secondary-500/10 to-mint/5 rounded-full blur-3xl animate-pulse-slow"></div>
+        {/* 主要渐变球 - 增强透明度和色彩 */}
+        <div className="absolute top-1/4 right-1/4 w-[700px] h-[700px] bg-gradient-to-br from-primary-500/20 via-secondary-500/15 to-mint/10 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-[600px] h-[600px] bg-gradient-to-tr from-secondary-500/18 via-primary-500/12 to-mint/8 rounded-full blur-3xl animate-float-delayed"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-primary-500/15 via-secondary-500/10 to-mint/5 rounded-full blur-3xl animate-pulse-slow"></div>
 
-        {/* Grid pattern overlay - Subtle */}
+        {/* 白色渐变增强层次 */}
+        <div className="absolute top-1/3 right-1/3 w-[500px] h-[500px] bg-gradient-to-br from-white/50 via-gray-50/40 to-transparent rounded-full blur-3xl animate-float"></div>
+
+        {/* Grid pattern overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(26,109,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(26,109,255,0.04)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]"></div>
 
-        {/* Floating particles - Enhanced */}
-        <div className="absolute top-20 right-20 w-3 h-3 bg-primary-500/50 rounded-full animate-float shadow-glow backdrop-blur-sm"></div>
-        <div className="absolute top-40 left-1/4 w-2 h-2 bg-secondary-500/40 rounded-full animate-float-delayed shadow-glow backdrop-blur-sm"></div>
+        {/* 浮动粒子 - 彩色 */}
+        <div className="absolute top-20 right-20 w-3 h-3 bg-primary-500/40 rounded-full animate-float shadow-glow backdrop-blur-sm"></div>
+        <div className="absolute top-40 left-1/4 w-2 h-2 bg-secondary-500/30 rounded-full animate-float-delayed shadow-glow backdrop-blur-sm"></div>
         <div className="absolute bottom-40 right-1/3 w-4 h-4 bg-primary-500/30 rounded-full animate-float shadow-glow backdrop-blur-sm"></div>
         <div className="absolute top-1/3 left-1/3 w-2 h-2 bg-mint/40 rounded-full animate-float-delayed shadow-glow backdrop-blur-sm"></div>
       </div>
@@ -34,28 +37,28 @@ const HeroSection: FC<HeroSectionProps> = ({ language }: HeroSectionProps) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left space-y-10">
-            {/* Badge - Enhanced */}
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary-50/90 to-secondary-50/90 border border-primary-200/60 backdrop-blur-md shadow-premium animate-fade-in-up opacity-0-initial hover:shadow-premium-hover transition-all duration-300 cursor-default">
-              <Sparkles className="w-4 h-4 text-primary-500 animate-pulse-slow" />
-              <span className="text-sm font-semibold text-primary-700 tracking-wide">
-                {language === 'en' ? 'AI-Powered Recording Revolution' : 'AI 驱动的录音革命'}
+            {/* Badge - 黑白+微妙蓝 */}
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-gray-900 to-black text-white border border-blue-400/20 shadow-sm animate-fade-in-up opacity-0-initial hover:shadow-glow transition-all duration-400 cursor-default">
+              <Sparkles className="w-4 h-4 text-blue-400 animate-pulse-slow" />
+              <span className="text-sm font-semibold tracking-wide">
+                {language === 'en' ? 'AI-Powered' : 'AI 驱动'}
               </span>
             </div>
 
-            {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight animate-fade-in-up opacity-0-initial delay-200">
+            {/* Main Heading - 彩色渐变 */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tighter animate-fade-in-up opacity-0-initial delay-200">
               <span className="gradient-text">
                 {language === 'en'
                   ? 'Record, Summarize, '
                   : '记录, 总结, '}
               </span>
-              <span className="text-text-primary">
+              <span className="text-black">
                 {language === 'en' ? 'Share' : '分享'}
               </span>
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-xl mx-auto lg:mx-0 animate-fade-in-up opacity-0-initial delay-300">
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-xl mx-auto lg:mx-0 animate-fade-in-up opacity-0-initial delay-300">
               {language === 'en'
                 ? (
                   <>
@@ -71,55 +74,69 @@ const HeroSection: FC<HeroSectionProps> = ({ language }: HeroSectionProps) => {
                 )}
             </p>
 
-            {/* CTA Buttons - Enhanced */}
+            {/* CTA Buttons - 保持渐变但更subtle */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-6 animate-fade-in-up opacity-0-initial delay-400 items-stretch">
               <OrderDropdownButton language={language} />
               <Link
                 href="/download"
-                className="group h-[54px] px-8 border-2 border-primary-500/30 text-primary-600 rounded-full font-bold text-base bg-white/80 backdrop-blur-md hover:bg-white hover:border-primary-500 hover:shadow-premium-hover transition-all duration-300 flex items-center justify-center whitespace-nowrap relative overflow-hidden"
+                className="group h-[54px] px-8 border-2 border-blue-400/30 text-blue-600 rounded-full font-bold text-base bg-white/90 backdrop-blur-md hover:bg-white hover:border-blue-400 hover:shadow-glow transition-all duration-400 flex items-center justify-center whitespace-nowrap"
               >
-                <span className="relative z-10">{language === 'en' ? 'Download App' : '下载应用'}</span>
+                <span>{language === 'en' ? 'Download App' : '下载应用'}</span>
               </Link>
             </div>
 
-            {/* Trust badges */}
+            {/* Trust badges - 彩色 */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-6 animate-fade-in-up opacity-0-initial delay-500">
-              <div className="flex items-center gap-2 text-sm text-text-tertiary">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 {language === 'en' ? '30+ Languages Supported' : '支持 30+ 种语言'}
               </div>
-              <div className="flex items-center gap-2 text-sm text-text-tertiary">
-                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <div className="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
                 {language === 'en' ? 'Bank-Level Security' : '银行级安全'}
               </div>
             </div>
           </div>
 
           {/* Right Content - Product Showcase */}
-          <div className="relative mx-auto lg:mx-0 flex items-center justify-center p-4 animate-scale-in opacity-0-initial">
-            {/* Background decorative ring */}
+          <div className="relative mx-auto lg:mx-0 flex items-center justify-center p-8 md:p-12 animate-scale-in opacity-0-initial">
+            {/* Background decorative ring - 黑白 */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-[500px] h-[500px] border border-primary-100 rounded-full animate-[spin_30s_linear_infinite]"></div>
-              <div className="absolute w-[400px] h-[400px] border border-secondary-100 rounded-full animate-[spin_25s_linear_infinite_reverse]"></div>
-              <div className="absolute w-[300px] h-[300px] bg-gradient-to-br from-primary-50 to-secondary-50 rounded-full blur-3xl"></div>
+              <div className="w-[500px] h-[500px] border border-gray-200/30 rounded-full animate-[spin_30s_linear_infinite]"></div>
+              <div className="absolute w-[400px] h-[400px] border border-gray-300/20 rounded-full animate-[spin_25s_linear_infinite_reverse]"></div>
+              <div className="absolute w-[300px] h-[300px] bg-gradient-to-br from-gray-100/60 to-gray-50/40 rounded-full blur-3xl"></div>
             </div>
 
-            {/* Product Image with enhanced shadow */}
+            {/* Product Image with enhanced blend effect */}
             <div className="relative z-10 group">
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-3xl blur-3xl group-hover:blur-3xl transition-all duration-500"></div>
-              <img
-                src="/images/product-showcase.jpg"
-                alt="Lynse AI flash card"
-                className="relative w-full max-w-[600px] lg:max-w-[720px] object-contain transition-all duration-700 transform group-hover:scale-105 group-hover:-rotate-2"
-                style={{
-                  filter: 'drop-shadow(0 30px 40px rgba(26, 109, 255, 0.25))',
-                }}
-              />
+              {/* Soft edge blend gradient - creates seamless transition from white product bg to colored page bg */}
+              <div className="absolute inset-0 rounded-3xl blur-3xl opacity-60 bg-gradient-radial from-white/80 via-white/40 to-transparent"></div>
+
+              {/* Subtle glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/5 via-transparent to-secondary-500/5 rounded-3xl blur-3xl group-hover:blur-3xl transition-all duration-700"></div>
+
+              {/* Shadow layer */}
+              <div className="absolute inset-0 rounded-3xl" style={{
+                background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.08) 0%, transparent 70%)',
+                filter: 'blur(20px)',
+              }}></div>
+
+              {/* Image container with blend */}
+              <div className="relative rounded-3xl overflow-hidden">
+                <img
+                  src="/images/product-showcase.webp"
+                  alt="Lynse AI flash card"
+                  className="relative w-full max-w-[580px] lg:max-w-[680px] object-contain transition-all duration-700 transform group-hover:scale-105 group-hover:-rotate-2"
+                  style={{
+                    filter: 'drop-shadow(0 20px 60px rgba(0, 0, 0, 0.12))',
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - 彩色 */}
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-primary-600 flex flex-col items-center animate-fade-in-up opacity-0-initial delay-600">
           <span className="text-sm mb-2 opacity-70">
             {language === 'en' ? 'Scroll to explore' : '向下滚动探索'}
@@ -189,18 +206,18 @@ const OrderDropdownButton: FC<{ language: 'en' | 'zh' }> = ({ language }) => {
   return (
     <div className="relative" onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
       <button
-        className="h-[54px] px-8 bg-gradient-to-r from-primary-500 to-secondary-500 text-white rounded-full font-bold text-base shadow-glass hover:shadow-glow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center min-w-[140px] relative overflow-hidden group"
+        className="h-[54px] px-8 bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 text-white rounded-full font-bold text-base shadow-premium hover:shadow-glow-lg hover:scale-105 transition-all duration-400 flex items-center justify-center min-w-[140px] relative overflow-hidden"
       >
-        <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></span>
         <svg className="mr-2 relative z-10" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 6.5V5.5C6.5 3.84315 7.84315 2.5 9.5 2.5C11.1569 2.5 12.5 3.84315 12.5 5.5V6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /><rect x="3.5" y="6.5" width="12" height="11" rx="2" stroke="currentColor" strokeWidth="1.5" /><path d="M8.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><path d="M11.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
         <span className="relative z-10">{language === 'en' ? 'Buy Now' : '立即购买'}</span>
       </button>
       <div
-        className={`absolute top-full left-0 mt-3 w-48 bg-white/80 backdrop-blur-xl rounded-2xl shadow-premium border border-white/80 transition-all duration-300 z-50 ${open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
+        className={`absolute top-full left-0 mt-3 w-48 bg-white/95 backdrop-blur-xl rounded-2xl shadow-premium border border-gray-200 transition-all duration-400 z-50 ${open ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'
           }`}
       >
         <div className="p-3">
-          <div className="text-xs text-text-tertiary mb-2 px-2 font-semibold tracking-wide uppercase">
+          <div className="text-xs text-gray-500 mb-2 px-2 font-semibold tracking-wide uppercase">
             {language === 'en' ? 'Choose store' : '选择渠道'}
           </div>
           {storeLinks.map((store, index) => (
@@ -209,7 +226,7 @@ const OrderDropdownButton: FC<{ language: 'en' | 'zh' }> = ({ language }) => {
               href={store.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center p-2.5 rounded-xl hover:bg-primary-50/70 transition-all duration-200 group hover:shadow-premium"
+              className="flex items-center p-2.5 rounded-xl hover:bg-blue-50 transition-all duration-300 group"
             >
               <span className="mr-3 flex-shrink-0">
                 {typeof store.icon === 'string' ? (
@@ -218,7 +235,7 @@ const OrderDropdownButton: FC<{ language: 'en' | 'zh' }> = ({ language }) => {
                   store.icon
                 )}
               </span>
-              <span className="text-sm text-text-secondary font-medium group-hover:text-primary-600 transition-colors">
+              <span className="text-sm text-gray-700 font-medium group-hover:text-blue-600 transition-colors">
                 {store.name}
               </span>
             </a>

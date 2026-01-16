@@ -10,22 +10,22 @@ interface FooterProps {
 const Footer: FC<FooterProps> = ({ language }) => {
   const [email, setEmail] = useState('');
   return (
-    <footer id="contact" className="bg-dark-bg text-gray-300 pt-16 pb-8 border-t border-gray-700">
+    <footer id="contact" className="bg-black text-white pt-16 pb-8 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
           {/* Brand and Social */}
           <div className="sm:col-span-2 md:col-span-1">
             <Link href="#" className="mb-4 inline-block">
-              <img src="/images/logo.png" alt="Lynse Logo" className="h-6 filter brightness-0 invert" />
+              <img src="/logo/lynse-logo.png" alt="Lynse Logo" className="h-6 filter brightness-0 invert" />
             </Link>
             <p className="text-gray-400 mb-3 text-sm">
               <BrandName size="sm">Lynse</BrandName> {language === 'en' ? 'AI flash card' : 'AI 闪记卡'}
             </p>
             <div className="flex space-x-3">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Facebook size={16} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Twitter size={16} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Instagram size={16} /></a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={16} /></a>
+              <a href="#" className="text-gray-500 hover:text-white transition-colors"><Facebook size={16} /></a>
+              <a href="#" className="text-gray-500 hover:text-white transition-colors"><Twitter size={16} /></a>
+              <a href="#" className="text-gray-500 hover:text-white transition-colors"><Instagram size={16} /></a>
+              <a href="#" className="text-gray-500 hover:text-white transition-colors"><Linkedin size={16} /></a>
             </div>
 
           </div>
