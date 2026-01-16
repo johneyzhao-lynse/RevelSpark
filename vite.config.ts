@@ -26,13 +26,13 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // React 核心（稳定，很少变化）
-          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+          // React 生态系统（包括所有依赖 React 的库）
+          if (id.includes('node_modules/react/') ||
+              id.includes('node_modules/react-dom/') ||
+              id.includes('node_modules/lucide-react/') ||
+              id.includes('node_modules/framer-motion/') ||
+              id.includes('node_modules/react-icons/')) {
             return 'react-vendor';
-          }
-          // 动画库（较大，单独分割）
-          if (id.includes('node_modules/framer-motion/')) {
-            return 'motion';
           }
           // 地图库（懒加载，单独分割）
           if (id.includes('node_modules/leaflet/')) {
