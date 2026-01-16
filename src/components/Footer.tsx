@@ -147,7 +147,7 @@ const Footer: FC<FooterProps> = ({ language }) => {
         <div className="mt-12 pt-8 border-t border-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-xs text-gray-500 mb-0">
-              &copy; {new Date().getFullYear()} 上海天启灵光科技有限公司 版权所有 | 备案号：沪ICP备2025155002号
+              &copy; {new Date().getFullYear()} 上海天启灵光科技有限公司 版权所有 | 备案号：<a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">沪ICP备2025155002号</a>
             </p>
             <div className="flex md:flex-row space-x-4 mt-3 md:mt-0">
               <a href="/policy/privacy-cn.html" className="text-xs text-gray-500 hover:text-white">

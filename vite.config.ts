@@ -10,6 +10,10 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false, // 生产环境不生成 source map
     minify: false, // 完全禁用压缩器
+    terserOptions: {
+      compress: false,
+      mangle: false,
+    },
     // 代码分割优化
     rollupOptions: {
       output: {
@@ -44,6 +48,9 @@ export default defineConfig({
           }
           return `assets/[name]-[hash][extname]`;
         },
+        // 禁用压缩
+        compact: false,
+        minifyInternalExports: false,
       },
     },
     // Chunk 大小警告阈值 (KB)
