@@ -143,3 +143,38 @@ const ComponentName: FC<ComponentNameProps> = ({ language, onLanguageChange }) =
 ## Testing
 
 No testing framework is currently configured. If adding tests, consider Vitest for unit testing and Playwright for E2E testing to maintain compatibility with Vite.
+
+## gstack
+
+This project uses [gstack](https://github.com/garrytan/gstack) for enhanced development workflows.
+
+**Web Browsing:** Always use the `/browse` skill from gstack for all web browsing tasks. Never use `mcp__claude-in-chrome__*` tools.
+
+**Available gstack skills:**
+- `/office-hours` - Strategy and planning consultations
+- `/plan-ceo-review` - Executive-level strategy review
+- `/plan-eng-review` - Engineering architecture review
+- `/plan-design-review` - Design strategy review
+- `/design-consultation` - Design guidance
+- `/review` - Code review
+- `/ship` - Ship features
+- `/land-and-deploy` - Deploy and land changes
+- `/canary` - Canary deployments
+- `/benchmark` - Performance benchmarking
+- `/browse` - Headless browser for QA testing (use instead of MCP Chrome tools)
+- `/qa` - Quality assurance testing
+- `/qa-only` - QA testing only
+- `/design-review` - Visual design audit
+- `/setup-browser-cookies` - Configure browser cookies
+- `/setup-deploy` - Deployment setup
+- `/retro` - Retrospectives
+- `/investigate` - Bug investigation
+- `/document-release` - Release documentation
+- `/codex` - Second opinion code review
+- `/cso` - Security review
+- `/autoplan` - Automatic planning
+- `/careful` - Extra careful mode
+- `/freeze` - Freeze scoped changes
+- `/guard` - Guarded changes
+- `/unfreeze` - Unfreeze scoped changes
+- `/gstack-upgrade` - Upgrade gstack
