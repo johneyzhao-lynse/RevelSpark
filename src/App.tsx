@@ -1,13 +1,12 @@
 import React, { useState, lazy, Suspense } from 'react';
 import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import ProductSection from './components/ProductSection';
-import AppFeaturesSection from './components/AppFeaturesSection';
-import FeaturesSection from './components/FeaturesSection';
-import SpecsSection from './components/SpecsSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import FAQSection from './components/FAQSection';
-import CTASection from './components/CTASection';
+import HeroSection from './components/home/HeroSection';
+import ValuePropStrip from './components/home/ValuePropStrip';
+import ProductShowcase from './components/home/ProductShowcase';
+import UseCasesSection from './components/home/UseCasesSection';
+import AppPreview from './components/home/AppPreview';
+import TrustSection from './components/home/TrustSection';
+import PreorderCTA from './components/home/PreorderCTA';
 import Footer from './components/Footer';
 
 // Lazy load sub-pages
@@ -17,11 +16,12 @@ const TestQRCode = lazy(() => import('./components/ui/TestQRCode'));
 const SolutionsPage = lazy(() => import('./components/SolutionsPage'));
 const QuickStartGuidePage = lazy(() => import('./pages/QuickStartGuidePage'));
 const SupportCenterPage = lazy(() => import('./pages/SupportCenterPage'));
+const SparkCardPage = lazy(() => import('./pages/SparkCardPage'));
 
 // Loading component
 const PageLoader = () => (
-  <div className="min-h-screen flex items-center justify-center bg-black">
-    <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+  <div className="min-h-screen flex items-center justify-center bg-white">
+    <div className="w-8 h-8 border-4 border-black border-t-transparent rounded-full animate-spin"></div>
   </div>
 );
 
@@ -29,15 +29,11 @@ const PageLoader = () => (
 function App() {
   const [language, setLanguage] = useState<'en' | 'zh'>('zh');
 
-  // Update page title based on language
   React.useEffect(() => {
     document.title = language === 'en'
       ? 'Lynse.ai - Capture Every Spark of Inspiration'
       : 'Lynse.ai｜灵光记 - 让灵光记住每一次灵感';
-
-    // Add smooth scrolling for the entire page
     document.documentElement.style.scrollBehavior = 'smooth';
-
     return () => {
       document.documentElement.style.scrollBehavior = 'auto';
     };
@@ -47,8 +43,21 @@ function App() {
     setLanguage(newLanguage);
   };
 
-  // 路由判断
   const pathname = window.location.pathname;
+
+  // Product page
+  if (pathname === '/sparkcard') {
+    return (
+      <Suspense fallback={<PageLoader />}>
+        <div className="font-sans">
+          <Header language={language} onLanguageChange={handleLanguageChange} />
+          <SparkCardPage language={language} />
+          <Footer language={language} />
+        </div>
+      </Suspense>
+    );
+  }
+
   if (pathname === '/download') {
     return (
       <Suspense fallback={<PageLoader />}>
@@ -121,19 +130,17 @@ function App() {
     );
   }
 
-
-
+  // Homepage
   return (
     <div className="font-sans">
       <Header language={language} onLanguageChange={handleLanguageChange} />
       <HeroSection language={language} />
-      <ProductSection language={language} />
-      <AppFeaturesSection language={language} />
-      <FeaturesSection language={language} />
-      <SpecsSection language={language} />
-      <TestimonialsSection language={language} />
-      <FAQSection language={language} />
-      <CTASection language={language} />
+      <ValuePropStrip language={language} />
+      <ProductShowcase language={language} />
+      <UseCasesSection language={language} />
+      <AppPreview language={language} />
+      <TrustSection language={language} />
+      <PreorderCTA language={language} />
       <Footer language={language} />
     </div>
   );

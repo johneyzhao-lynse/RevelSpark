@@ -36,6 +36,11 @@ const Footer: FC<FooterProps> = ({ language }) => {
             </h3>
             <ul className="space-y-2 list-none pl-0 text-sm">
               <li>
+                <Link href="/sparkcard" className="text-gray-400 hover:text-white transition-colors">
+                  {language === 'en' ? 'Spark Card' : '灵光卡'}
+                </Link>
+              </li>
+              <li>
                 <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   {language === 'en' ? 'Taobao Store' : '淘宝旗舰店'}
                 </a>
