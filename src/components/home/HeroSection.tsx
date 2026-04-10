@@ -1,91 +1,353 @@
-import { FC } from 'react';
-import { Sparkles, ChevronDown, Download } from 'lucide-react';
+import React, { useRef, useState, useEffect, FC } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ChevronDown, Sparkles, Download } from 'lucide-react';
+import { Link } from '../ui/Link';
+import OrderButton from '../ui/OrderButton';
+import FadeInUp from '../ui/FadeInUp';
+import ScrollText from '../ui/ScrollText';
 import type { Language } from '../../data/constants';
 import { HERO } from '../../data/constants';
-import FadeInUp from '../ui/FadeInUp';
-import OrderButton from '../ui/OrderButton';
-import { Link } from '../ui/Link';
 
 interface HeroSectionProps {
   language: Language;
 }
 
-const HeroSection: FC<HeroSectionProps> = ({ language }) => (
-  <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-    {/* Subtle background gradients */}
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-gray-100/40 via-gray-50/30 to-transparent rounded-full blur-3xl" />
-      <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-gradient-to-tr from-gray-50/30 via-gray-100/20 to-transparent rounded-full blur-3xl" />
-    </div>
+const scrollPhrasesEN = ['Memory.', 'Thinking.', 'AI.'];
+const scrollPhrasesZH = ['记忆 ·', '思考 ·', 'AI'];
 
-    <div className="max-w-6xl mx-auto px-6 md:px-8 relative z-10 pt-24 pb-12 w-full">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        {/* Left Content */}
-        <div className="text-center lg:text-left space-y-10">
-          <FadeInUp>
-            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black text-white shadow-sm">
-              <Sparkles className="w-4 h-4 text-white" />
-              <span className="text-sm font-semibold tracking-wide">{HERO.badge[language]}</span>
-            </div>
-          </FadeInUp>
+// 海报背景配置（预留，等待海报图片）
+const POSTER_BACKGROUNDS = [
+  '', // 海报1: 主视觉
+  '', // 海报2: 录音功能
+  '', // 海报3: AI转写
+  '', // 海报4: 智能总结
+];
 
-          <FadeInUp delay={0.1}>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-black">
-              {HERO.headline[language]}
-            </h1>
-          </FadeInUp>
+// 临时渐变背景色
+const POSTER_GRADIENTS = [
+  'from-gray-50 via-gray-100 to-gray-50',        // 海报1: 浅灰色调
+  'from-blue-50 via-gray-100 to-gray-50',        // 海报2: 浅蓝色调
+  'from-purple-50 via-gray-100 to-gray-50',      // 海报3: 浅紫色调
+  'from-emerald-50 via-gray-100 to-gray-50',     // 海报4: 浅绿色调
+];
 
-          <FadeInUp delay={0.15}>
-            <p className="text-xl md:text-2xl font-medium text-gray-600">
-              {HERO.tagline[language]}
-            </p>
-          </FadeInUp>
+const HeroSection: FC<HeroSectionProps> = ({ language }) => {
+  const [prefersReduced, setPrefersReduced] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-          <FadeInUp delay={0.2}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-stretch">
-              <OrderButton language={language} variant="dark" />
-              <Link
-                href="/download"
-                className="h-[52px] px-8 border border-gray-300 text-gray-900 rounded-full font-bold text-base bg-white hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 flex items-center justify-center whitespace-nowrap min-w-[140px]"
-              >
-                <Download className="mr-2 w-5 h-5" />
-                <span>{HERO.ctaDownload[language]}</span>
-              </Link>
-            </div>
-          </FadeInUp>
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef });
 
-          <FadeInUp delay={0.3}>
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6">
-              {HERO.trustBadges.map((badge, i) => (
-                <div key={i} className="flex items-center gap-2 text-sm text-gray-500">
-                  <div className="w-1.5 h-1.5 bg-black rounded-full" />
-                  {badge[language]}
+  // 背景切换
+  const bg1Opacity = useTransform(scrollYProgress, [0, 0.2, 0.25], [1, 1, 0]);
+  const bg2Opacity = useTransform(scrollYProgress, [0.2, 0.3, 0.45], [0, 1, 0]);
+  const bg3Opacity = useTransform(scrollYProgress, [0.4, 0.5, 0.65], [0, 1, 0]);
+  const bg4Opacity = useTransform(scrollYProgress, [0.6, 0.7, 0.85], [0, 1, 1]);
+
+  // 原有层级动画
+  const layer1Opacity = useTransform(scrollYProgress, [0, 0.2, 0.25], [1, 1, 0]);
+  const layer1Y = useTransform(scrollYProgress, [0, 0.25], [0, -50]);
+
+  const layer2Opacity = useTransform(scrollYProgress, [0.2, 0.35, 0.5], [0, 1, 0]);
+  const layer2Scale = useTransform(scrollYProgress, [0.2, 0.35], [0.95, 1]);
+
+  const layer3Opacity = useTransform(scrollYProgress, [0.45, 0.55, 0.65, 0.75], [0, 1, 1, 0]);
+  const layer3ContainerY = useTransform(scrollYProgress, [0.45, 0.55, 0.75], [80, 0, -50]);
+
+  const layer4Opacity = useTransform(scrollYProgress, [0.75, 0.9], [0, 1]);
+  const layer4Y = useTransform(scrollYProgress, [0.75, 0.9], [30, 0]);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReduced(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setPrefersReduced(e.matches);
+    mq.addEventListener('change', handler);
+
+    const resizeMq = window.matchMedia('(max-width: 767px)');
+    setIsMobile(resizeMq.matches);
+    const resizeHandler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    resizeMq.addEventListener('change', resizeHandler);
+
+    return () => {
+      mq.removeEventListener('change', handler);
+      resizeMq.removeEventListener('change', resizeHandler);
+    };
+  }, []);
+
+  const scrollPhrases = language === 'en' ? scrollPhrasesEN : scrollPhrasesZH;
+
+  // 移动端/减少动画：简化版 Hero
+  if (prefersReduced || isMobile) {
+    return (
+      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 relative z-10 pt-24 pb-12 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="text-center lg:text-left space-y-10">
+              <FadeInUp>
+                <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black text-white shadow-sm">
+                  <Sparkles className="w-4 h-4 text-white" />
+                  <span className="text-sm font-semibold tracking-wide">{HERO.badge[language]}</span>
                 </div>
-              ))}
+              </FadeInUp>
+
+              <FadeInUp delay={0.1}>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-black">
+                  {HERO.headline[language]}
+                </h1>
+              </FadeInUp>
+
+              <FadeInUp delay={0.15}>
+                <p className="text-xl md:text-2xl font-medium text-gray-600">
+                  {HERO.tagline[language]}
+                </p>
+              </FadeInUp>
+
+              <FadeInUp delay={0.2}>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-stretch">
+                  <OrderButton language={language} variant="dark" />
+                  <Link
+                    href="/download"
+                    className="h-[52px] px-8 border border-gray-300 text-gray-900 rounded-full font-bold text-base bg-white hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 flex items-center justify-center whitespace-nowrap min-w-[140px]"
+                  >
+                    <Download className="mr-2 w-5 h-5" />
+                    <span>{HERO.ctaDownload[language]}</span>
+                  </Link>
+                </div>
+              </FadeInUp>
+
+              <FadeInUp delay={0.3}>
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6">
+                  {HERO.trustBadges.map((badge, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-gray-500">
+                      <div className="w-1.5 h-1.5 bg-black rounded-full" />
+                      {badge[language]}
+                    </div>
+                  ))}
+                </div>
+              </FadeInUp>
             </div>
-          </FadeInUp>
+
+            <FadeInUp delay={0.2}>
+              <div className="relative flex items-center justify-center p-8">
+                <img
+                  src="/images/product-showcase.jpg"
+                  alt="SparkCard"
+                  className="w-full max-w-[580px] lg:max-w-[680px] object-contain rounded-3xl"
+                  style={{ filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.08))' }}
+                />
+              </div>
+            </FadeInUp>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <div ref={containerRef} className="relative" style={{ height: '350vh' }}>
+      <div className="sticky top-0 h-screen overflow-hidden">
+        {/* 背景层 - 大幅海报（临时渐变背景） */}
+        <div className="absolute inset-0 bg-gray-50">
+          {/* 背景1: 产品主图 */}
+          <motion.div
+            className={`absolute inset-0 bg-gradient-to-br ${POSTER_GRADIENTS[0]}`}
+            style={{ opacity: bg1Opacity }}
+          >
+            {POSTER_BACKGROUNDS[0] && (
+              <>
+                <img
+                  src={POSTER_BACKGROUNDS[0]}
+                  alt="Background"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/30" />
+              </>
+            )}
+          </motion.div>
+
+          {/* 背景2: 录音功能 */}
+          <motion.div
+            className={`absolute inset-0 bg-gradient-to-br ${POSTER_GRADIENTS[1]}`}
+            style={{ opacity: bg2Opacity }}
+          >
+            {POSTER_BACKGROUNDS[1] && (
+              <>
+                <img
+                  src={POSTER_BACKGROUNDS[1]}
+                  alt="Background"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/40" />
+              </>
+            )}
+          </motion.div>
+
+          {/* 背景3: AI转写 */}
+          <motion.div
+            className={`absolute inset-0 bg-gradient-to-br ${POSTER_GRADIENTS[2]}`}
+            style={{ opacity: bg3Opacity }}
+          >
+            {POSTER_BACKGROUNDS[2] && (
+              <>
+                <img
+                  src={POSTER_BACKGROUNDS[2]}
+                  alt="Background"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/40" />
+              </>
+            )}
+          </motion.div>
+
+          {/* 背景4: 智能总结 */}
+          <motion.div
+            className={`absolute inset-0 bg-gradient-to-br ${POSTER_GRADIENTS[3]}`}
+            style={{ opacity: bg4Opacity }}
+          >
+            {POSTER_BACKGROUNDS[3] && (
+              <>
+                <img
+                  src={POSTER_BACKGROUNDS[3]}
+                  alt="Background"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/50" />
+              </>
+            )}
+          </motion.div>
         </div>
 
-        {/* Right Content — Product Image */}
-        <FadeInUp delay={0.2}>
-          <div className="relative flex items-center justify-center p-8">
+        {/* Layer 1: Hero Statement + Product Image */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center"
+          style={{ opacity: layer1Opacity, y: layer1Y }}
+        >
+          <div className="max-w-6xl mx-auto px-6 md:px-8 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="text-center lg:text-left space-y-10">
+                <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/10 text-black border border-black/20">
+                  <Sparkles className="w-4 h-4" />
+                  <span className="text-sm font-semibold tracking-wide">{HERO.badge[language]}</span>
+                </div>
+
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-black">
+                  {HERO.headline[language]}
+                </h1>
+
+                <p className="text-xl md:text-2xl font-medium text-gray-600">
+                  {HERO.tagline[language]}
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-stretch">
+                  <OrderButton language={language} variant="dark" />
+                  <Link
+                    href="/download"
+                    className="h-[52px] px-8 border border-gray-300 text-black rounded-full font-bold text-base hover:bg-gray-100 transition-all duration-300 flex items-center justify-center whitespace-nowrap min-w-[140px]"
+                  >
+                    <Download className="mr-2 w-5 h-5" />
+                    <span>{HERO.ctaDownload[language]}</span>
+                  </Link>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6">
+                  {HERO.trustBadges.map((badge, i) => (
+                    <div key={i} className="flex items-center gap-2 text-sm text-white/60">
+                      <div className="w-1.5 h-1.5 bg-white rounded-full" />
+                      {badge[language]}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="relative flex items-center justify-center p-8">
+                <img
+                  src="/images/product-showcase.jpg"
+                  alt="SparkCard"
+                  className="w-full max-w-[580px] lg:max-w-[680px] object-contain rounded-3xl"
+                  style={{ filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3))' }}
+                />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Layer 2: Parallax Product Showcase */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center"
+          style={{ opacity: layer2Opacity, scale: layer2Scale }}
+          aria-hidden="true"
+        >
+          <div className="relative">
             <img
               src="/images/product-showcase.jpg"
               alt="SparkCard"
-              className="w-full max-w-[580px] lg:max-w-[680px] object-contain"
-              style={{ filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.08))' }}
+              className="w-full max-w-2xl mx-auto rounded-3xl"
+              style={{ filter: 'drop-shadow(0 20px 60px rgba(0, 0, 0, 0.4))' }}
             />
           </div>
-        </FadeInUp>
-      </div>
+        </motion.div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-gray-400 flex flex-col items-center">
-        <span className="text-sm mb-2">{language === 'en' ? 'Scroll to explore' : '向下滚动探索'}</span>
-        <ChevronDown className="animate-bounce" size={24} />
+        {/* Layer 3: Character-by-Character Text Reveal */}
+        <motion.div
+          className="absolute inset-0 flex flex-col items-center justify-center"
+          style={{ opacity: layer3Opacity, y: layer3ContainerY }}
+        >
+          <div className="text-center space-y-4">
+            {scrollPhrases.map((phrase, i) => (
+              <div key={i} className="overflow-hidden py-2">
+                <ScrollText
+                  text={phrase}
+                  className="text-4xl md:text-[52px] font-light text-black tracking-tight"
+                  containerClassName="min-h-[4rem]"
+                />
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Layer 4: Final CTA */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center"
+          style={{ opacity: layer4Opacity, y: layer4Y }}
+        >
+          <div className="text-center">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-black mb-8">
+              {language === 'en' ? 'Ready to Never Miss a Moment?' : '准备好不再错过任何时刻了吗？'}
+            </h2>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <OrderButton language={language} variant="dark" />
+              <Link
+                href="/download"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-full border-2 border-black text-black font-semibold text-lg hover:bg-black hover:text-white transition-colors duration-300"
+              >
+                {HERO.ctaDownload[language]}
+              </Link>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-8 text-sm text-gray-500">
+              {HERO.trustBadges.map((badge, i) => (
+                <React.Fragment key={i}>
+                  <span>{badge[language]}</span>
+                  {i < HERO.trustBadges.length - 1 && (
+                    <span className="w-1 h-1 rounded-full bg-gray-400" />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* 滚动提示 */}
+        <motion.div 
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-gray-500 flex flex-col items-center z-20"
+          initial={{ opacity: 1 }}
+          style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
+        >
+          <span className="text-sm mb-2">{language === 'en' ? 'Scroll to explore' : '向下滚动探索'}</span>
+          <ChevronDown className="animate-bounce" size={24} />
+        </motion.div>
       </div>
     </div>
-  </section>
-);
+  );
+};
 
 export default HeroSection;

@@ -87,7 +87,7 @@ const SupportCenterPage = () => {
                 <div className="border-b border-gray-200 pb-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">支持哪些语言转写？</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    "灵光记"支持30多种语言的语音转写，包括中文（简体和繁体）、英语、日语、韩语、法语、德语、西班牙语等。
+                    "灵光记"支持120多种语言的语音转写，包括中文（简体和繁体）、英语、日语、韩语、法语、德语、西班牙语等。
                   </p>
                 </div>
 

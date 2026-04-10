@@ -9,8 +9,16 @@ interface FooterProps {
 
 const Footer: FC<FooterProps> = ({ language }) => {
   const [email, setEmail] = useState('');
+
+  const handleSubmitEmail = () => {
+    if (email) {
+      console.warn('Newsletter subscription:', email);
+      setEmail('');
+    }
+  };
+
   return (
-    <footer id="contact" className="bg-black text-white pt-16 pb-8 border-t border-gray-800">
+    <footer id="contact" className="bg-black text-white py-20 md:py-24 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
           {/* Brand and Social */}
@@ -89,20 +97,20 @@ const Footer: FC<FooterProps> = ({ language }) => {
                 </Link>
               </li>
               <li>
-                <a href="/policy/privacy-cn.html" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/policy/privacy-cn.html" className="text-gray-400 hover:text-white transition-colors">
                   {language === 'en' ? 'Privacy Policy' : '隐私政策'}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/policy/user-agreement-cn.html" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/policy/user-agreement-cn.html" className="text-gray-400 hover:text-white transition-colors">
                   {language === 'en' ? 'User Agreement' : '用户协议'}
-                </a>
+                </Link>
               </li>
 
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact + Newsletter */}
           <div className="sm:col-span-2 md:col-span-1">
             <h3 className="text-lg font-bold mb-3 text-white">
               {language === 'en' ? 'Contact Us' : '联系我们'}
@@ -117,35 +125,41 @@ const Footer: FC<FooterProps> = ({ language }) => {
                 <p className="text-gray-300">
                   {language === 'en'
                     ? '2nd Floor, No. 25-1 Hongcao Road, Xuhui District, Shanghai, China'
-                    : '上海市徐汇区虹漕路25-1号2楼，邮编：200233'
+                    : '上海市徐汇区虹漕路25-1号2楼 運营：200233'
                   }
                 </p>
               </div>
             </div>
-            {language === 'en' && (
-              <div className="mt-3">
-                <p className="text-gray-400 mb-1 text-sm">Subscribe to our newsletter</p>
-                <p className="text-gray-500 mb-2 text-xs">Get the latest updates first</p>
-                <div className="relative flex">
-                  <input
-                    type="email"
-                    placeholder="Your email address"
-                    className="bg-gray-700 text-white placeholder-gray-500 rounded-md px-3 py-2 w-full focus:ring-2 focus:ring-logo-blue/50 focus:outline-none text-sm pr-10"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
+
+            {/* Newsletter - visible in both EN and ZH */}
+            <div className="mt-4">
+              <p className="text-gray-400 mb-1 text-sm">
+                {language === 'en' ? 'Subscribe to our newsletter' : '订阅我们的通讯'}
+              </p>
+              <p className="text-gray-500 mb-2 text-xs">
+                {language === 'en' ? 'Get the latest updates first' : '第一时间获取最新动态'}
+              </p>
+              <div className="relative flex">
+                <input
+                  type="email"
+                  placeholder={language === 'en' ? 'Your email address' : '输入您的邮箱'}
+                  className="bg-gray-700 text-white placeholder-gray-500 rounded-md px-3 py-2 w-full focus:ring-2 focus:ring-logo-blue/50 focus:outline-none text-sm pr-10"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  onKeyDown={(e) => { if (e.key === 'Enter') handleSubmitEmail(); }}
+                />
+                <button
+                  className="absolute right-0 top-0 bottom-0 px-3 flex items-center justify-center bg-transparent hover:bg-gray-600 rounded-r-md transition-colors"
+                  disabled={!email}
+                  onClick={handleSubmitEmail}
+                >
+                  <Mail
+                    size={16}
+                    className={email ? 'text-logo-blue' : 'text-gray-500'}
                   />
-                  <button
-                    className="absolute right-0 top-0 bottom-0 px-3 flex items-center justify-center bg-transparent hover:bg-gray-600 rounded-r-md transition-colors"
-                    disabled={!email}
-                  >
-                    <Mail
-                      size={16}
-                      className={email ? 'text-logo-blue' : 'text-gray-500'}
-                    />
-                  </button>
-                </div>
+                </button>
               </div>
-            )}
+            </div>
           </div>
         </div>
 

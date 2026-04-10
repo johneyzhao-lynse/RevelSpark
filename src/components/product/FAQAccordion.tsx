@@ -43,11 +43,13 @@ const FAQAccordion: FC<FAQAccordionProps> = ({ language }) => {
                   />
                 </button>
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${openIndex === i ? 'max-h-96 pb-6' : 'max-h-0'}`}
+                  className={`grid transition-[grid-template-rows] duration-300 ${openIndex === i ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}
                 >
-                  <p className="px-6 text-gray-600 text-sm leading-relaxed">
-                    {item.answer[language]}
-                  </p>
+                  <div className="overflow-hidden">
+                    <p className="px-6 pb-6 text-gray-600 text-sm leading-relaxed">
+                      {item.answer[language]}
+                    </p>
+                  </div>
                 </div>
               </div>
             </FadeInUp>

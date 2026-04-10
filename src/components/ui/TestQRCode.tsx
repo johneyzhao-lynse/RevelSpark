@@ -7,14 +7,14 @@ const TestQRCode: React.FC = () => {
       <div className="mb-4">
         <p className="mb-2">Default size:</p>
         <img 
-          src="/images/download/ditnote-applestroe.png" 
+          src="/images/download/ditnote-applestroe.webp" 
           alt="App Store QR Code Test" 
         />
       </div>
       <div className="mb-4">
         <p className="mb-2">With inline style (400px):</p>
         <img 
-          src="/images/download/ditnote-applestroe.png" 
+          src="/images/download/ditnote-applestroe.webp" 
           alt="App Store QR Code Test" 
           style={{ width: '400px', height: 'auto', display: 'block' }}
         />
@@ -22,7 +22,7 @@ const TestQRCode: React.FC = () => {
       <div className="mb-4">
         <p className="mb-2">With Tailwind classes:</p>
         <img 
-          src="/images/download/ditnote-applestroe.png" 
+          src="/images/download/ditnote-applestroe.webp" 
           alt="App Store QR Code Test" 
           className="w-[400px] h-auto block"
         />

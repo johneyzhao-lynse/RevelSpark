@@ -61,7 +61,7 @@ const t = (text: BilingualText, language: Language): string => text[language];
 
 export const HERO = {
   badge: { en: 'AI-Powered', zh: 'AI 驱动' },
-  headline: { en: 'Record. Understand. Act.', zh: '记录。理解。行动。' },
+  headline: { en: 'Memory · Thinking · AI', zh: '记忆 · 思考 · AI'},
   tagline: {
     en: 'Lynse | Spark Card: Capture Every Moment',
     zh: 'Lynse | 灵光记：让灵光记住每一段声音',
@@ -69,7 +69,7 @@ export const HERO = {
   ctaBuy: { en: 'Buy Now', zh: '立即购买' },
   ctaDownload: { en: 'Download App', zh: '下载应用' },
   trustBadges: [
-    { en: '30+ Languages Supported', zh: '支持 30+ 种语言' },
+    { en: '120+ Languages Supported', zh: '支持 120+ 种语言' },
     { en: 'Bank-Level Security', zh: '银行级安全' },
     { en: 'AI Transcription', zh: 'AI 转写' },
   ],
@@ -232,7 +232,7 @@ export const SPECS_GRID: SpecGroup[] = [
   {
     category: { en: 'AI Features', zh: 'AI 功能' },
     items: [
-      { label: { en: 'Languages', zh: '语言支持' }, value: { en: '70+ languages', zh: '70+ 种语言' } },
+      { label: { en: 'Languages', zh: '语言支持' }, value: { en: '120+ languages', zh: '120+ 种语言' } },
       { label: { en: 'Transcription', zh: '转写' }, value: { en: 'Real-time AI', zh: '实时 AI 转写' } },
       { label: { en: 'Summarization', zh: '摘要' }, value: { en: 'Smart summaries', zh: '智能摘要' } },
       { label: { en: 'Speaker ID', zh: '说话人识别' }, value: { en: 'Multi-speaker', zh: '多人识别' } },
@@ -267,8 +267,8 @@ export const FAQ_ITEMS = [
   {
     question: { en: 'What languages does it support?', zh: '支持哪些语言？' },
     answer: {
-      en: 'SparkCard supports transcription in 70+ languages including English, Chinese (Mandarin and Cantonese), Japanese, Korean, Spanish, French, German, and many more.',
-      zh: '灵光记支持 70+ 种语言转写，包括英语、中文（普通话和粤语）、日语、韩语、西班牙语、法语、德语等。',
+      en: 'SparkCard supports transcription in 120+ languages including English, Chinese (Mandarin and Cantonese), Japanese, Korean, Spanish, French, German, and many more.',
+      zh: '灵光记支持 120+ 种语言转写，包括英语、中文（普通话和粤语）、日语、韩语、西班牙语、法语、德语等。',
     },
   },
   {

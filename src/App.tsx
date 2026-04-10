@@ -1,22 +1,13 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { MotionConfig } from 'framer-motion';
+import Lenis from 'lenis';
 import Header from './components/Header';
 import HeroSection from './components/home/HeroSection';
-import ValuePropStrip from './components/home/ValuePropStrip';
-import ProductShowcase from './components/home/ProductShowcase';
-import UseCasesSection from './components/home/UseCasesSection';
-import AppPreview from './components/home/AppPreview';
-import TrustSection from './components/home/TrustSection';
-import PreorderCTA from './components/home/PreorderCTA';
 import Footer from './components/Footer';
+import MaintenancePage from './pages/MaintenancePage';
 
 // Lazy load sub-pages
 const DownloadPage = lazy(() => import('./components/ui/DownloadPage'));
-const AboutUsPage = lazy(() => import('./components/AboutUsPage'));
-const TestQRCode = lazy(() => import('./components/ui/TestQRCode'));
-const SolutionsPage = lazy(() => import('./components/SolutionsPage'));
-const QuickStartGuidePage = lazy(() => import('./pages/QuickStartGuidePage'));
-const SupportCenterPage = lazy(() => import('./pages/SupportCenterPage'));
-const SparkCardPage = lazy(() => import('./pages/SparkCardPage'));
 
 // Loading component
 const PageLoader = () => (
@@ -29,14 +20,34 @@ const PageLoader = () => (
 function App() {
   const [language, setLanguage] = useState<'en' | 'zh'>('zh');
 
-  React.useEffect(() => {
+  // Lenis smooth scrolling
+  useEffect(() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (prefersReduced.matches) return;
+
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    let rafId: number;
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  useEffect(() => {
     document.title = language === 'en'
       ? 'Lynse.ai - Capture Every Spark of Inspiration'
       : 'Lynse.ai｜灵光记 - 让灵光记住每一次灵感';
-    document.documentElement.style.scrollBehavior = 'smooth';
-    return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
-    };
   }, [language]);
 
   const handleLanguageChange = (newLanguage: 'en' | 'zh') => {
@@ -45,104 +56,43 @@ function App() {
 
   const pathname = window.location.pathname;
 
-  // Product page
-  if (pathname === '/sparkcard') {
-    return (
-      <Suspense fallback={<PageLoader />}>
-        <div className="font-sans">
-          <Header language={language} onLanguageChange={handleLanguageChange} />
-          <SparkCardPage language={language} />
-          <Footer language={language} />
-        </div>
-      </Suspense>
-    );
-  }
+  // Determine page content based on route
+  let pageContent: React.ReactNode;
 
   if (pathname === '/download') {
-    return (
+    pageContent = (
       <Suspense fallback={<PageLoader />}>
-        <div className="font-sans">
-          <Header language={language} onLanguageChange={handleLanguageChange} />
-          <DownloadPage language={language} />
-          <Footer language={language} />
-        </div>
+        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <DownloadPage language={language} />
+        <Footer language={language} />
+      </Suspense>
+    );
+  } else if (pathname === '/') {
+    // Homepage - 极简版本：只保留 Hero 和 Footer
+    pageContent = (
+      <>
+        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <HeroSection language={language} />
+        <Footer language={language} />
+      </>
+    );
+  } else {
+    // All other pages are under maintenance
+    pageContent = (
+      <Suspense fallback={<PageLoader />}>
+        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <MaintenancePage language={language} />
+        <Footer language={language} />
       </Suspense>
     );
   }
 
-  if (pathname === '/test-qrcode') {
-    return (
-      <Suspense fallback={<PageLoader />}>
-        <div className="font-sans">
-          <Header language={language} onLanguageChange={handleLanguageChange} />
-          <TestQRCode />
-          <Footer language={language} />
-        </div>
-      </Suspense>
-    );
-  }
-
-  if (pathname === '/about') {
-    return (
-      <Suspense fallback={<PageLoader />}>
-        <div className="font-sans">
-          <Header language={language} onLanguageChange={handleLanguageChange} />
-          <AboutUsPage language={language} />
-          <Footer language={language} />
-        </div>
-      </Suspense>
-    );
-  }
-
-  if (pathname === '/solutions') {
-    return (
-      <Suspense fallback={<PageLoader />}>
-        <div className="font-sans">
-          <Header language={language} onLanguageChange={handleLanguageChange} />
-          <SolutionsPage language={language} />
-          <Footer language={language} />
-        </div>
-      </Suspense>
-    );
-  }
-
-  if (pathname === '/SupportCenterPage' || pathname === '/support/support-center.html') {
-    return (
-      <Suspense fallback={<PageLoader />}>
-        <div className="font-sans">
-          <Header language={language} onLanguageChange={handleLanguageChange} />
-          <SupportCenterPage />
-          <Footer language={language} />
-        </div>
-      </Suspense>
-    );
-  }
-
-  if (pathname === '/QuickStartGuidePage' || pathname === '/support/quick-start') {
-    return (
-      <Suspense fallback={<PageLoader />}>
-        <div className="font-sans">
-          <Header language={language} onLanguageChange={handleLanguageChange} />
-          <QuickStartGuidePage />
-          <Footer language={language} />
-        </div>
-      </Suspense>
-    );
-  }
-
-  // Homepage
   return (
-    <div className="font-sans">
-      <Header language={language} onLanguageChange={handleLanguageChange} />
-      <HeroSection language={language} />
-      <ValuePropStrip language={language} />
-      <ProductShowcase language={language} />
-      <UseCasesSection language={language} />
-      <AppPreview language={language} />
-      <TrustSection language={language} />
-      <PreorderCTA language={language} />
-      <Footer language={language} />
-    </div>
+    <MotionConfig reducedMotion="user">
+      <div className="font-sans">
+        {pageContent}
+      </div>
+    </MotionConfig>
   );
 }
 

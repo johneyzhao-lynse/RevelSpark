@@ -20,7 +20,7 @@ const AppPreview: FC<AppPreviewProps> = ({ language }) => (
               <div className="bg-gray-900 rounded-[2.5rem] p-3 shadow-2xl">
                 <div className="bg-white rounded-[2rem] overflow-hidden">
                   <img
-                    src="/images/app-showcase.webp"
+                    src="/images/app-show.png"
                     alt="SparkCard App"
                     className="w-full"
                   />

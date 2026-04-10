@@ -6,9 +6,10 @@ interface OrderButtonProps {
   language: Language;
   variant?: 'dark' | 'light';
   className?: string;
+  size?: 'default' | 'sm';
 }
 
-const OrderButton: FC<OrderButtonProps> = ({ language, variant = 'dark', className = '' }) => {
+const OrderButton: FC<OrderButtonProps> = ({ language, variant = 'dark', className = '', size = 'default' }) => {
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<number | null>(null);
   const storeLinks = useMemo(() => getStoreLinks(language), [language]);
@@ -30,8 +31,12 @@ const OrderButton: FC<OrderButtonProps> = ({ language, variant = 'dark', classNa
     }, 100);
   };
 
+  const sizeClasses = size === 'sm' 
+    ? 'h-[40px] px-5 text-sm min-w-[100px]'
+    : 'h-[52px] px-8 text-base min-w-[140px]';
+
   const baseBtn =
-    'h-[52px] px-8 rounded-full font-bold text-base shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center min-w-[140px] hover:-translate-y-0.5 active:scale-95';
+    `${sizeClasses} rounded-full font-bold shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center hover:-translate-y-0.5 active:scale-95`;
 
   const variantBtn =
     variant === 'dark'

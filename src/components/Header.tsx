@@ -40,8 +40,8 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
   return (
     <header
       className={`fixed top-6 left-1/2 -translate-x-1/2 z-[1000] transition-all duration-300 border rounded-full px-3 ${isScrolled
-        ? 'bg-white/60 backdrop-blur-2xl border-white/40 py-2 shadow-lg'
-        : 'bg-white/50 backdrop-blur-2xl border-white/30 py-2 shadow-md'
+        ? 'bg-white/[0.87] backdrop-blur-[1.875rem] border-white/40 py-1.5 shadow-lg'
+        : 'bg-white/[0.85] backdrop-blur-[1.875rem] border-white/30 py-1.5 shadow-md'
         } w-fit max-w-[95vw] md:max-w-[90vw] whitespace-nowrap flex justify-center`}
     >
       <div className="w-full flex items-center justify-between gap-2 md:gap-4 px-2">
@@ -61,7 +61,7 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
               {/* Spark Card Product Directory Dropdown */}
               <div className="relative group">
                 <button
-                  className="text-black text-base font-semibold hover:text-gray-700 transition-all px-3 py-2 rounded-xl hover:bg-gray-50 flex items-center"
+                  className="text-black text-base font-semibold hover:text-gray-700 transition-all px-3 py-1.5 rounded-xl hover:bg-gray-50 flex items-center"
                 >
                   Spark Card
                   <svg
@@ -89,17 +89,17 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                 </div>
               </div>
 
-              <Link href="/solutions" className="text-black text-base font-semibold hover:text-gray-700 transition-colors duration-300 px-4 py-2.5 rounded-xl hover:bg-gray-50">
-                {language === 'en' ? 'Solutions' : '解决方案'}
+              <Link href="/download" className="text-black text-base font-semibold hover:text-gray-700 transition-colors duration-300 px-4 py-1.5 rounded-xl hover:bg-gray-50">
+                {language === 'en' ? 'Download' : '下载'}
               </Link>
-              <Link href="/SupportCenterPage" className="text-black text-base font-semibold hover:text-gray-700 transition-colors duration-300 px-4 py-2.5 rounded-xl hover:bg-gray-50">
+              <Link href="/SupportCenterPage" className="text-black text-base font-semibold hover:text-gray-700 transition-colors duration-300 px-4 py-1.5 rounded-xl hover:bg-gray-50">
                 {language === 'en' ? 'Support' : '支持'}
               </Link>
-              <Link href="/about" className="text-black text-base font-semibold hover:text-gray-700 transition-colors duration-300 px-4 py-2.5 rounded-xl hover:bg-gray-50">
+              <Link href="/about" className="text-black text-base font-semibold hover:text-gray-700 transition-colors duration-300 px-4 py-1.5 rounded-xl hover:bg-gray-50">
                 {language === 'en' ? 'About' : '关于'}
               </Link>
               <button
-                className="flex items-center text-base font-semibold text-gray-600 hover:text-black px-4 py-2.5 rounded-xl hover:bg-gray-50 transition-all duration-300"
+                className="flex items-center text-base font-semibold text-gray-600 hover:text-black px-4 py-1.5 rounded-xl hover:bg-gray-50 transition-all duration-300"
                 onClick={toggleLanguage}
                 aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
               >
@@ -168,11 +168,11 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange }: HeaderProps) =>
                       </div>
                     )}
                     <Link
-                      href="/solutions"
+                      href="/download"
                       className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-600 hover:text-black hover:bg-gray-50 transition-all"
                       onClick={toggleMenu}
                     >
-                      {language === 'en' ? 'Solutions' : '解决方案'}
+                      {language === 'en' ? 'Download' : '下载'}
                     </Link>
                     <Link
                       href="/SupportCenterPage"
