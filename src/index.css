@@ -23,7 +23,7 @@
   }
 
   h1 {
-    @apply text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight;
+    @apply text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight;
   }
 
   h2 {
@@ -203,6 +203,84 @@
       #FAFAFA 50%,
       #F5F5F5 100%
     );
+  }
+
+  /* ===== Linear 风格组件 ===== */
+
+  /* 渐变光晕装饰 */
+  .linear-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .linear-glow-blue {
+    background: radial-gradient(circle, rgba(26, 109, 255, 0.08) 0%, transparent 70%);
+  }
+
+  .linear-glow-cyan {
+    background: radial-gradient(circle, rgba(25, 224, 230, 0.06) 0%, transparent 70%);
+  }
+
+  /* 网格背景 */
+  .grid-pattern {
+    background-image:
+      linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  /* 渐变分割线 */
+  .gradient-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.06) 50%,
+      transparent 100%
+    );
+  }
+
+  .gradient-divider-dark {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      transparent 100%
+    );
+  }
+
+  /* 边框高光卡片 */
+  .card-linear {
+    @apply relative rounded-2xl overflow-hidden;
+    background: #FAFAFA;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .card-linear::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl pointer-events-none;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(0, 0, 0, 0.04) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Linear 风格 Section 间距 */
+  .section-linear {
+    @apply py-24 md:py-32;
   }
 }
 

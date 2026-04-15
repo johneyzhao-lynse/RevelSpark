@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect, lazy, Suspense, useCallback } from 'react';
 import { MotionConfig } from 'framer-motion';
 import Lenis from 'lenis';
 import Header from './components/Header';
@@ -16,14 +16,49 @@ const PageLoader = () => (
   </div>
 );
 
+type Route = '/' | '/download' | '/sparkcard' | '/about' | '/SupportCenterPage' | 'maintenance';
+
+function getInitialRoute(): Route {
+  const path = window.location.pathname;
+  if (path === '/sparkcard') return '/sparkcard';
+  if (path === '/about') return '/about';
+  if (path === '/SupportCenterPage') return '/SupportCenterPage';
+  return '/download'; // 主页设计未完成，默认跳转下载页
+}
 
 function App() {
   const [language, setLanguage] = useState<'en' | 'zh'>('zh');
+  const [route, setRoute] = useState<Route>(getInitialRoute);
 
-  // Lenis smooth scrolling
+  const navigate = useCallback((path: string) => {
+    const validRoutes: Record<string, Route> = {
+      '/': '/',
+      '/download': '/download',
+      '/sparkcard': '/sparkcard',
+      '/about': '/about',
+      '/SupportCenterPage': '/SupportCenterPage',
+    };
+    const r = validRoutes[path] ?? 'maintenance';
+    setRoute(r);
+    window.history.pushState({}, '', path);
+  }, []);
+
+  // Sync route on browser back/forward
+  useEffect(() => {
+    const handlePopState = () => {
+      setRoute(getInitialRoute());
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Lenis smooth scrolling - skip on mobile for better performance
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (prefersReduced.matches) return;
+
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    if (isMobile) return;
 
     const lenis = new Lenis({
       duration: 1.2,
@@ -54,35 +89,31 @@ function App() {
     setLanguage(newLanguage);
   };
 
-  const pathname = window.location.pathname;
-
   // Determine page content based on route
   let pageContent: React.ReactNode;
 
-  if (pathname === '/download') {
+  if (route === '/download') {
     pageContent = (
       <Suspense fallback={<PageLoader />}>
-        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <Header language={language} onLanguageChange={handleLanguageChange} navigate={navigate} />
         <DownloadPage language={language} />
-        <Footer language={language} />
+        <Footer language={language} navigate={navigate} />
       </Suspense>
     );
-  } else if (pathname === '/') {
-    // Homepage - 极简版本：只保留 Hero 和 Footer
+  } else if (route === '/') {
     pageContent = (
       <>
-        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <Header language={language} onLanguageChange={handleLanguageChange} navigate={navigate} />
         <HeroSection language={language} />
-        <Footer language={language} />
+        <Footer language={language} navigate={navigate} />
       </>
     );
   } else {
-    // All other pages are under maintenance
     pageContent = (
       <Suspense fallback={<PageLoader />}>
-        <Header language={language} onLanguageChange={handleLanguageChange} />
+        <Header language={language} onLanguageChange={handleLanguageChange} navigate={navigate} />
         <MaintenancePage language={language} />
-        <Footer language={language} />
+        <Footer language={language} navigate={navigate} />
       </Suspense>
     );
   }
