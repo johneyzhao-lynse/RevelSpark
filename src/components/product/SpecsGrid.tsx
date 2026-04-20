@@ -1,11 +1,18 @@
 import { FC } from 'react';
 import type { Language } from '../../data/constants';
-import { SPECS_GRID, SECTION_TITLES } from '../../data/constants';
+import { t, SPECS_GRID, SECTION_TITLES } from '../../data/constants';
 import FadeInUp from '../ui/FadeInUp';
 
 interface SpecsGridProps {
   language: Language;
 }
+
+const _heading: Record<Language, string> = {
+  en: 'Every Detail, Perfected',
+  zh: '每个细节，精益求精',
+  'zh-TW': '每個細節，精益求精',
+  ja: '細部まで完璧に',
+};
 
 const SpecsGrid: FC<SpecsGridProps> = ({ language }) => (
   <section id="specs" className="py-32 bg-gray-50">
@@ -17,7 +24,7 @@ const SpecsGrid: FC<SpecsGridProps> = ({ language }) => (
       </FadeInUp>
       <FadeInUp delay={0.1}>
         <h2 className="text-center text-3xl md:text-4xl font-extrabold text-black tracking-tight mb-16">
-          {language === 'en' ? 'Every Detail, Perfected' : '每个细节，精益求精'}
+          {t(_heading, language)}
         </h2>
       </FadeInUp>
 

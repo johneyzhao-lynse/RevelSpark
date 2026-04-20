@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Quote } from 'lucide-react';
 import type { Language } from '../../data/constants';
-import { TESTIMONIALS, SECTION_TITLES } from '../../data/constants';
+import { t, TESTIMONIALS, SECTION_TITLES } from '../../data/constants';
 import FadeInUp from '../ui/FadeInUp';
 
 interface TrustSectionProps {
@@ -18,7 +18,7 @@ const TrustSection: FC<TrustSectionProps> = ({ language }) => (
       </FadeInUp>
       <FadeInUp delay={0.1}>
         <h2 className="text-center text-3xl md:text-4xl font-extrabold text-black tracking-tight mb-16">
-          {language === 'en' ? 'Loved by professionals worldwide' : '全球专业人士的信赖之选'}
+          {t({ en: 'Loved by professionals worldwide', zh: '全球专业人士的信赖之选', 'zh-TW': '全球專業人士的信賴之選', ja: '世界中のプロフェッショナルに愛されて' }, language)}
         </h2>
       </FadeInUp>
 

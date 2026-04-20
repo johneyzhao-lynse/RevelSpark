@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import type { Language } from '../../data/constants';
+import { t } from '../../data/constants';
 
 interface CompanyMapProps {
-  language: 'en' | 'zh';
+  language: Language;
   address?: string;
   className?: string;
 }
@@ -13,6 +15,27 @@ const COMPANY_LOCATION = {
   lat: 31.1706,
   lng: 121.3956,
   address: '上海市徐汇区虹漕路25-1号2楼'
+};
+
+const _openInAmap: Record<Language, string> = {
+  en: 'Open in Amap',
+  zh: '在高德地图中打开',
+  'zh-TW': '在高德地圖中打開',
+  ja: 'Amapで開く',
+};
+
+const _loadingMap: Record<Language, string> = {
+  en: 'Loading map...',
+  zh: '加载地图中...',
+  'zh-TW': '載入地圖中...',
+  ja: '地図を読み込み中...',
+};
+
+const _mapControls: Record<Language, string> = {
+  en: 'Scroll to zoom \u2022 Drag to move',
+  zh: '滚轮缩放 \u2022 拖动移动',
+  'zh-TW': '滾輪縮放 \u2022 拖動移動',
+  ja: 'スクロールでズーム \u2022 ドラッグで移動',
 };
 
 const CompanyMap: React.FC<CompanyMapProps> = ({
@@ -93,7 +116,7 @@ const CompanyMap: React.FC<CompanyMapProps> = ({
           color: #1A6DFF;
           margin-bottom: 8px;
         ">
-          ${language === 'en' ? 'Lynse AI' : 'Lynse AI'}
+          Lynse AI
         </div>
         <div style="
           font-size: 13px;
@@ -121,7 +144,7 @@ const CompanyMap: React.FC<CompanyMapProps> = ({
           onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(26, 109, 255, 0.3)';"
           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none';"
         >
-          ${language === 'en' ? 'Open in Amap' : '在高德地图中打开'}
+          ${t(_openInAmap, language)}
         </a>
       </div>
     `;
@@ -167,7 +190,7 @@ const CompanyMap: React.FC<CompanyMapProps> = ({
           <div className="flex flex-col items-center gap-3">
             <div className="w-10 h-10 border-3 border-primary border-t-transparent rounded-full animate-spin"></div>
             <p className="text-sm text-gray-500">
-              {language === 'en' ? 'Loading map...' : '加载地图中...'}
+              {t(_loadingMap, language)}
             </p>
           </div>
         </div>
@@ -191,9 +214,7 @@ const CompanyMap: React.FC<CompanyMapProps> = ({
               />
             </svg>
             <span>
-              {language === 'en'
-                ? 'Scroll to zoom • Drag to move'
-                : '滚轮缩放 • 拖动移动'}
+              {t(_mapControls, language)}
             </span>
           </div>
         </div>

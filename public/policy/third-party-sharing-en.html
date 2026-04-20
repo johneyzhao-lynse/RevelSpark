@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Third-Party Information Sharing List</title>
+    <style type="text/css">
+        body {
+            color: rgb(31, 35, 41);
+            font-family: 'SF Pro Text', 'SF Pro Icons', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h3 {
+            font-size: 26px;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-top: 24px;
+        }
+
+        p {
+            line-height: 1.8;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td {
+            padding: 8px 10px;
+            border: 1px solid #DDD;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            font-size: 10pt;
+            vertical-align: top;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            word-break: break-all;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Third-Party Information Sharing List (App)</h3>
+    <p>Last Updated: January 31, 2026</p>
+    <p>Shanghai Tianqi Lingguang Technology Co., Ltd. ("Company," "we," "us," or "our") may integrate third-party Software Development Kits (SDKs), Application Programming Interfaces (APIs), and application plugins into our application products and/or services ("Products" or "Services") to ensure stable operation and enable certain features.</p>
+    <p>This Third-Party Information Sharing List ("List") is intended to clearly and transparently describe the circumstances under which our primary business scenarios may involve sharing personal information with third parties. However, merely using the App does not mean we will share all of the information described in this List with third parties. We will only share your relevant personal information with partners on a "data minimization" basis when you use specific features and only to the extent necessary to provide you with the requested services.</p>
+    <p>Third-party processing of personal information is governed by their own privacy policies or personal information processing rules. We recommend that you review the relevant third-party legal documents for details on how third parties handle your information.</p>
+    <p>Third-party code may change due to version upgrades, strategy adjustments, or other reasons that could affect personal information processing practices. While we cannot monitor all such changes in real time, we commit to making our best efforts to update this List promptly to ensure its accuracy and completeness.</p>
+    <p>This List is an integral part of our <a href="privacy-en.html">Privacy Policy</a>. For more detailed rules regarding personal information processing, your rights, and how we protect your personal information, please refer to the full <a href="privacy-en.html">Privacy Policy</a>.</p>
+
+    <h1>Embedded Third-Party SDK List</h1>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <td><strong>#</strong></td>
+                    <td><strong>SDK Name</strong></td>
+                    <td><strong>SDK Operator</strong></td>
+                    <td><strong>Personal Information Types</strong></td>
+                    <td><strong>Purpose</strong></td>
+                    <td><strong>Sharing Method</strong></td>
+                    <td><strong>Usage Scenario</strong></td>
+                    <td><strong>Required</strong></td>
+                    <td><strong>Privacy Policy</strong></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Sentry SDK</td>
+                    <td>Sentry Software Inc.</td>
+                    <td>Device identifiers, app package name, crash logs, performance data, error stack traces</td>
+                    <td>Diagnosing app errors and performance issues</td>
+                    <td>SDK local collection / backend API transmission</td>
+                    <td>When errors or performance issues occur during use</td>
+                    <td>Yes</td>
+                    <td><a href="https://sentry.io/legal/privacy/">https://sentry.io/legal/privacy/</a></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>WeChat OpenSDK</td>
+                    <td>Shenzhen Tencent Computer System Co., Ltd.</td>
+                    <td>Device identifiers (Android ID/IDFA), device parameters and system information (device model, operating system), network-related information (IP address, network carrier), WeChat app installation information, WeChat app package name information</td>
+                    <td>Third-party content sharing; facilitating in-app WeChat payments; WeChat login</td>
+                    <td>SDK local collection</td>
+                    <td>When sharing content to WeChat; using WeChat payment; using WeChat login</td>
+                    <td>Yes</td>
+                    <td><a href="https://support.weixin.qq.com/cgi-bin/mmsupportacctnodeweb-bin/pages/RYiYJkLOrQwu0nb8">WeChat Privacy Policy</a></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Alibaba Cloud Object Storage (OSS) SDK</td>
+                    <td>Hangzhou Alibaba Cloud Intelligent Technology Co., Ltd.</td>
+                    <td>Device identifiers, file information (file name, file size, file type), network-related information (IP address)</td>
+                    <td>Providing file upload and storage services</td>
+                    <td>Backend API transmission</td>
+                    <td>When uploading recordings, images, and other files</td>
+                    <td>Yes</td>
+                    <td><a href="https://terms.aliyun.com/legal-agreement/terms/suit_bu1_ali_cloud/suit_bu1_ali_cloud202112071754_83380.html">Alibaba Cloud Privacy Policy</a></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Apple In-App Purchase (StoreKit) SDK</td>
+                    <td>Apple Inc.</td>
+                    <td>Order information, transaction amount, Apple ID information, device identifiers</td>
+                    <td>Implementing Apple in-app purchase functionality</td>
+                    <td>SDK local collection / backend API transmission</td>
+                    <td>When iOS users make in-app purchases</td>
+                    <td>Yes</td>
+                    <td><a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>UMeng+ Mobile Analytics SDK</td>
+                    <td>UMeng Tongxin (Beijing) Technology Co., Ltd.</td>
+                    <td>Device information (model, OS version), app usage behavior data</td>
+                    <td>Anonymized basic usage statistics</td>
+                    <td>Backend API transmission</td>
+                    <td>When users use the app</td>
+                    <td>Yes</td>
+                    <td><a href="https://www.umeng.com/page/policy">https://www.umeng.com/page/policy</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p><br /></p>
+</body>
+
+</html>

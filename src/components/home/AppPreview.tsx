@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Check, Download } from 'lucide-react';
 import type { Language } from '../../data/constants';
-import { APP_FEATURES, SECTION_TITLES } from '../../data/constants';
+import { t, APP_FEATURES, SECTION_TITLES } from '../../data/constants';
 import FadeInUp from '../ui/FadeInUp';
 import { Link } from '../ui/Link';
 
@@ -39,7 +39,7 @@ const AppPreview: FC<AppPreviewProps> = ({ language }) => (
           </FadeInUp>
           <FadeInUp delay={0.1}>
             <h2 className="text-3xl md:text-4xl font-extrabold text-black tracking-tight mb-8">
-              {language === 'en' ? 'Your recordings, perfectly organized' : '您的录音，井然有序'}
+              {t({ en: 'Your recordings, perfectly organized', zh: '您的录音，井然有序', 'zh-TW': '您的錄音，井然有序', ja: 'あなたの録音、完璧に整理' }, language)}
             </h2>
           </FadeInUp>
 
@@ -62,7 +62,7 @@ const AppPreview: FC<AppPreviewProps> = ({ language }) => (
               className="inline-flex items-center gap-2 h-[52px] px-8 bg-black text-white rounded-full font-bold text-base hover:bg-gray-900 transition-all duration-300 hover:-translate-y-0.5"
             >
               <Download className="w-5 h-5" />
-              <span>{language === 'en' ? 'Download App' : '下载应用'}</span>
+              <span>{t({ en: 'Download App', zh: '下载应用', 'zh-TW': '下載應用', ja: 'アプリダウンロード' }, language)}</span>
             </Link>
           </FadeInUp>
         </div>

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import { Language } from '../data/constants';
 
 const SupportCenterPage = () => {
-  const [language, setLanguage] = useState<'en' | 'zh'>('zh');
+  const [language, setLanguage] = useState<Language>('zh');
 
-  const handleLanguageChange = (newLanguage: 'en' | 'zh') => {
+  const handleLanguageChange = (newLanguage: Language) => {
     setLanguage(newLanguage);
   };
 

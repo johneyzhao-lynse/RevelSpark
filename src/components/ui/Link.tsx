@@ -14,8 +14,8 @@ export const Link: React.FC<LinkProps> = ({ href, className = '', children, onCl
       href={href}
       className={`${className}`}
       onClick={(e) => {
-        // External links, mailto, or hash-only anchors: let browser handle
-        if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#')) {
+        // External links, mailto, hash-only anchors, or static pages: let browser handle
+        if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#') || href.startsWith('/policy/')) {
           if (href.startsWith('#')) {
             e.preventDefault();
             const element = document.querySelector(href);

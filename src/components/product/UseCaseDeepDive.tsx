@@ -1,12 +1,26 @@
 import { FC } from 'react';
 import { Check } from 'lucide-react';
 import type { Language } from '../../data/constants';
-import { PRODUCT_USE_CASES, SECTION_TITLES } from '../../data/constants';
+import { t, PRODUCT_USE_CASES, SECTION_TITLES } from '../../data/constants';
 import FadeInUp from '../ui/FadeInUp';
 
 interface UseCaseDeepDiveProps {
   language: Language;
 }
+
+const _heading: Record<Language, string> = {
+  en: 'Designed for How You Work',
+  zh: '为你的工作方式而设计',
+  'zh-TW': '為你的工作方式而設計',
+  ja: 'あなたの働き方に合わせて設計',
+};
+
+const _preview: Record<Language, string> = {
+  en: 'Preview',
+  zh: '预览',
+  'zh-TW': '預覽',
+  ja: 'プレビュー',
+};
 
 const UseCaseDeepDive: FC<UseCaseDeepDiveProps> = ({ language }) => (
   <section id="use-cases" className="py-32">
@@ -18,7 +32,7 @@ const UseCaseDeepDive: FC<UseCaseDeepDiveProps> = ({ language }) => (
       </FadeInUp>
       <FadeInUp delay={0.1}>
         <h2 className="text-center text-3xl md:text-4xl font-extrabold text-black tracking-tight mb-16">
-          {language === 'en' ? 'Designed for How You Work' : '为你的工作方式而设计'}
+          {t(_heading, language)}
         </h2>
       </FadeInUp>
 
@@ -44,7 +58,7 @@ const UseCaseDeepDive: FC<UseCaseDeepDiveProps> = ({ language }) => (
               </div>
               <div className={`bg-gray-100 rounded-2xl aspect-video flex items-center justify-center ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
                 <span className="text-gray-400 text-sm">
-                  {language === 'en' ? `${useCase.title.en} Preview` : `${useCase.title.zh} 预览`}
+                  {useCase.title[language]} {t(_preview, language)}
                 </span>
               </div>
             </div>

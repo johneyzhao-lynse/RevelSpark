@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import { Link } from './ui/Link';
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Building } from 'lucide-react';
+import { Language, t } from '../data/constants';
 
 // 小红书图标
 const XiaohongshuIcon = ({ size = 15 }: { size?: number }) => (
@@ -10,12 +11,14 @@ const XiaohongshuIcon = ({ size = 15 }: { size?: number }) => (
 );
 
 interface FooterProps {
-  language: 'en' | 'zh';
+  language: Language;
   navigate?: (path: string) => void;
 }
 
 const Footer: FC<FooterProps> = ({ language, navigate }) => {
   const [email, setEmail] = useState('');
+
+  const policyLang = language === 'en' ? 'en' : 'cn';
 
   const handleSubmitEmail = () => {
     if (email) {
@@ -47,17 +50,17 @@ const Footer: FC<FooterProps> = ({ language, navigate }) => {
           {/* Quick Purchase */}
           <div>
             <h4 className="text-[11px] font-medium tracking-[0.12em] uppercase text-[#525252] mb-4">
-              {language === 'en' ? 'Purchase' : '购买'}
+              {t({ en: 'Purchase', zh: '购买', 'zh-TW': '購買', ja: '購入' }, language)}
             </h4>
             <ul className="space-y-2.5">
               <li>
                 <a href="https://lynse.tmall.com/" target="_blank" rel="noopener noreferrer" className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300">
-                  {language === 'en' ? 'Tmall Store' : '天猫旗舰店'}
+                  {t({ en: 'Tmall Store', zh: '天猫旗舰店', 'zh-TW': '天貓旗艦店', ja: 'Tmallストア' }, language)}
                 </a>
               </li>
               <li>
                 <a href="https://mall.jd.com/index-75995904.html?cid=0" target="_blank" rel="noopener noreferrer" className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300">
-                  {language === 'en' ? 'JD Store' : '京东旗舰店'}
+                  {t({ en: 'JD Store', zh: '京东旗舰店', 'zh-TW': '京東旗艦店', ja: 'JDストア' }, language)}
                 </a>
               </li>
             </ul>
@@ -66,22 +69,22 @@ const Footer: FC<FooterProps> = ({ language, navigate }) => {
           {/* Support */}
           <div>
             <h4 className="text-[11px] font-medium tracking-[0.12em] uppercase text-[#525252] mb-4">
-              {language === 'en' ? 'Support' : '支持'}
+              {t({ en: 'Support', zh: '支持', 'zh-TW': '支援', ja: 'サポート' }, language)}
             </h4>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/SupportCenterPage" className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300" navigate={navigate}>
-                  {language === 'en' ? 'Support Center' : '支持中心'}
+                  {t({ en: 'Support Center', zh: '支持中心', 'zh-TW': '支援中心', ja: 'サポートセンター' }, language)}
                 </Link>
               </li>
               <li>
                 <a href="#" className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300">
-                  {language === 'en' ? 'Contact Service' : '使用说明'}
+                  {t({ en: 'Contact Service', zh: '使用说明', 'zh-TW': '使用說明', ja: 'お問い合わせ' }, language)}
                 </a>
               </li>
               <li>
                 <a href="/download" className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300">
-                  {language === 'en' ? 'Related News' : '软件下载'}
+                  {t({ en: 'Related News', zh: '软件下载', 'zh-TW': '軟體下載', ja: 'ソフトウェアダウンロード' }, language)}
                 </a>
               </li>
             </ul>
@@ -90,22 +93,22 @@ const Footer: FC<FooterProps> = ({ language, navigate }) => {
           {/* About */}
           <div>
             <h4 className="text-[11px] font-medium tracking-[0.12em] uppercase text-[#525252] mb-4">
-              {language === 'en' ? 'About' : '关于'}
+              {t({ en: 'About', zh: '关于', 'zh-TW': '關於', ja: '会社情報' }, language)}
             </h4>
             <ul className="space-y-2.5">
               <li>
                 <Link href="/about" className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300" navigate={navigate}>
-                  {language === 'en' ? 'About Us' : '关于我们'}
+                  {t({ en: 'About Us', zh: '关于我们', 'zh-TW': '關於我們', ja: '会社概要' }, language)}
                 </Link>
               </li>
               <li>
-                <Link href="/policy/privacy-cn.html" className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300">
-                  {language === 'en' ? 'Privacy Policy' : '隐私政策'}
+                <Link href={`/policy/privacy-${policyLang}.html`} className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300">
+                  {t({ en: 'Privacy Policy', zh: '隐私政策', 'zh-TW': '隱私政策', ja: 'プライバシーポリシー' }, language)}
                 </Link>
               </li>
               <li>
-                <Link href="/policy/user-agreement-cn.html" className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300">
-                  {language === 'en' ? 'User Agreement' : '用户协议'}
+                <Link href={`/policy/user-agreement-${policyLang}.html`} className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300">
+                  {t({ en: 'User Agreement', zh: '用户协议', 'zh-TW': '使用者協議', ja: '利用規約' }, language)}
                 </Link>
               </li>
             </ul>
@@ -114,7 +117,7 @@ const Footer: FC<FooterProps> = ({ language, navigate }) => {
           {/* Contact */}
           <div className="col-span-2 md:col-span-1">
             <h4 className="text-[11px] font-medium tracking-[0.12em] uppercase text-[#525252] mb-4">
-              {language === 'en' ? 'Contact' : '联系'}
+              {t({ en: 'Contact', zh: '联系', 'zh-TW': '聯絡', ja: 'お問い合わせ' }, language)}
             </h4>
             <div className="space-y-2.5">
               <div className="flex items-start gap-2">
@@ -124,9 +127,7 @@ const Footer: FC<FooterProps> = ({ language, navigate }) => {
               <div className="flex items-start gap-2">
                 <Building className="text-[#525252] mt-0.5" size={13} />
                 <p className="text-[13px] text-[#A3A3A3] leading-relaxed">
-                  {language === 'en'
-                    ? 'Shanghai, China'
-                    : '上海市徐汇区虹漕路25-1号2楼'}
+                  {t({ en: 'Shanghai, China', zh: '上海市徐汇区虹漕路25-1号2楼', 'zh-TW': '上海市徐匯區虹漕路25-1號2樓', ja: 'Shanghai, China' }, language)}
                 </p>
               </div>
             </div>
@@ -134,12 +135,12 @@ const Footer: FC<FooterProps> = ({ language, navigate }) => {
             {/* Newsletter */}
             <div className="mt-5">
               <p className="text-[13px] text-[#525252] mb-2">
-                {language === 'en' ? 'Stay updated' : '订阅动态'}
+                {t({ en: 'Stay updated', zh: '订阅动态', 'zh-TW': '訂閱動態', ja: '最新情報を受け取る' }, language)}
               </p>
               <div className="relative flex">
                 <input
                   type="email"
-                  placeholder={language === 'en' ? 'Email address' : '输入邮箱'}
+                  placeholder={t({ en: 'Email address', zh: '输入邮箱', 'zh-TW': '輸入郵箱', ja: 'メールアドレス' }, language)}
                   className="bg-white/[0.05] text-white placeholder-[#525252] rounded-lg px-3 py-2 w-full focus:ring-1 focus:ring-white/20 focus:outline-none text-[13px] border border-white/[0.06] transition-all pr-9"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
@@ -161,14 +162,22 @@ const Footer: FC<FooterProps> = ({ language, navigate }) => {
         <div className="gradient-divider-dark mt-10 md:mt-16" />
         <div className="mt-6 md:mt-8 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
           <p className="text-[11px] text-[#525252]">
-            &copy; {new Date().getFullYear()} 上海天启灵光科技有限公司 | <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="text-[#525252] hover:text-white/60 transition-colors">沪ICP备2025155002号</a>
+            {language === 'en' || language === 'ja' ? (
+              <>
+                &copy; {new Date().getFullYear()} Lynse AI. All rights reserved.
+              </>
+            ) : (
+              <>
+                &copy; {new Date().getFullYear()} 上海天启灵光科技有限公司 | <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" className="text-[#525252] hover:text-white/60 transition-colors">沪ICP备2025155002号</a> | <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402336296" target="_blank" rel="noopener noreferrer" className="text-[#525252] hover:text-white/60 transition-colors">沪公网安备31010402336296号</a>
+              </>
+            )}
           </p>
           <div className="flex gap-6">
-            <a href="/policy/privacy-cn.html" className="text-[11px] text-[#525252] hover:text-white/60 transition-colors">
-              {language === 'en' ? 'Privacy' : '隐私政策'}
+            <a href={`/policy/privacy-${policyLang}.html`} className="text-[11px] text-[#525252] hover:text-white/60 transition-colors">
+              {t({ en: 'Privacy', zh: '隐私政策', 'zh-TW': '隱私政策', ja: 'プライバシー' }, language)}
             </a>
-            <a href="/policy/user-agreement-cn.html" className="text-[11px] text-[#525252] hover:text-white/60 transition-colors">
-              {language === 'en' ? 'Terms' : '用户协议'}
+            <a href={`/policy/user-agreement-${policyLang}.html`} className="text-[11px] text-[#525252] hover:text-white/60 transition-colors">
+              {t({ en: 'Terms', zh: '用户协议', 'zh-TW': '使用者協議', ja: '利用規約' }, language)}
             </a>
           </div>
         </div>

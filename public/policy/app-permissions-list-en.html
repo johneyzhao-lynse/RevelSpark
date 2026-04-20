@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Permissions List</title>
+    <style type="text/css">
+        body {
+            color: #1f2329;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: #1a1a1a;
+        }
+
+        p {
+            margin-bottom: 16px;
+            font-size: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            table-layout: fixed;
+        }
+
+        th,
+        td {
+            padding: 12px 16px;
+            border: 1px solid #dee2e7;
+            text-align: left;
+            vertical-align: top;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f5f7fa;
+            font-weight: 600;
+            color: #1f2329;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafbfd;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .date-info {
+            color: #646a73;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>App Permissions List</h3>
+    <p class="date-info">Last Updated: November 12, 2025</p>
+    <p class="date-info">Published: November 12, 2025</p>
+    <p class="date-info">Effective Date: November 12, 2025</p>
+
+    <p>Shanghai Tianqi Lingguang Technology Co., Ltd. ("Company," "we," "us," or "our") may request certain device permissions in specific business scenarios to ensure the proper functioning of our application products and/or services ("Products" or "Services"). We commit to requesting permissions only when necessary for specific, clearly defined features, and we will obtain your consent through prompts before doing so. You may review and manage these permissions at any time through your device's system settings. Please note that disabling certain permissions may affect your ability to use some or all features of our Products.</p>
+
+    <p>This List describes the device permissions our Products may request, the corresponding business features, the purposes of each request, when permissions are invoked, and the potential impact of denying any such permissions.</p>
+
+    <p>This policy is an integral part of our <a href="privacy-en.html">Privacy Policy</a>. For more detailed rules regarding personal information processing, your rights, and how we protect your personal information, please refer to the full <a href="privacy-en.html">Privacy Policy</a>.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 20%;">Permission Type</th>
+                <th style="width: 20%;">Business Function</th>
+                <th style="width: 35%;">When Invoked</th>
+                <th style="width: 25%;">Impact of Denial</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Device Information</td>
+                <td>Account security, device adaptation, troubleshooting</td>
+                <td>Upon app launch or when verifying device identity for account security purposes (e.g., during login).</td>
+                <td>May affect account security verification, accurate troubleshooting, and optimal device adaptation.</td>
+            </tr>
+            <tr>
+                <td>Network Access</td>
+                <td>All online features</td>
+                <td>During app runtime whenever network communication is required.</td>
+                <td>Core features such as AI processing and data synchronization will be unavailable without network access.</td>
+            </tr>
+            <tr>
+                <td>Microphone</td>
+                <td>Recording, transcription &amp; summarization</td>
+                <td>When you use the recording feature or initiate voice transcription.</td>
+                <td>Unable to use the recording feature; core recording and voice transcription functionality will be unavailable.</td>
+            </tr>
+            <tr>
+                <td>Camera</td>
+                <td>Profile management, transcription &amp; summarization, template community</td>
+                <td>When you choose to take a photo for your avatar, recording markers, or photo-to-template feature.</td>
+                <td>Unable to take photos for avatars, recording markers, or template uploads.</td>
+            </tr>
+            <tr>
+                <td>Photo Library (Read and/or Write)</td>
+                <td>Profile management, transcription &amp; summarization, template community, customer support</td>
+                <td>When selecting images from your photo library for avatars, transcription, or templates (read permission); when saving content such as transcription results or QR codes to your photo library (write permission).</td>
+                <td>If you deny read access, you cannot select images or videos from your library, affecting avatar setup, recording uploads, and photo-to-template features. If you deny write access, you cannot save transcription results or customer support QR codes to your photo library.</td>
+            </tr>
+            <tr>
+                <td>Bluetooth</td>
+                <td>Connecting to Lynse recording devices</td>
+                <td>When connecting to Lynse recording devices via Bluetooth, managing connected devices, or synchronizing data.</td>
+                <td>Unable to connect to Lynse recording devices via Bluetooth or synchronize data.</td>
+            </tr>
+            <tr>
+                <td>Location Access</td>
+                <td>Connecting to Lynse recording devices</td>
+                <td>When connecting to Lynse recording devices via Bluetooth or synchronizing data (Android requires location permission for Bluetooth scanning).</td>
+                <td>Unable to connect to Lynse recording devices via Bluetooth or synchronize data.</td>
+            </tr>
+            <tr>
+                <td>Storage (Read and/or Write)</td>
+                <td>Transcription &amp; summarization</td>
+                <td>When uploading local files for transcription (read permission); when saving transcription results to local storage (write permission).</td>
+                <td>If you deny read access, you cannot upload local files for transcription. If you deny write access, you cannot save generated transcription and summarization results.</td>
+            </tr>
+            <tr>
+                <td>Notifications</td>
+                <td>Transcription &amp; summarization</td>
+                <td>Upon first app launch or when you first trigger a notification-enabled feature.</td>
+                <td>You will not receive important notifications and reminders in a timely manner.</td>
+            </tr>
+            <tr>
+                <td>Clipboard</td>
+                <td>Copying and pasting text</td>
+                <td>When you actively copy or paste text within the app.</td>
+                <td>Unable to quickly copy and paste text; manual text input remains available.</td>
+            </tr>
+            <tr>
+                <td>Biometric Authentication</td>
+                <td>Biometric unlock</td>
+                <td>When biometric unlock is enabled, upon each app launch.</td>
+                <td>Unable to use biometric authentication for quick and secure identity verification; other authentication methods (e.g., passcode) remain available.</td>
+            </tr>
+            <tr>
+                <td>Download</td>
+                <td>Transcription &amp; summarization</td>
+                <td>When using the export function to download files in the transcription &amp; summarization feature.</td>
+                <td>Unable to save generated transcription and summarization results.</td>
+            </tr>
+            <tr>
+                <td>File Modification</td>
+                <td>Profile management, transcription &amp; summarization</td>
+                <td>When uploading files for avatar settings or transcription &amp; summarization.</td>
+                <td>Unable to upload local files for profile management or use the transcription &amp; summarization feature with file uploads.</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

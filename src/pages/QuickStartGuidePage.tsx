@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
+import { Language } from '../data/constants';
 
 const QuickStartGuidePage = () => {
-  const [language, setLanguage] = useState<'en' | 'zh'>('zh');
-  
-  const handleLanguageChange = (newLanguage: 'en' | 'zh') => {
+  const [language, setLanguage] = useState<Language>('zh');
+
+  const handleLanguageChange = (newLanguage: Language) => {
     setLanguage(newLanguage);
   };
-  
+
   return (
     <div className="bg-lightblue text-gray-700 font-sans antialiased min-h-screen flex flex-col">
       <Header language={language} onLanguageChange={handleLanguageChange} />
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* 面包屑导航 */}
         <nav aria-label="面包屑导航" className="mb-6 text-sm">
@@ -47,7 +48,7 @@ const QuickStartGuidePage = () => {
                 </a>
                 {/* 其他导航项 */}
               </nav>
-              
+
               <div className="mt-6 pt-5 border-t border-gray-100">
                 <a href="/support/beginner-guide" className="text-sm text-accent hover:text-primary transition-colors flex items-center">
                   查看全部指南 <i className="fa fa-arrow-right ml-1 text-xs"></i>
@@ -60,7 +61,7 @@ const QuickStartGuidePage = () => {
           <article className="flex-1 bg-white rounded-xl shadow-sm p-6 lg:p-8">
             <header className="mb-8">
               <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">主要部件</h1>
-              
+
               <div className="flex flex-wrap items-center text-sm text-gray-500 gap-4">
                 <span className="flex items-center">
                   <i className="fa fa-calendar-o mr-1.5"></i> 发布于 2025年04月02日
@@ -75,10 +76,10 @@ const QuickStartGuidePage = () => {
               {/* 文章内容 */}
               <section className="mb-12">
                 <h2 className="text-2xl font-bold text-primary mb-5">Lynse 灵光记 (Spark Note)</h2>
-                
+
                 <div className="bg-lightblue rounded-xl p-4 lg:p-6 mb-6">
                   <img src="/hc/article_attachments/12343807217295" alt="灵光记设备图示" className="w-full h-auto rounded-lg shadow-sm mb-4"/>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <h3 className="text-xl font-semibold text-gray-800 mb-3">LED指示灯</h3>
@@ -94,7 +95,7 @@ const QuickStartGuidePage = () => {
           </article>
         </div>
       </main>
-      
+
     </div>
   );
 };

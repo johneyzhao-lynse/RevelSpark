@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Users, Mic, BookOpen, ArrowRight } from 'lucide-react';
 import type { Language } from '../../data/constants';
-import { USE_CASES, SECTION_TITLES } from '../../data/constants';
+import { t, USE_CASES, SECTION_TITLES } from '../../data/constants';
 import FadeInUp from '../ui/FadeInUp';
 import { Link } from '../ui/Link';
 
@@ -25,7 +25,7 @@ const UseCasesSection: FC<UseCasesSectionProps> = ({ language }) => (
       </FadeInUp>
       <FadeInUp delay={0.1}>
         <h2 className="text-center text-3xl md:text-4xl font-extrabold text-black tracking-tight mb-16">
-          {language === 'en' ? 'One card. Infinite possibilities.' : '一张卡。无限可能。'}
+          {t({ en: 'One card. Infinite possibilities.', zh: '一张卡。无限可能。', 'zh-TW': '一張卡。無限可能。', ja: '一枚のカード。無限の可能性。' }, language)}
         </h2>
       </FadeInUp>
 
@@ -44,7 +44,7 @@ const UseCasesSection: FC<UseCasesSectionProps> = ({ language }) => (
                     {useCase.description[language]}
                   </p>
                   <span className="text-sm font-semibold text-black flex items-center gap-1 group-hover:gap-2 transition-all">
-                    {language === 'en' ? 'Learn more' : '了解更多'}
+                    {t({ en: 'Learn more', zh: '了解更多', 'zh-TW': '瞭解更多', ja: '詳しく見る' }, language)}
                     <ArrowRight className="w-4 h-4" />
                   </span>
                 </div>

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import type { Language } from '../../data/constants';
-import { PRODUCT_SPECS, SECTION_TITLES } from '../../data/constants';
+import { t, PRODUCT_SPECS, SECTION_TITLES } from '../../data/constants';
 import FadeInUp from '../ui/FadeInUp';
 
 interface ProductShowcaseProps {
@@ -18,7 +18,7 @@ const ProductShowcase: FC<ProductShowcaseProps> = ({ language }) => (
 
       <FadeInUp delay={0.1}>
         <h2 className="text-center text-3xl md:text-4xl font-extrabold text-black tracking-tight mb-16">
-          {language === 'en' ? 'Every detail, designed to perform' : '每个细节，为性能而生'}
+          {t({ en: 'Every detail, designed to perform', zh: '每个细节，为性能而生', 'zh-TW': '每個細節，為性能而生', ja: 'すべてのディテールが、パフォーマンスのために' }, language)}
         </h2>
       </FadeInUp>
 

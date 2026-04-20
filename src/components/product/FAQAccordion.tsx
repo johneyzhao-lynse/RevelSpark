@@ -1,12 +1,19 @@
 import { FC, useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import type { Language } from '../../data/constants';
-import { FAQ_ITEMS, SECTION_TITLES } from '../../data/constants';
+import { t, FAQ_ITEMS, SECTION_TITLES } from '../../data/constants';
 import FadeInUp from '../ui/FadeInUp';
 
 interface FAQAccordionProps {
   language: Language;
 }
+
+const _heading: Record<Language, string> = {
+  en: 'Got Questions?',
+  zh: '有疑问？',
+  'zh-TW': '有疑問？',
+  ja: 'ご質問がありますか？',
+};
 
 const FAQAccordion: FC<FAQAccordionProps> = ({ language }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -25,7 +32,7 @@ const FAQAccordion: FC<FAQAccordionProps> = ({ language }) => {
         </FadeInUp>
         <FadeInUp delay={0.1}>
           <h2 className="text-center text-3xl md:text-4xl font-extrabold text-black tracking-tight mb-16">
-            {language === 'en' ? 'Got Questions?' : '有疑问？'}
+            {t(_heading, language)}
           </h2>
         </FadeInUp>
 

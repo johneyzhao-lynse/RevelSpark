@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import type { Language } from '../../data/constants';
+import { t } from '../../data/constants';
 import FadeInUp from '../ui/FadeInUp';
 
 interface ValuePropStripProps {
@@ -9,31 +10,37 @@ interface ValuePropStripProps {
 const VALUE_STEPS = [
   {
     number: '01',
-    title: { en: 'Memory', zh: '记忆' },
-    subtitle: { en: 'Record Everything', zh: '记录一切' },
+    title: { en: 'Memory', zh: '记忆', 'zh-TW': '記憶', ja: '記憶' },
+    subtitle: { en: 'Record Everything', zh: '记录一切', 'zh-TW': '記錄一切', ja: 'すべてを記録' },
     description: {
       en: 'One-tap recording captures every moment with crystal clarity',
       zh: '一键录音，清晰捕捉每个重要时刻',
+      'zh-TW': '一鍵錄音，清晰捕捉每個重要時刻',
+      ja: 'ワンタップで録音し、すべての瞬間をクリアにキャプチャ',
     },
     image: '/images/features/stt.webp',
   },
   {
     number: '02',
-    title: { en: 'Thinking', zh: '思考' },
-    subtitle: { en: 'AI Transcription', zh: 'AI 转写' },
+    title: { en: 'Thinking', zh: '思考', 'zh-TW': '思考', ja: '思考' },
+    subtitle: { en: 'AI Transcription', zh: 'AI 转写', 'zh-TW': 'AI 轉寫', ja: 'AI文字起こし' },
     description: {
       en: 'Real-time transcription in 120+ languages with speaker identification',
       zh: '支持 120+ 种语言的实时转写，自动识别说话人',
+      'zh-TW': '支援 120+ 種語言的即時轉寫，自動識別說話人',
+      ja: '120+言語のリアルタイム文字起こしと話者識別',
     },
     image: '/images/features/stt-demo.webp',
   },
   {
     number: '03',
-    title: { en: 'AI', zh: 'AI' },
-    subtitle: { en: 'Evolve & Summarize', zh: '进化与总结' },
+    title: { en: 'AI', zh: 'AI', 'zh-TW': 'AI', ja: 'AI' },
+    subtitle: { en: 'Evolve & Summarize', zh: '进化与总结', 'zh-TW': '進化與總結', ja: '進化と要約' },
     description: {
       en: 'Self-evolving agent that learns and grows with every use',
       zh: '自我进化的智能体，越用越懂你',
+      'zh-TW': '自我進化的智能體，越用越懂你',
+      ja: '使うほどに学習・成長する自己進化エージェント',
     },
     image: '/images/features/summary-demo.webp',
   },
@@ -46,12 +53,10 @@ const ValuePropStrip: FC<ValuePropStripProps> = ({ language }) => (
       <FadeInUp>
         <div className="text-center mb-16">
           <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold mb-4">
-            {language === 'en' ? 'How It Works' : '工作原理'}
+            {t({ en: 'How It Works', zh: '工作原理', 'zh-TW': '工作原理', ja: '仕組み' }, language)}
           </p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-black tracking-tight">
-            {language === 'en' 
-              ? 'From Memory to Intelligence' 
-              : '从记忆到智能'}
+            {t({ en: 'From Memory to Intelligence', zh: '从记忆到智能', 'zh-TW': '從記憶到智能', ja: '記憶からインテリジェンスへ' }, language)}
           </h2>
         </div>
       </FadeInUp>
@@ -97,9 +102,7 @@ const ValuePropStrip: FC<ValuePropStripProps> = ({ language }) => (
       <FadeInUp delay={0.5}>
         <div className="text-center mt-12">
           <p className="text-gray-400 text-sm">
-            {language === 'en' 
-              ? 'Your self-evolving AI agent awaits' 
-              : '你的自我进化智能体已就绪'}
+            {t({ en: 'Your self-evolving AI agent awaits', zh: '你的自我进化智能体已就绪', 'zh-TW': '你的自我進化智能體已就緒', ja: '自己進化するAIエージェントがお待ちしています' }, language)}
           </p>
         </div>
       </FadeInUp>

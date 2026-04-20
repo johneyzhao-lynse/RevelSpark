@@ -1,6 +1,6 @@
 import { FC, useState, useRef, useMemo } from 'react';
 import type { Language } from '../../data/constants';
-import { getStoreLinks } from '../../data/constants';
+import { t, getStoreLinks } from '../../data/constants';
 
 interface OrderButtonProps {
   language: Language;
@@ -8,6 +8,20 @@ interface OrderButtonProps {
   className?: string;
   size?: 'default' | 'sm';
 }
+
+const _buyNow: Record<Language, string> = {
+  en: 'Buy Now',
+  zh: '立即购买',
+  'zh-TW': '立即購買',
+  ja: '今すぐ購入',
+};
+
+const _chooseStore: Record<Language, string> = {
+  en: 'Choose store',
+  zh: '选择渠道',
+  'zh-TW': '選擇渠道',
+  ja: 'ストアを選択',
+};
 
 const OrderButton: FC<OrderButtonProps> = ({ language, variant = 'dark', className = '', size = 'default' }) => {
   const [open, setOpen] = useState(false);
@@ -52,7 +66,7 @@ const OrderButton: FC<OrderButtonProps> = ({ language, variant = 'dark', classNa
           <path d="M8.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
           <path d="M11.5 10.5V14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
         </svg>
-        <span>{language === 'en' ? 'Buy Now' : '立即购买'}</span>
+        <span>{t(_buyNow, language)}</span>
       </button>
 
       <div
@@ -62,7 +76,7 @@ const OrderButton: FC<OrderButtonProps> = ({ language, variant = 'dark', classNa
       >
         <div className="p-3">
           <div className="text-xs text-gray-500 mb-2 px-2 font-semibold tracking-wide uppercase">
-            {language === 'en' ? 'Choose store' : '选择渠道'}
+            {t(_chooseStore, language)}
           </div>
           {storeLinks.map((store, index) => (
             <a

@@ -2,6 +2,7 @@ import React, { useRef, useState, FC } from 'react';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import type { Language } from '../../data/constants';
+import { t } from '../../data/constants';
 import FadeInUp from '../ui/FadeInUp';
 import { TESTIMONIALS, SECTION_TITLES } from '../../data/constants';
 
@@ -33,7 +34,7 @@ const TestimonialCarousel: FC<TestimonialCarouselProps> = ({ language }) => {
           </FadeInUp>
           <FadeInUp delay={0.1}>
             <h2 className="text-center text-3xl md:text-4xl font-extrabold text-black tracking-tight mb-16">
-              {language === 'en' ? 'Loved by professionals worldwide' : '全球专业人士的信赖之选'}
+              {t({ en: 'Loved by professionals worldwide', zh: '全球专业人士的信赖之选', 'zh-TW': '全球專業人士的信賴之選', ja: '世界中のプロフェッショナルに愛されて' }, language)}
             </h2>
           </FadeInUp>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -88,7 +89,7 @@ const TestimonialCarousel: FC<TestimonialCarouselProps> = ({ language }) => {
         </FadeInUp>
         <FadeInUp delay={0.1}>
           <h2 className="text-center text-3xl md:text-4xl font-extrabold text-black tracking-tight mb-16">
-            {language === 'en' ? 'Loved by professionals worldwide' : '全球专业人士的信赖之选'}
+            {t({ en: 'Loved by professionals worldwide', zh: '全球专业人士的信赖之选', 'zh-TW': '全球專業人士的信賴之選', ja: '世界中のプロフェッショナルに愛されて' }, language)}
           </h2>
         </FadeInUp>
 

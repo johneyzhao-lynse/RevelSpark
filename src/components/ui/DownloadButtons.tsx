@@ -1,24 +1,61 @@
 import React, { useState } from 'react';
+import type { Language } from '../../data/constants';
+import { t } from '../../data/constants';
 
 interface DownloadButtonsProps {
   className?: string;
-  language: 'en' | 'zh';
+  language: Language;
 }
+
+const _appStoreText: Record<Language, string> = {
+  en: 'Download on the App Store',
+  zh: '在 App Store 上下载',
+  'zh-TW': '在 App Store 上下載',
+  ja: 'App Store からダウンロード',
+};
+
+const _googlePlayText: Record<Language, string> = {
+  en: 'Get it on Google Play',
+  zh: '在 Google Play 上获取',
+  'zh-TW': '在 Google Play 上獲取',
+  ja: 'Google Play で入手',
+};
+
+const _apkText: Record<Language, string> = {
+  en: 'Download APK (Android)',
+  zh: '下载安卓 APK',
+  'zh-TW': '下載安卓 APK',
+  ja: 'APK をダウンロード（Android）',
+};
+
+const _scanToDownload: Record<Language, string> = {
+  en: 'Scan to Download',
+  zh: '扫码下载',
+  'zh-TW': '掃碼下載',
+  ja: 'スキャンしてダウンロード',
+};
+
+const _comingSoon: Record<Language, string> = {
+  en: 'Coming Soon...',
+  zh: '正在上架中...',
+  'zh-TW': '正在上架中...',
+  ja: '公開準備中...',
+};
 
 const DownloadButtons: React.FC<DownloadButtonsProps> = ({ className, language }) => {
   const appStore = {
-    title: language === 'en' ? 'Download on the App Store' : '在 App Store 上下载',
-    alt: language === 'en' ? 'Download on the App Store' : '在 App Store 上下载',
+    title: t(_appStoreText, language),
+    alt: t(_appStoreText, language),
   };
 
   const googlePlay = {
-    title: language === 'en' ? 'Get it on Google Play' : '在 Google Play 上获取',
-    alt: language === 'en' ? 'Get it on Google Play' : '在 Google Play 上获取',
+    title: t(_googlePlayText, language),
+    alt: t(_googlePlayText, language),
   };
 
   const apk = {
-    title: language === 'en' ? 'Download APK (Android)' : '下载安卓 APK',
-    alt: language === 'en' ? 'Download APK (Android)' : '下载安卓 APK',
+    title: t(_apkText, language),
+    alt: t(_apkText, language),
   };
 
   const [showGooglePlayTooltip, setShowGooglePlayTooltip] = useState(false);
@@ -32,9 +69,9 @@ const DownloadButtons: React.FC<DownloadButtonsProps> = ({ className, language }
   return (
     <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 ${className}`}>
       <div className="relative group">
-        <a 
-          href="https://apps.apple.com/cn/app/灵光记/id6758296786" 
-          className="transform transition-transform hover:scale-105 block" 
+        <a
+          href="https://apps.apple.com/cn/app/灵光记/id6758296786"
+          className="transform transition-transform hover:scale-105 block"
           title={appStore.title}
           target="_blank"
           rel="noopener noreferrer"
@@ -52,16 +89,16 @@ const DownloadButtons: React.FC<DownloadButtonsProps> = ({ className, language }
               </div>
             </div>
             <p className="text-xs text-gray-500 text-center mt-2 font-medium">
-              {language === 'en' ? 'Scan to Download' : '扫码下载'}
+              {t(_scanToDownload, language)}
             </p>
           </div>
           <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-l border-t border-gray-100 rotate-45" />
         </div>
       </div>
       <div className="relative">
-        <a 
-          href="#" 
-          className="transform transition-transform hover:scale-105" 
+        <a
+          href="#"
+          className="transform transition-transform hover:scale-105"
           title={googlePlay.title}
           onClick={handleGooglePlayClick}
         >
@@ -69,7 +106,7 @@ const DownloadButtons: React.FC<DownloadButtonsProps> = ({ className, language }
         </a>
         {showGooglePlayTooltip && (
           <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-black text-white px-4 py-2 rounded-lg shadow-lg z-10 animate-fadeIn whitespace-nowrap font-medium">
-            {language === 'en' ? 'Coming Soon...' : '正在上架中...'}
+            {t(_comingSoon, language)}
           </div>
         )}
       </div>
@@ -88,7 +125,7 @@ const DownloadButtons: React.FC<DownloadButtonsProps> = ({ className, language }
               </div>
             </div>
             <p className="text-xs text-gray-500 text-center mt-2 font-medium">
-              {language === 'en' ? 'Scan to Download' : '扫码下载'}
+              {t(_scanToDownload, language)}
             </p>
           </div>
           <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white border-l border-t border-gray-100 rotate-45" />

@@ -7,14 +7,18 @@ import FadeInUp from '../ui/FadeInUp';
 import ScrollText from '../ui/ScrollText';
 import ParticleField from './ParticleField';
 import type { Language } from '../../data/constants';
-import { HERO } from '../../data/constants';
+import { t, HERO } from '../../data/constants';
 
 interface HeroSectionProps {
   language: Language;
 }
 
-const scrollPhrasesEN = ['Memory.', 'Thinking.', 'AI.'];
-const scrollPhrasesZH = ['记忆 ·', '思考 ·', 'AI'];
+const SCROLL_PHRASES: Record<Language, string[]> = {
+  en: ['Memory.', 'Thinking.', 'AI.'],
+  zh: ['记忆 ·', '思考 ·', 'AI'],
+  'zh-TW': ['記憶 ·', '思考 ·', 'AI'],
+  ja: ['記憶 ·', '思考 ·', 'AI'],
+};
 
 const POSTER_GRADIENTS = [
   'from-gray-50 via-gray-100 to-gray-50',
@@ -66,7 +70,7 @@ const HeroSection: FC<HeroSectionProps> = ({ language }) => {
     };
   }, []);
 
-  const scrollPhrases = language === 'en' ? scrollPhrasesEN : scrollPhrasesZH;
+  const scrollPhrases = SCROLL_PHRASES[language];
 
   // Mobile / reduced motion: simplified Hero
   if (prefersReduced || isMobile) {
@@ -247,7 +251,7 @@ const HeroSection: FC<HeroSectionProps> = ({ language }) => {
         >
           <div className="text-center">
             <h2 className="text-3xl md:text-5xl font-extrabold text-black mb-8">
-              {language === 'en' ? 'Ready to Never Miss a Moment?' : '准备好不再错过任何时刻了吗？'}
+              {t({ en: 'Ready to Never Miss a Moment?', zh: '准备好不再错过任何时刻了吗？', 'zh-TW': '準備好不再錯過任何時刻了嗎？', ja: 'すべての瞬間を記録する準備はできましたか？' }, language)}
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <OrderButton language={language} variant="dark" />
@@ -277,7 +281,7 @@ const HeroSection: FC<HeroSectionProps> = ({ language }) => {
           initial={{ opacity: 1 }}
           style={{ opacity: scrollHintOpacity }}
         >
-          <span className="text-sm mb-2">{language === 'en' ? 'Scroll to explore' : '向下滚动探索'}</span>
+          <span className="text-sm mb-2">{t({ en: 'Scroll to explore', zh: '向下滚动探索', 'zh-TW': '向下滾動探索', ja: 'スクロールして探索' }, language)}</span>
           <ChevronDown className="animate-bounce" size={24} />
         </motion.div>
       </div>

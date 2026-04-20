@@ -1,11 +1,19 @@
 import { FC, useState, useEffect } from 'react';
 import { X, ShoppingCart } from 'lucide-react';
 import type { Language } from '../../data/constants';
+import { t } from '../../data/constants';
 import OrderButton from '../ui/OrderButton';
 
 interface FloatingBuyButtonProps {
   language: Language;
 }
+
+const _label: Record<Language, string> = {
+  en: 'SparkCard',
+  zh: '灵光记',
+  'zh-TW': '靈光記',
+  ja: 'SparkCard',
+};
 
 const FloatingBuyButton: FC<FloatingBuyButtonProps> = ({ language }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,10 +38,10 @@ const FloatingBuyButton: FC<FloatingBuyButtonProps> = ({ language }) => {
         <ShoppingCart className="w-5 h-5" />
         <div className="flex flex-col">
           <span className="text-xs text-white/70">
-            {language === 'en' ? 'SparkCard' : '灵光记'}
+            {t(_label, language)}
           </span>
           <span className="text-sm font-semibold">
-            {language === 'en' ? '¥599' : '¥599'}
+            ¥599
           </span>
         </div>
         <div className="w-px h-8 bg-white/20 mx-2" />

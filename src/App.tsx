@@ -1,4 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense, useCallback } from 'react';
+import { Language } from './data/constants';
 import { MotionConfig } from 'framer-motion';
 import Lenis from 'lenis';
 import Header from './components/Header';
@@ -27,7 +28,7 @@ function getInitialRoute(): Route {
 }
 
 function App() {
-  const [language, setLanguage] = useState<'en' | 'zh'>('zh');
+  const [language, setLanguage] = useState<Language>('en');
   const [route, setRoute] = useState<Route>(getInitialRoute);
 
   const navigate = useCallback((path: string) => {
@@ -80,12 +81,16 @@ function App() {
   }, []);
 
   useEffect(() => {
-    document.title = language === 'en'
-      ? 'Lynse.ai - Capture Every Spark of Inspiration'
-      : 'Lynse.ai｜灵光记 - 让灵光记住每一次灵感';
+    const titles: Record<Language, string> = {
+      en: 'Lynse.ai - Capture Every Spark of Inspiration',
+      zh: 'Lynse.ai｜灵光记 - 让灵光记住每一次灵感',
+      'zh-TW': 'Lynse.ai｜靈光記 - 讓靈光記住每一次靈感',
+      ja: 'Lynse.ai｜Spark Card - すべてのインスピレーションを記録',
+    };
+    document.title = titles[language];
   }, [language]);
 
-  const handleLanguageChange = (newLanguage: 'en' | 'zh') => {
+  const handleLanguageChange = (newLanguage: Language) => {
     setLanguage(newLanguage);
   };
 

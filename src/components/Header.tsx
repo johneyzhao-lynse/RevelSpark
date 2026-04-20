@@ -1,17 +1,28 @@
 import React, { useState, useEffect, useRef, FC, useCallback } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, ChevronDown } from 'lucide-react';
 import { Link } from './ui/Link';
+import { Language, LANGUAGES, t } from '../data/constants';
 
 interface HeaderProps {
-  language: 'en' | 'zh';
-  onLanguageChange: (language: 'en' | 'zh') => void;
+  language: Language;
+  onLanguageChange: (language: Language) => void;
   navigate?: (path: string) => void;
 }
+
+const NAV_LABELS: Record<string, Record<Language, string>> = {
+  product: { en: 'Product', zh: '产品', 'zh-TW': '產品', ja: '製品' },
+  features: { en: 'Features', zh: '特性', 'zh-TW': '特性', ja: '機能' },
+  download: { en: 'Download', zh: '下载', 'zh-TW': '下載', ja: 'ダウンロード' },
+  support: { en: 'Support', zh: '支持', 'zh-TW': '支援', ja: 'サポート' },
+  about: { en: 'About', zh: '关于', 'zh-TW': '關於', ja: '会社概要' },
+};
 
 const Header: FC<HeaderProps> = ({ language, onLanguageChange, navigate }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const langMenuRef = useRef<HTMLDivElement>(null);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const handleScroll = useCallback(() => {
@@ -29,13 +40,25 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange, navigate }: Heade
   const toggleMenu = () => {
     setIsMenuOpen(prev => !prev);
     setIsDropdownOpen(false);
+    setIsLangMenuOpen(false);
   };
-  const toggleLanguage = () => onLanguageChange(language === 'en' ? 'zh' : 'en');
 
   const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
     setIsDropdownOpen(false);
+    setIsLangMenuOpen(false);
   }, []);
+
+  // Close lang menu on outside click
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (langMenuRef.current && !langMenuRef.current.contains(e.target as Node)) {
+        setIsLangMenuOpen(false);
+      }
+    };
+    if (isLangMenuOpen) document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [isLangMenuOpen]);
 
   // Close menu on escape key
   useEffect(() => {
@@ -53,6 +76,40 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange, navigate }: Heade
       document.body.style.overflow = '';
     };
   }, [isMenuOpen, closeMenu]);
+
+  const currentLangLabel = LANGUAGES.find(l => l.code === language)?.label ?? 'English';
+
+  const LanguageDropdown = ({ mobile = false }: { mobile?: boolean }) => (
+    <div ref={mobile ? undefined : langMenuRef} className="relative">
+      <button
+        className={`flex items-center text-[13px] font-medium text-[#737373] hover:text-[#0A0A0A] rounded-full hover:bg-black/[0.04] transition-all ${mobile ? 'px-4 py-3 w-full justify-between' : 'px-3 py-1.5'}`}
+        onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+      >
+        <span className="flex items-center">
+          <Globe size={mobile ? 16 : 13} className={mobile ? 'mr-2.5' : 'mr-1.5'} />
+          {currentLangLabel}
+        </span>
+        <ChevronDown size={12} className={`ml-1 transition-transform duration-200 ${isLangMenuOpen ? 'rotate-180' : ''}`} />
+      </button>
+      {isLangMenuOpen && (
+        <div className={`${mobile ? 'pl-6 py-1' : 'absolute right-0 mt-2 w-36 bg-white/80 backdrop-blur-2xl rounded-2xl border border-black/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.08)] py-1.5 z-50'}`}>
+          {LANGUAGES.map(lang => (
+            <button
+              key={lang.code}
+              onClick={() => { onLanguageChange(lang.code); setIsLangMenuOpen(false); if (mobile) closeMenu(); }}
+              className={`${mobile ? 'block px-4 py-2.5 rounded-xl' : 'block px-4 py-2.5 rounded-xl mx-1'} text-[13px] w-full text-left transition-all ${
+                language === lang.code
+                  ? 'text-[#0A0A0A] bg-black/[0.04] font-medium'
+                  : 'text-[#737373] hover:text-[#0A0A0A] hover:bg-black/[0.03]'
+              }`}
+            >
+              {lang.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <>
@@ -85,42 +142,34 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange, navigate }: Heade
               </button>
               <div className="absolute left-0 mt-2 w-44 bg-white/80 backdrop-blur-2xl rounded-2xl border border-black/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.08)] py-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 translate-y-1 group-hover:translate-y-0">
                 <Link href="/sparkcard" className="block px-4 py-2.5 text-[13px] text-[#525252] hover:text-[#0A0A0A] hover:bg-black/[0.03] transition-all rounded-xl mx-1" navigate={navigate}>
-                  {language === 'en' ? 'Product' : '产品'}
+                  {NAV_LABELS.product[language]}
                 </Link>
                 <Link href="/#use-cases" className="block px-4 py-2.5 text-[13px] text-[#525252] hover:text-[#0A0A0A] hover:bg-black/[0.03] transition-all rounded-xl mx-1" navigate={navigate}>
-                  {language === 'en' ? 'Features' : '特性'}
+                  {NAV_LABELS.features[language]}
                 </Link>
               </div>
             </div>
 
             <Link href="/download" className="text-[13px] font-medium text-[#525252] hover:text-[#0A0A0A] transition-colors px-3 py-1.5 rounded-full hover:bg-black/[0.04]" navigate={navigate}>
-              {language === 'en' ? 'Download' : '下载'}
+              {NAV_LABELS.download[language]}
             </Link>
             <Link href="/SupportCenterPage" className="text-[13px] font-medium text-[#525252] hover:text-[#0A0A0A] transition-colors px-3 py-1.5 rounded-full hover:bg-black/[0.04]" navigate={navigate}>
-              {language === 'en' ? 'Support' : '支持'}
+              {NAV_LABELS.support[language]}
             </Link>
             <Link href="/about" className="text-[13px] font-medium text-[#525252] hover:text-[#0A0A0A] transition-colors px-3 py-1.5 rounded-full hover:bg-black/[0.04]" navigate={navigate}>
-              {language === 'en' ? 'About' : '关于'}
+              {NAV_LABELS.about[language]}
             </Link>
 
             <div className="w-px h-4 bg-black/[0.06] mx-1" />
 
-            <button
-              className="flex items-center text-[13px] font-medium text-[#737373] hover:text-[#0A0A0A] px-3 py-1.5 rounded-full hover:bg-black/[0.04] transition-all"
-              onClick={toggleLanguage}
-              aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
-            >
-              <Globe size={13} className="mr-1.5" />
-              <span>{language === 'en' ? 'EN' : '中文'}</span>
-            </button>
+            <LanguageDropdown />
           </nav>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden gap-1">
             <button
-              onClick={toggleLanguage}
+              onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
               className="p-2 rounded-full hover:bg-black/[0.04] transition-all"
-              aria-label={language === 'en' ? 'Switch to Chinese' : 'Switch to English'}
             >
               <Globe size={16} className="text-[#525252]" />
             </button>
@@ -129,6 +178,25 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange, navigate }: Heade
             </button>
           </div>
         </div>
+
+        {/* Mobile language dropdown (outside header) */}
+        {isLangMenuOpen && !isMenuOpen && (
+          <div className="absolute right-3 top-full mt-2 w-36 bg-white/95 backdrop-blur-2xl rounded-2xl border border-black/[0.06] shadow-[0_8px_32px_rgba(0,0,0,0.12)] py-1.5 z-50 md:hidden">
+            {LANGUAGES.map(lang => (
+              <button
+                key={lang.code}
+                onClick={() => { onLanguageChange(lang.code); setIsLangMenuOpen(false); }}
+                className={`block px-4 py-2.5 rounded-xl mx-1 text-[13px] w-full text-left transition-all ${
+                  language === lang.code
+                    ? 'text-[#0A0A0A] bg-black/[0.04] font-medium'
+                    : 'text-[#737373] hover:text-[#0A0A0A] hover:bg-black/[0.03]'
+                }`}
+              >
+                {lang.label}
+              </button>
+            ))}
+          </div>
+        )}
       </header>
 
       {/* Mobile Menu Overlay - rendered outside header to avoid overflow clipping */}
@@ -148,22 +216,25 @@ const Header: FC<HeaderProps> = ({ language, onLanguageChange, navigate }: Heade
               {isDropdownOpen && (
                 <div className="pl-4 space-y-0.5">
                   <Link href="/sparkcard" className="block px-4 py-2.5 rounded-xl text-[14px] text-[#737373] hover:text-[#0A0A0A] hover:bg-black/[0.03] transition-all" onClick={closeMenu} navigate={navigate}>
-                    {language === 'en' ? 'Product' : '产品'}
+                    {NAV_LABELS.product[language]}
                   </Link>
                   <Link href="/#use-cases" className="block px-4 py-2.5 rounded-xl text-[14px] text-[#737373] hover:text-[#0A0A0A] hover:bg-black/[0.03] transition-all" onClick={closeMenu} navigate={navigate}>
-                    {language === 'en' ? 'Features' : '特性'}
+                    {NAV_LABELS.features[language]}
                   </Link>
                 </div>
               )}
               <Link href="/download" className="block px-4 py-3 rounded-xl text-[14px] font-medium text-[#525252] hover:text-[#0A0A0A] hover:bg-black/[0.03] transition-all" onClick={closeMenu} navigate={navigate}>
-                {language === 'en' ? 'Download' : '下载'}
+                {NAV_LABELS.download[language]}
               </Link>
               <Link href="/SupportCenterPage" className="block px-4 py-3 rounded-xl text-[14px] font-medium text-[#525252] hover:text-[#0A0A0A] hover:bg-black/[0.03] transition-all" onClick={closeMenu} navigate={navigate}>
-                {language === 'en' ? 'Support' : '支持'}
+                {NAV_LABELS.support[language]}
               </Link>
               <Link href="/about" className="block px-4 py-3 rounded-xl text-[14px] font-medium text-[#525252] hover:text-[#0A0A0A] hover:bg-black/[0.03] transition-all" onClick={closeMenu} navigate={navigate}>
-                {language === 'en' ? 'About' : '关于'}
+                {NAV_LABELS.about[language]}
               </Link>
+
+              <div className="h-px bg-black/[0.06] my-1" />
+              <LanguageDropdown mobile />
             </div>
           </div>
         </>
