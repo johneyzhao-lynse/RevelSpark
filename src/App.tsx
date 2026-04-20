@@ -19,6 +19,36 @@ const PageLoader = () => (
 
 type Route = '/' | '/download' | '/sparkcard' | '/about' | '/SupportCenterPage' | 'maintenance';
 
+// Map country code to language
+function countryToLanguage(country: string): Language {
+  const map: Record<string, Language> = {
+    CN: 'zh',
+    TW: 'zh-TW',
+    HK: 'zh-TW',
+    MO: 'zh-TW',
+    JP: 'ja',
+  };
+  return map[country.toUpperCase()] || 'en';
+}
+
+// Instant initial guess from browser language
+function guessLanguageFromBrowser(): Language {
+  const lang = navigator.language || '';
+  if (lang.startsWith('zh-CN') || lang === 'zh') return 'zh';
+  if (lang.startsWith('zh-TW') || lang.startsWith('zh-HK')) return 'zh-TW';
+  if (lang.startsWith('ja')) return 'ja';
+  return 'en';
+}
+
+// Detect language: check saved preference, then IP geolocation
+function detectLanguage(): Language {
+  const saved = localStorage.getItem('lynse-lang');
+  if (saved && ['en', 'zh', 'zh-TW', 'ja'].includes(saved)) {
+    return saved as Language;
+  }
+  return guessLanguageFromBrowser();
+}
+
 function getInitialRoute(): Route {
   const path = window.location.pathname;
   if (path === '/sparkcard') return '/sparkcard';
@@ -28,7 +58,7 @@ function getInitialRoute(): Route {
 }
 
 function App() {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>(detectLanguage);
   const [route, setRoute] = useState<Route>(getInitialRoute);
 
   const navigate = useCallback((path: string) => {
@@ -91,8 +121,23 @@ function App() {
   }, [language]);
 
   const handleLanguageChange = (newLanguage: Language) => {
+    localStorage.setItem('lynse-lang', newLanguage);
     setLanguage(newLanguage);
   };
+
+  // IP geolocation detection (async, runs once if no saved preference)
+  useEffect(() => {
+    if (localStorage.getItem('lynse-lang')) return;
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        if (data.country) {
+          const lang = countryToLanguage(data.country);
+          setLanguage(lang);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   // Determine page content based on route
   let pageContent: React.ReactNode;
