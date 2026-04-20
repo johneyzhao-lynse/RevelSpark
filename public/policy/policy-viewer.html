@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        body {
+            color: rgb(31, 35, 41);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Icons', 'PingFang SC', 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        #content h1 { font-size: 20px; margin-top: 24px; font-weight: 700; }
+        #content h2 { font-size: 18px; margin-top: 20px; font-weight: 700; }
+        #content h3 { font-size: 26px; font-weight: 600; }
+        #content h4 { font-size: 16px; margin-top: 16px; font-weight: 600; }
+        #content p { line-height: 1.8; margin-bottom: 12px; }
+        #content a { color: #007bff; text-decoration: none; word-break: break-all; }
+        #content a:hover { text-decoration: underline; }
+        #content strong, #content b { font-weight: 700; }
+        #content ul, #content ol { padding-left: 2em; margin-bottom: 12px; }
+        #content li { margin-bottom: 4px; line-height: 1.8; }
+        #content hr { border: none; border-top: 1px solid #ddd; margin: 20px 0; }
+        #content blockquote { border-left: 4px solid #ddd; margin: 16px 0; padding: 8px 16px; color: #666; }
+
+        /* Tables */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 16px 0;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid #e8e8e8;
+            border-radius: 6px;
+        }
+        #content table {
+            border-collapse: collapse;
+            min-width: 1200px;
+            width: auto;
+        }
+        #content thead th {
+            white-space: nowrap;
+        }
+        #content th, #content td {
+            padding: 5px 10px;
+            border: 1px solid #DDD;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        #content th {
+            background-color: #f5f7fa;
+            font-weight: 600;
+        }
+        #content tr:nth-child(even) { background-color: #fafbfd; }
+
+        .loading { text-align: center; padding: 40px; color: #999; }
+        .error { text-align: center; padding: 40px; color: #c00; }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div class="loading">Loading...</div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+    <script>
+    (function() {
+        var params = new URLSearchParams(window.location.search);
+        var mdFile = params.get('md');
+        if (!mdFile) {
+            document.getElementById('content').innerHTML = '<div class="error">No markdown file specified.</div>';
+            return;
+        }
+
+        var baseUrl = window.location.href.split('?')[0];
+        var basePath = baseUrl.substring(0, baseUrl.lastIndexOf('/') + 1);
+        var mdUrl = basePath + mdFile;
+
+        fetch(mdUrl)
+            .then(function(res) {
+                if (!res.ok) throw new Error('Failed to load ' + mdFile);
+                return res.text();
+            })
+            .then(function(md) {
+                var html = marked.parse(md, { breaks: true, gfm: true });
+                document.getElementById('content').innerHTML = html;
+
+                // Wrap all tables in .table-wrapper for responsive scrolling
+                var tables = document.querySelectorAll('#content table');
+                tables.forEach(function(table) {
+                    var wrapper = document.createElement('div');
+                    wrapper.className = 'table-wrapper';
+                    table.parentNode.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                });
+
+                // Update page title from first heading
+                var heading = document.querySelector('#content h1, #content h2, #content h3');
+                if (heading) {
+                    document.title = heading.textContent.trim();
+                }
+            })
+            .catch(function(err) {
+                document.getElementById('content').innerHTML =
+                    '<div class="error">Failed to load content: ' + err.message + '</div>';
+            });
+    })();
+    </script>
+</body>
+</html>

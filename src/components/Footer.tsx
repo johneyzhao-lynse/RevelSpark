@@ -127,7 +127,7 @@ const Footer: FC<FooterProps> = ({ language, navigate }) => {
               <div className="flex items-start gap-2">
                 <Building className="text-[#525252] mt-0.5" size={13} />
                 <p className="text-[13px] text-[#A3A3A3] leading-relaxed">
-                  {t({ en: 'Shanghai, China', zh: '上海市徐汇区虹漕路25-1号2楼', 'zh-TW': '上海市徐匯區虹漕路25-1號2樓', ja: 'Shanghai, China' }, language)}
+                  {t({ en: 'Room 1901, 19th Floor, Block A, No. 391 Guiping Road, Xuhui District, Shanghai', zh: '上海市徐汇区桂平路391号A座19层1901室', 'zh-TW': '上海市徐匯區桂平路391號A座19層1901室', ja: 'Room 1901, 19th Floor, Block A, No. 391 Guiping Road, Xuhui District, Shanghai' }, language)}
                 </p>
               </div>
             </div>

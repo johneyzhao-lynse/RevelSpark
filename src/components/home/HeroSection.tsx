@@ -5,7 +5,6 @@ import { Link } from '../ui/Link';
 import OrderButton from '../ui/OrderButton';
 import FadeInUp from '../ui/FadeInUp';
 import ScrollText from '../ui/ScrollText';
-import ParticleField from './ParticleField';
 import type { Language } from '../../data/constants';
 import { t, HERO } from '../../data/constants';
 
@@ -76,6 +75,14 @@ const HeroSection: FC<HeroSectionProps> = ({ language }) => {
   if (prefersReduced || isMobile) {
     return (
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50">
+        <div className="absolute inset-0">
+          <img
+            src="/images/hero-bg.webp"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gray-50/70" />
+        </div>
         <div className="max-w-6xl mx-auto px-5 md:px-8 relative z-10 pt-24 pb-12 w-full">
           <div className="flex flex-col items-center text-center space-y-8">
             <FadeInUp>
@@ -120,17 +127,6 @@ const HeroSection: FC<HeroSectionProps> = ({ language }) => {
                 ))}
               </div>
             </FadeInUp>
-
-            <FadeInUp delay={0.4}>
-              <div className="relative flex items-center justify-center mt-4 w-full">
-                <img
-                  src="/images/product-showcase.jpg"
-                  alt="SparkCard"
-                  className="w-full max-w-[340px] md:max-w-[580px] object-contain rounded-2xl md:rounded-3xl"
-                  style={{ filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.08))' }}
-                />
-              </div>
-            </FadeInUp>
           </div>
         </div>
       </section>
@@ -140,21 +136,19 @@ const HeroSection: FC<HeroSectionProps> = ({ language }) => {
   return (
     <div ref={containerRef} className="relative" style={{ height: '350vh' }}>
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 bg-gray-50/60 z-0" />
-
-        {/* Particle animation - desktop only */}
-        <div className="absolute inset-0 z-[1]">
-          <ParticleField />
+        {/* Background image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/hero-bg.webp"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-white/20" />
         </div>
 
-        {/* Gradient overlays */}
-        <div className="absolute inset-0 z-[1] pointer-events-none">
-          <motion.div className={`absolute inset-0 bg-gradient-to-br ${POSTER_GRADIENTS[0]}`} style={{ opacity: bg1Opacity }} />
-          <motion.div className={`absolute inset-0 bg-gradient-to-br ${POSTER_GRADIENTS[1]}`} style={{ opacity: bg2Opacity }} />
-          <motion.div className={`absolute inset-0 bg-gradient-to-br ${POSTER_GRADIENTS[2]}`} style={{ opacity: bg3Opacity }} />
-          <motion.div className={`absolute inset-0 bg-gradient-to-br ${POSTER_GRADIENTS[3]}`} style={{ opacity: bg4Opacity }} />
-        </div>
+        {/* Particle animation - disabled */}
+
+        {/* Gradient overlays - disabled, using static bg image */}
 
         {/* Layer 1: Hero Statement + Product Image */}
         <motion.div
@@ -197,15 +191,6 @@ const HeroSection: FC<HeroSectionProps> = ({ language }) => {
                   ))}
                 </div>
               </div>
-
-              <div className="relative flex items-center justify-center p-8">
-                <img
-                  src="/images/product-showcase.jpg"
-                  alt="SparkCard"
-                  className="w-full max-w-[580px] lg:max-w-[680px] object-contain rounded-3xl"
-                  style={{ filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3))' }}
-                />
-              </div>
             </div>
           </div>
         </motion.div>
@@ -216,14 +201,6 @@ const HeroSection: FC<HeroSectionProps> = ({ language }) => {
           style={{ opacity: layer2Opacity, scale: layer2Scale }}
           aria-hidden="true"
         >
-          <div className="relative">
-            <img
-              src="/images/product-showcase.jpg"
-              alt="SparkCard"
-              className="w-full max-w-2xl mx-auto rounded-3xl"
-              style={{ filter: 'drop-shadow(0 20px 60px rgba(0, 0, 0, 0.4))' }}
-            />
-          </div>
         </motion.div>
 
         {/* Layer 3: Character-by-Character Text Reveal */}
