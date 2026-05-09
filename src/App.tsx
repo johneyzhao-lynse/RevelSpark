@@ -54,7 +54,7 @@ function getInitialRoute(): Route {
   if (path === '/sparkcard') return '/sparkcard';
   if (path === '/about') return '/about';
   if (path === '/SupportCenterPage') return '/SupportCenterPage';
-  return '/download'; // 主页设计未完成，默认跳转下载页
+  return '/'; // TODO: 恢复 '/download'
 }
 
 function App() {
@@ -154,7 +154,7 @@ function App() {
     pageContent = (
       <>
         <Header language={language} onLanguageChange={handleLanguageChange} navigate={navigate} />
-        <HeroSection language={language} />
+        <HeroSection language={language} navigate={navigate} />
         <Footer language={language} navigate={navigate} />
       </>
     );

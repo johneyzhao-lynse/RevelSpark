@@ -2,35 +2,42 @@
 
 Updated: January 31, 2026
 
-Welcome to the premium services provided by Shanghai Tianqi Lingguang Technology Co., Ltd. (hereinafter referred to as "the Company," "we," "us," or "our"). Before subscribing to a membership or purchasing a duration package, please read and understand this Agreement carefully. By clicking "Pay Now" or "Confirm Purchase," you agree to all terms of this Agreement.
+Welcome to the premium services provided by Shanghai RevelSpark Technology Co., Ltd. (hereinafter referred to as "the Company," "we," "us," or "our"). Before subscribing to a membership or purchasing a Power Package, please read and understand this Agreement carefully. By clicking "Pay Now" or "Confirm Purchase," you agree to all terms of this Agreement.
 
 # I. Service Definitions
 
-1. **Subscription Memberships:** Include "Premium" and "Elite" tiers. Membership provides specific cloud storage, AI transcription credits, and feature access privileges.
+1. **Subscription Memberships:** Include "Premium" and "Elite" tiers. Membership provides specific cloud storage, AI transcription privileges, and feature access privileges.
 
-2. **Duration Packages:** Refer to additional resources purchased by users to offset recording and transcription duration.
+2. **Power Packages:** Refer to additional resources purchased by users to offset recording transcription credits.
+
+3. **Transcription Credits:** Refers to the virtual resources used by the platform to calculate and offset the consumption of recording transcription services. **Conversion standard: 1 Credit = 1 minute of transcription duration.** (Note: Any single transcription duration less than 1 minute will be calculated and deducted as 1 minute.)
 
 # II. Membership Subscription Rules
 
-1. **Parallel Tiers:** Premium and Elite memberships are parallel tiers with different service benefits. Membership durations are not stackable (e.g., if you purchase an Elite membership while already holding a Premium membership, an upgrade logic will be triggered rather than a time extension).
+1. **Parallel Tiers:** Premium and Elite memberships are parallel tiers with different service benefits. **Membership validities are not stackable** (e.g., if you purchase an Elite membership while already holding a Premium membership, an upgrade logic will be triggered rather than a time extension). Meanwhile, upon successful upgrade, your periodically reset credit allowance will automatically change to the Elite membership standard, and the unconsumed base credits from the original Premium membership will not be stacked.
 
 2. **Upgrade Mechanism (Differential Pricing Upgrade):**
    - Premium members may apply to upgrade to Elite membership during their valid subscription period.
-   - Differential pricing calculation: The fee payable is calculated based on the prorated value of the remaining days of the current Premium membership and the price difference for an equivalent period of Elite membership.
-   - Effective date: Upon successful upgrade, your membership validity period will restart from the date of upgrade, and Elite membership benefits will take effect immediately.
+   - **Upgrade Restriction Principle:** To ensure the financial settlement compliance of the upgrade logic and avoid situations where fees need to be refunded to the user after an upgrade, upgrades must follow these paths:
+     - **Monthly Premium Member:** Can apply to upgrade to **Monthly Elite Member** or **Annual Elite Member**.
+     - **Annual Premium Member:** Only supports upgrading to **Annual Elite Member**.
+   - **Differential pricing calculation:** The fee payable is calculated based on the prorated value of the remaining days of the current Premium membership and the price difference for an equivalent period of Elite membership.
+   - **Effective date:** Upon successful upgrade, your membership validity period will **restart from the date of upgrade**, and Elite membership benefits will take effect immediately.
 
 3. **Auto-Renewal:** If you select a continuous subscription plan, the recurring fee will be charged from your linked account within 24 hours before the end of each billing cycle. You may cancel at any time through "Settings" or the relevant app store.
 
-# III. Duration Package Purchase and Use Restrictions
+# III. Power Package Purchase and Use Restrictions
 
-1. **Purchase Prerequisite:** Duration packages may only be purchased by subscription members (Premium or Elite). Non-members cannot directly purchase or hold available duration packages.
+1. **Purchase Conditions**: Power Packages are open to all users. You do not need to be a Subscription Member to purchase and hold available Power Packages independently.
 
-2. **Freeze Mechanism:**
-   - If your membership expires, any unused duration package balance in your account will be immediately frozen.
-   - During the freeze period, the duration package cannot be used for any transcription deductions.
+2. **Purchase Restrictions**: A single Lynse account **can only hold and use one valid paid Power Package** at any given time, and **it is not supported to purchase repeatedly before the original Power Package is fully consumed or expired**.
 
-3. **Restoration Mechanism:**
-   - If you renew any tier of membership within the validity period of the duration package, the frozen duration package will automatically become available again.
+3. **Validity Period Statement**: The Power Package is calculated from the date of successful purchase and is **valid for 1 year (365 days)**. Any unused credits that expire will automatically become invalid.
+
+4. **Consumption Priority**: When you perform recording transcription, the system will automatically deduct relevant credit resources according to the following priority:
+    * **First Priority**: Limited-time free / gifted credits (deducted in order from the nearest to the furthest expiration date);
+    * **Second Priority**: Periodically reset base allowance (including the **credits within the Subscription Membership package**, as well as the **monthly base allowance** for free/standard users);
+    * **Third Priority**: Independent paid Power Packages.
 
 # IV. User Rights and Obligations
 
@@ -48,43 +55,36 @@ Welcome to the premium services provided by Shanghai Tianqi Lingguang Technology
 
 # VI. Refund Policy
 
-**Important Notice:** When you purchase service benefits (including Premium membership, Elite membership, and duration packages), once the payment is successfully processed, the Company will immediately activate or extend the relevant services for you. Except as otherwise provided in this Agreement or required by applicable law, activated services are generally non-refundable.
+**Important Notice:** When you purchase service benefits (including Premium membership, Elite membership, and Power Packages), once the payment is successfully processed, the Company will immediately activate or extend the relevant services for you. Except as otherwise provided in this Agreement or required by applicable law, activated services are generally non-refundable.
 
 Refund rules for different products are detailed as follows:
 
-1. **Subscription Memberships (Premium/Elite):** Membership services are digital goods that take effect immediately. Once payment is successful and benefits are activated, refunds are not supported for mid-term cancellations or partial refunds, except in extreme circumstances such as the Company's technical issues rendering the service completely unusable.
+1. **Subscription Memberships (Premium/Elite):** Membership services are digital goods that take effect immediately. Once payment is successful and benefits are activated, **refunds are not supported for mid-term cancellations or partial refunds**, except in extreme circumstances such as the Company's technical issues rendering the service completely unusable.
 
-2. **Duration Package Refund Special Provisions:** In the spirit of customer-first service, we provide the following refund support for Lynse duration packages:
-   - **Eligible Scenario:** If your subscription membership (Premium/Elite) has expired and you still have unused duration package balance in your account, you may apply for a refund.
-   - **Rights During Frozen Status:** Although duration packages are in a "frozen" state when membership expires, this does not affect your right to apply for a refund of the remaining unused balance.
-   - **Calculation Method:** The refund amount will be calculated based on the actual amount you paid for the duration package, prorated according to the remaining unused duration ratio.
+2. **Power Packages**: Power Packages enter a ready-to-use state immediately upon successful purchase. Given that Power Packages have an extended validity period of **1 year (365 days)**, providing users with ample time for consumption, **refunds, transfers, or cash-outs are not supported after purchase**. Please confirm your needs and remaining allowance before purchasing.
 
-3. **Refund Application Process:**
-   - To request a refund for a duration package, please contact customer service and provide your account ID, payment receipt, and reason for the refund.
-   - After verifying your membership status and duration package balance, we will process your refund request within 7 business days.
-
-4. **Disclaimer:** The Company will not process refunds for services rendered unusable due to the user's own actions (such as account suspension for violating the User Agreement, unauthorized account transfer, etc.).
+3. **Disclaimer:** The Company will not process refunds for services rendered unusable due to the user's own actions (such as account suspension for violating the User Agreement, unauthorized account transfer, etc.).
 
 # VII. Invoicing
 
-We will provide you with lawful invoicing services after you complete payment, in accordance with your payment method and the terms of this section. Invoicing and delivery are handled through third-party payment platforms or app store processing systems. Please be aware of and agree to the following:
+We will provide you with lawful invoicing services after you complete payment, in accordance with your payment method and the terms of this section. **Invoicing and delivery are handled through third-party payment platforms or app store processing systems. Please be aware of and agree to the following:**
 
-1. **Apple (iOS) Users:** Your payments are processed by the Apple App Store. In accordance with Apple's privacy and settlement policies, please contact Apple directly (Apple Support) to request an invoice or view purchase receipts. We are unable to directly process invoicing requests for payments made through the App Store.
+1. **Apple (iOS) Users:** Your payments are processed by the Apple App Store. In accordance with Apple's privacy and settlement policies, please contact Apple directly (Apple Support) to request an invoice or view purchase receipts. **We are unable to directly process invoicing requests for payments made through the App Store.**
 
-2. **Android Users:** If you use WeChat Pay or Alipay, please apply for an invoice directly on the WeChat/Alipay payment success page or in the bill details page. Electronic invoices will be automatically generated by the payment platform based on the Company's preset information and sent to your WeChat Card Wallet / Alipay Invoice Manager.
+2. **Android Users:** If you use WeChat Pay or Alipay, please apply for an invoice **directly on the WeChat/Alipay payment success page or in the bill details page**. Electronic invoices will be automatically generated by the payment platform based on the Company's preset information and sent to your WeChat Card Wallet / Alipay Invoice Manager.
 
-3. **Invoicing Notes:**
-   - **Information Accuracy:** Please ensure that you provide accurate and complete invoicing information when applying for an invoice (including but not limited to invoice title, business tax ID, receiving email, mobile phone number, etc.). The Company shall not be responsible for invoice issuance failures, errors, or delays caused by incorrect, incomplete, or invalid information you provide.
-   - **Disclaimer:** The Company shall, to the extent permitted by law, be exempt from liability for invoice issuance delays, failures, or information errors caused by third-party payment platforms, app stores, or network anomalies due to force majeure, but we will actively assist you in communicating with the relevant platforms to resolve the issue.
+**Invoicing Notes:**
+* **Information Accuracy:** Please ensure that you provide accurate and complete invoicing information when applying for an invoice (including but not limited to invoice title, business tax ID, receiving email, mobile phone number, etc.). **The Company shall not be responsible for invoice issuance failures, errors, or delays caused by incorrect, incomplete, or invalid information you provide.**
+* **Disclaimer:** The Company shall, to the extent permitted by law, be exempt from liability for invoice issuance delays, failures, or information errors caused by third-party payment platforms, app stores, or network anomalies due to force majeure, but we will actively assist you in communicating with the relevant platforms to resolve the issue.
 
 # VIII. Auto-Renewal Terms
 
 If you choose to enroll in an "Auto-Renewal" plan (such as monthly or annual continuous subscription), you authorize Lynse to charge your account before membership expiration as follows:
 
-1. **Billing Cycle:** The system will automatically charge your linked account for the next cycle's fee within 24 hours before the current membership period ends.
+1. **Billing Cycle:** The system will automatically charge your linked account for the next cycle's fee within **24 hours** before the current membership period ends.
 
 2. **Cancellation Methods:**
-   - **iOS Users:** Must manually cancel in ** Settings -> Apple ID -> Subscriptions** .
+   - **iOS Users:** Must manually cancel in **Settings -> Apple ID -> Subscriptions**.
    - **Android Users:** May cancel through the billing agreement management in the relevant payment channel (WeChat/Alipay).
 
 3. **Effective Time of Cancellation:** The cancellation of auto-renewal must be completed at least 24 hours before the next billing date; otherwise, the next cycle's fee may be successfully charged. Fees already charged are non-refundable, and membership privileges will continue until the end of the next billing cycle.
@@ -93,7 +93,7 @@ If you choose to enroll in an "Auto-Renewal" plan (such as monthly or annual con
 
 # IX. Miscellaneous
 
-1. **Account Asset Ownership and Transfer:** The premium services (memberships and duration packages) you purchase are uniquely bound to your Lynse account. If you change your account binding through official channels, the related service benefits will be transferred along with the account. Please properly safeguard your account and password. The Company shall not be liable for losses of benefits caused by account disclosure, unauthorized lending, or illegal transfer.
+1. **Account Asset Ownership and Transfer:** The premium services (memberships and Power Packages) you purchase are uniquely bound to your Lynse account. If you change your account binding through official channels, the related service benefits will be transferred along with the account. Please properly safeguard your account and password. The Company shall not be liable for losses of benefits caused by account disclosure, unauthorized lending, or illegal transfer.
 
 2. **Minors:** If you are under 18 years of age, please read this Agreement under the guidance and accompaniment of your legal guardian, and only proceed with payment after obtaining your guardian's consent.
 
@@ -105,6 +105,6 @@ If you choose to enroll in an "Auto-Renewal" plan (such as monthly or annual con
 
 The Company reserves the right to modify this Agreement in accordance with applicable laws and regulations or business adjustments. The modified Agreement will be published within the App. If you have any questions, please contact us through the following means:
 
-- **Company Name:** Shanghai Tianqi Lingguang Technology Co., Ltd.
-- **Email:** contact@lynse.ai
+- **Company Name:** Shanghai RevelSpark Technology Co., Ltd.
+- **Email:** support@lynse.ai
 - **Address:** Room 1901, 19th Floor, Building A, No. 391 Guiping Road, Xuhui District, Shanghai, China 200233

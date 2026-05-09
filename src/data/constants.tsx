@@ -50,12 +50,12 @@ const storeLinkNames: Record<Language, { tmall: string; jd: string; douyin: stri
 export const getStoreLinks = (language: Language): StoreLink[] => [
   {
     name: storeLinkNames[language].tmall,
-    url: 'https://tmall.com',
+    url: 'https://lynse.tmall.com/',
     iconSvg: <TmallIcon />,
   },
   {
     name: storeLinkNames[language].jd,
-    url: 'https://jd.com',
+    url: 'https://mall.jd.com/index-75995904.html?cid=0',
     iconSvg: <JDIcon />,
   },
   {

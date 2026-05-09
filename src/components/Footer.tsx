@@ -83,9 +83,9 @@ const Footer: FC<FooterProps> = ({ language, navigate }) => {
                 </a>
               </li>
               <li>
-                <a href="/download" className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300">
+                <Link href="/download" className="text-[13px] text-[#737373] hover:text-white transition-colors duration-300" navigate={navigate}>
                   {t({ en: 'Related News', zh: '软件下载', 'zh-TW': '軟體下載', ja: 'ソフトウェアダウンロード' }, language)}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
