@@ -16,8 +16,8 @@ const HERO_BG_IMAGES = [
 
 const BG_TRANSITION_DURATION = 1.5;
 
-// Three stages, each ~33% of scroll
-const STAGE = [1 / 3, 2 / 3];
+// Three stages - give stage 2 more time: 25% | 65% | 100%
+const STAGE = [0.25, 0.65];
 
 interface HeroSectionProps {
   language: Language;
@@ -26,16 +26,22 @@ interface HeroSectionProps {
 
 // Stage 2 copy
 const STAGE2_LINE1: Record<Language, string> = {
-  en: 'Every voice, precisely captured.',
-  zh: '每一段声音，都被精准记录。',
-  'zh-TW': '每一段聲音，都被精準記錄。',
-  ja: 'すべての声を、精密に記録。',
+  en: 'In the past, sound was fleeting air;',
+  zh: '过去，声音是转瞬即逝的空气',
+  'zh-TW': '過去，聲音是轉瞬即逝的空氣',
+  ja: 'かつて音は儚い空気だった。',
 };
 const STAGE2_LINE2: Record<Language, string> = {
-  en: 'Every spark of inspiration, intelligently preserved.',
-  zh: '每一次灵感，都被智能保留。',
-  'zh-TW': '每一次靈感，都被智能保留。',
-  ja: 'すべてのインスピレーションを、スマートに保存。',
+  en: 'now, it is the soil for embodied intelligence to evolve.',
+  zh: '现在，它是具身智能进化的土壤',
+  'zh-TW': '現在，它是具身智能進化的土壤',
+  ja: '今、それは身体知能が進化する土壌である。',
+};
+const STAGE2_LINE3: Record<Language, string> = {
+  en: 'Every recording is becoming a better future self.',
+  zh: '每一次记录，都在成为未来更好的自己',
+  'zh-TW': '每一次記錄，都在成為未來更好的自己',
+  ja: 'すべての記録が、未来のより良い自分へとつながっていく。',
 };
 
 // Stage 3 CTA headline
@@ -64,12 +70,14 @@ const HeroSection: FC<HeroSectionProps> = ({ language, navigate }) => {
   const s1Opacity = useTransform(scrollYProgress, [0, STAGE[0] - 0.05, STAGE[0]], [1, 1, 0]);
   const s1Y = useTransform(scrollYProgress, [0, STAGE[0]], [0, -40]);
 
-  // Stage 2 → line-by-line slide up
+  // Stage 2 → line-by-line slide up (no fade out)
   const s2Opacity = useTransform(scrollYProgress, [STAGE[0] - 0.05, STAGE[0] + 0.05, STAGE[1] - 0.05, STAGE[1]], [0, 1, 1, 0]);
   const s2Line1Opacity = useTransform(scrollYProgress, [STAGE[0], STAGE[0] + 0.10], [0, 1]);
   const s2Line1Y = useTransform(scrollYProgress, [STAGE[0], STAGE[0] + 0.10], [50, 0]);
   const s2Line2Opacity = useTransform(scrollYProgress, [STAGE[0] + 0.06, STAGE[0] + 0.16], [0, 1]);
   const s2Line2Y = useTransform(scrollYProgress, [STAGE[0] + 0.06, STAGE[0] + 0.16], [50, 0]);
+  const s2Line3Opacity = useTransform(scrollYProgress, [STAGE[0] + 0.12, STAGE[0] + 0.22], [0, 1]);
+  const s2Line3Y = useTransform(scrollYProgress, [STAGE[0] + 0.12, STAGE[0] + 0.22], [50, 0]);
 
   // Stage 3 → fade in
   const s3Opacity = useTransform(scrollYProgress, [STAGE[1] - 0.05, STAGE[1] + 0.05], [0, 1]);
@@ -253,18 +261,24 @@ const HeroSection: FC<HeroSectionProps> = ({ language, navigate }) => {
           style={{ opacity: s2Opacity }}
         >
           <div className="max-w-6xl mx-auto px-6 md:px-8 w-full">
-            <div className="space-y-3">
+            <div className="space-y-6">
               <motion.h2
-                className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug tracking-tight text-black whitespace-nowrap"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug tracking-tight text-black"
                 style={{ opacity: s2Line1Opacity, y: s2Line1Y }}
               >
                 {STAGE2_LINE1[language]}
               </motion.h2>
               <motion.h2
-                className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug tracking-tight text-[#5E6AD2] whitespace-nowrap"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug tracking-tight text-black"
                 style={{ opacity: s2Line2Opacity, y: s2Line2Y }}
               >
                 {STAGE2_LINE2[language]}
+              </motion.h2>
+              <motion.h2
+                className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug tracking-tight text-[#5E6AD2]"
+                style={{ opacity: s2Line3Opacity, y: s2Line3Y }}
+              >
+                {STAGE2_LINE3[language]}
               </motion.h2>
             </div>
           </div>
