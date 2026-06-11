@@ -75,7 +75,7 @@ export const t = (text: MultiLangText, language: Language): string => text[langu
 
 export const HERO = {
   badge: { en: 'AI-Powered', zh: 'AI 驱动', 'zh-TW': 'AI 驅動', ja: 'AI搭載' },
-  headline: { en: 'Memory · Thinking · AI', zh: '记忆 · 思考 · AI', 'zh-TW': '記憶 · 思考 · AI', ja: '記憶 · 思考 · AI' },
+  headline: { en: 'Record · Thinking · Evolve', zh: '记录 · 思考 · 进化', 'zh-TW': '記錄 · 思考 · 進化', ja: '記録 · 思考 · 進化' },
   tagline: {
     en: 'Lynse | Capture Sound, Capture Fleeting Inspiration',
     zh: 'Lynse | 灵光记：留住声音，留住转瞬即逝的灵光',

@@ -28,7 +28,7 @@ const Footer: FC<FooterProps> = ({ language, navigate }) => {
   };
 
   return (
-    <footer id="contact" className="bg-[#08090A] text-white py-12 md:py-20 lg:py-24">
+    <footer id="contact" className="bg-[#08090A] text-white pt-12 pb-4 md:pt-20 md:pb-6 lg:pt-24 lg:pb-8">
       <div className="max-w-6xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 lg:gap-10">
           {/* Brand */}

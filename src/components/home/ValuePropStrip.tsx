@@ -10,7 +10,7 @@ interface ValuePropStripProps {
 const VALUE_STEPS = [
   {
     number: '01',
-    title: { en: 'Memory', zh: '记忆', 'zh-TW': '記憶', ja: '記憶' },
+    title: { en: 'Record', zh: '记录', 'zh-TW': '記錄', ja: '記録' },
     subtitle: { en: 'Record Everything', zh: '记录一切', 'zh-TW': '記錄一切', ja: 'すべてを記録' },
     description: {
       en: 'One-tap recording captures every moment with crystal clarity',
@@ -34,7 +34,7 @@ const VALUE_STEPS = [
   },
   {
     number: '03',
-    title: { en: 'AI', zh: 'AI', 'zh-TW': 'AI', ja: 'AI' },
+    title: { en: 'Evolve', zh: '进化', 'zh-TW': '進化', ja: '進化' },
     subtitle: { en: 'Evolve & Summarize', zh: '进化与总结', 'zh-TW': '進化與總結', ja: '進化と要約' },
     description: {
       en: 'Self-evolving agent that learns and grows with every use',
@@ -56,7 +56,7 @@ const ValuePropStrip: FC<ValuePropStripProps> = ({ language }) => (
             {t({ en: 'How It Works', zh: '工作原理', 'zh-TW': '工作原理', ja: '仕組み' }, language)}
           </p>
           <h2 className="text-3xl md:text-4xl font-extrabold text-black tracking-tight">
-            {t({ en: 'From Memory to Intelligence', zh: '从记忆到智能', 'zh-TW': '從記憶到智能', ja: '記憶からインテリジェンスへ' }, language)}
+            {t({ en: 'From Record to Intelligence', zh: '从记录到智能', 'zh-TW': '從記錄到智能', ja: '記録からインテリジェンスへ' }, language)}
           </h2>
         </div>
       </FadeInUp>

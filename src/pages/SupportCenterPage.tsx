@@ -15,10 +15,8 @@ const TEXTS = {
   contactSubtitle: { en: 'Our support team is ready to assist you', zh: '我们的支持团队随时为您服务', 'zh-TW': '我們的支援團隊隨時為您服務', ja: 'サポートチームがいつでもお手伝いします' },
   emailUs: { en: 'Email Us', zh: '发送邮件', 'zh-TW': '發送郵件', ja: 'メールを送る' },
   contactSupport: { en: 'Contact Support', zh: '联系客服', 'zh-TW': '聯繫客服', ja: 'カスタマーサービス' },
-  joinGroup: { en: 'Join User Group', zh: '加入用户群', 'zh-TW': '加入用戶群', ja: 'ユーザーグループに参加' },
   tapToShow: { en: 'Tap to show QR code', zh: '点击查看二维码', 'zh-TW': '點擊查看二維碼', ja: 'タップしてQRコードを表示' },
   scanContact: { en: 'Scan to contact', zh: '扫码联系客服', 'zh-TW': '掃碼聯繫客服', ja: 'スキャンしてサポートに連絡' },
-  scanQR: { en: 'Scan to join', zh: '扫码加入', 'zh-TW': '掃碼加入', ja: 'スキャンして参加' },
   phoneSupport: { en: 'Phone Support', zh: '电话支持', 'zh-TW': '電話支援', ja: '電話サポート' },
   searchResultsFor: { en: 'Search results for', zh: '搜索结果：', 'zh-TW': '搜尋結果：', ja: '検索結果：' },
   clearSearch: { en: 'Clear search', zh: '清除搜索', 'zh-TW': '清除搜尋', ja: '検索をクリア' },
@@ -54,7 +52,6 @@ const SupportCenterPage: React.FC<Props> = ({ language, embedded = false }) => {
     return new Set();
   });
   const [openItems, setOpenItems] = useState<Set<string>>(new Set());
-  const [showQR, setShowQR] = useState(false);
   const [showCSRQ, setShowCSRQ] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const categoryRef = useRef<HTMLDivElement>(null);
@@ -271,7 +268,7 @@ const SupportCenterPage: React.FC<Props> = ({ language, embedded = false }) => {
             <h2 className="text-base sm:text-lg font-bold text-black mb-1.5 sm:mb-2">{t(TEXTS.contactTitle, language)}</h2>
             <p className="text-xs sm:text-sm text-gray-500">{t(TEXTS.contactSubtitle, language)}</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto">
             <a href="mailto:support@lynse.ai" className="bg-white rounded-xl border border-gray-100 p-4 sm:p-5 text-center hover:border-gray-300 transition-all active:bg-gray-50">
               <p className="text-sm font-semibold text-black mb-1">{t(TEXTS.emailUs, language)}</p>
               <p className="text-xs text-gray-400">support@lynse.ai</p>
@@ -294,27 +291,9 @@ const SupportCenterPage: React.FC<Props> = ({ language, embedded = false }) => {
                 </>
               )}
             </div>
-            <div className="relative">
-              <button
-                onClick={() => setShowQR(!showQR)}
-                className="w-full bg-white rounded-xl border border-gray-100 p-4 sm:p-5 text-center hover:border-gray-300 transition-all cursor-pointer active:bg-gray-50"
-              >
-                <p className="text-sm font-semibold text-black mb-1">{t(TEXTS.joinGroup, language)}</p>
-                <p className="text-xs text-gray-400">{t(TEXTS.tapToShow, language)}</p>
-              </button>
-              {showQR && (
-                <>
-                  <div className="fixed inset-0 z-40" onClick={() => setShowQR(false)} />
-                  <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 z-50 bg-white rounded-2xl shadow-xl border border-gray-100 p-5 text-center ${embedded ? 'w-52' : 'w-48 sm:w-52'}`}>
-                    <img src="/images/contact_me_qr.png" alt={t(TEXTS.scanQR, language)} className="w-36 sm:w-40 h-36 sm:h-40 mx-auto mb-2" />
-                    <p className="text-xs text-gray-500">{t(TEXTS.scanQR, language)}</p>
-                  </div>
-                </>
-              )}
-            </div>
-            <a href="tel:+8615618981688" className="bg-white rounded-xl border border-gray-100 p-4 sm:p-5 text-center hover:border-gray-300 transition-all active:bg-gray-50">
+            <a href="tel:+8617621502813" className="bg-white rounded-xl border border-gray-100 p-4 sm:p-5 text-center hover:border-gray-300 transition-all active:bg-gray-50">
               <p className="text-sm font-semibold text-black mb-1">{t(TEXTS.phoneSupport, language)}</p>
-              <p className="text-xs text-gray-400">+86 15618981688</p>
+              <p className="text-xs text-gray-400">+86 17621502813</p>
             </a>
           </div>
         </div>
