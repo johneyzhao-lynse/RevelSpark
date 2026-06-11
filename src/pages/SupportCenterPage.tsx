@@ -1,202 +1,324 @@
-import React, { useState } from 'react';
-import Header from '../components/Header';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
+import { Search, ChevronDown } from 'lucide-react';
 import { Language } from '../data/constants';
+import { FAQ_CATEGORIES, FAQItem, FAQSection, FAQCategory } from '../data/faqData';
 
-const SupportCenterPage = () => {
-  const [language, setLanguage] = useState<Language>('zh');
+// ── Texts ────────────────────────────────────────────────────
 
-  const handleLanguageChange = (newLanguage: Language) => {
-    setLanguage(newLanguage);
+const TEXTS = {
+  title: { en: 'How can we help?', zh: '需要什么帮助？', 'zh-TW': '需要什麼幫助？', ja: 'どのようにお手伝いできますか？' },
+  subtitle: { en: 'Search for answers or browse categories below', zh: '搜索答案或浏览下方分类', 'zh-TW': '搜索答案或瀏覽下方分類', ja: '回答を検索するか、以下のカテゴリを参照してください' },
+  searchPlaceholder: { en: 'Search help articles...', zh: '搜索帮助文章...', 'zh-TW': '搜尋幫助文章...', ja: 'ヘルプ記事を検索...' },
+  articles: { en: 'articles', zh: '篇文章', 'zh-TW': '篇文章', ja: '件の記事' },
+  noResults: { en: 'No results found. Try different keywords.', zh: '未找到结果，请尝试其他关键词。', 'zh-TW': '未找到結果，請嘗試其他關鍵詞。', ja: '結果が見つかりません。別のキーワードをお試しください。' },
+  contactTitle: { en: 'Still need help?', zh: '还需要帮助？', 'zh-TW': '還需要幫助？', ja: 'まだお困りですか？' },
+  contactSubtitle: { en: 'Our support team is ready to assist you', zh: '我们的支持团队随时为您服务', 'zh-TW': '我們的支援團隊隨時為您服務', ja: 'サポートチームがいつでもお手伝いします' },
+  emailUs: { en: 'Email Us', zh: '发送邮件', 'zh-TW': '發送郵件', ja: 'メールを送る' },
+  contactSupport: { en: 'Contact Support', zh: '联系客服', 'zh-TW': '聯繫客服', ja: 'カスタマーサービス' },
+  joinGroup: { en: 'Join User Group', zh: '加入用户群', 'zh-TW': '加入用戶群', ja: 'ユーザーグループに参加' },
+  tapToShow: { en: 'Tap to show QR code', zh: '点击查看二维码', 'zh-TW': '點擊查看二維碼', ja: 'タップしてQRコードを表示' },
+  scanContact: { en: 'Scan to contact', zh: '扫码联系客服', 'zh-TW': '掃碼聯繫客服', ja: 'スキャンしてサポートに連絡' },
+  scanQR: { en: 'Scan to join', zh: '扫码加入', 'zh-TW': '掃碼加入', ja: 'スキャンして参加' },
+  phoneSupport: { en: 'Phone Support', zh: '电话支持', 'zh-TW': '電話支援', ja: '電話サポート' },
+  searchResultsFor: { en: 'Search results for', zh: '搜索结果：', 'zh-TW': '搜尋結果：', ja: '検索結果：' },
+  clearSearch: { en: 'Clear search', zh: '清除搜索', 'zh-TW': '清除搜尋', ja: '検索をクリア' },
+};
+
+const t = (text: Record<Language, string>, lang: Language) => text[lang];
+
+// ── Component ────────────────────────────────────────────────
+
+interface Props {
+  language: Language;
+  embedded?: boolean;
+}
+
+const SupportCenterPage: React.FC<Props> = ({ language, embedded = false }) => {
+  // Read category from URL params for auto-expand
+  const urlCategory = useMemo(() => {
+    return new URLSearchParams(window.location.search).get('category') || '';
+  }, []);
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(() => {
+    if (urlCategory && FAQ_CATEGORIES.some(c => c.id === urlCategory)) {
+      return new Set([urlCategory]);
+    }
+    return new Set();
+  });
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(() => {
+    if (urlCategory) {
+      const cat = FAQ_CATEGORIES.find(c => c.id === urlCategory);
+      if (cat) return new Set(cat.sections.map(s => s.id));
+    }
+    return new Set();
+  });
+  const [openItems, setOpenItems] = useState<Set<string>>(new Set());
+  const [showQR, setShowQR] = useState(false);
+  const [showCSRQ, setShowCSRQ] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const categoryRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to expanded category on mount
+  useEffect(() => {
+    if (urlCategory) {
+      setTimeout(() => {
+        const el = document.querySelector(`[data-category-id="${urlCategory}"]`);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+  }, [urlCategory]);
+
+  // Search
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) return null;
+    const q = searchQuery.toLowerCase();
+    const results: { item: FAQItem; category: FAQCategory; section: FAQSection }[] = [];
+    FAQ_CATEGORIES.forEach(cat => {
+      cat.sections.forEach(sec => {
+        sec.items.forEach(item => {
+          const qMatch = item.question[language].toLowerCase().includes(q);
+          const aMatch = typeof item.answer[language] === 'string' && (item.answer[language] as string).toLowerCase().includes(q);
+          if (qMatch || aMatch) results.push({ item, category: cat, section: sec });
+        });
+      });
+    });
+    return results;
+  }, [searchQuery, language]);
+
+  const toggle = (set: Set<string>, id: string, setter: React.Dispatch<React.SetStateAction<Set<string>>>) => {
+    setter(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
+  };
+
+  const toggleCategory = (id: string) => toggle(expandedCategories, id, setExpandedCategories);
+  const toggleSection = (id: string) => toggle(expandedSections, id, setExpandedSections);
+  const toggleItem = (id: string) => toggle(openItems, id, setOpenItems);
+
+  const clearSearch = () => {
+    setSearchQuery('');
+    inputRef.current?.focus();
+  };
+
+  const formatAnswer = (text: string | React.ReactNode) => {
+    if (typeof text !== 'string') return text;
+    return text.split('\n').map((line, i) => (
+      <React.Fragment key={i}>{line}{i < text.split('\n').length - 1 && <br />}</React.Fragment>
+    ));
   };
 
   return (
-    <div className="bg-gray-50 text-gray-700 font-sans antialiased min-h-screen flex flex-col">
-      <Header language={language} onLanguageChange={handleLanguageChange} />
-
-      <main className="pt-28 pb-16 sm:pt-32 sm:pb-24">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
-          {/* Hero Section */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 tracking-tight mb-6">
-              <span className="bg-gradient-to-r from-gray-800 to-gray-900 bg-clip-text text-transparent">"灵光记"</span> 支持中心
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              我们在这里为您提供全方位的技术支持和服务，让您更好地使用 灵光记和"灵光记"APP
-            </p>
+    <div className="bg-gray-50 font-sans antialiased min-h-screen">
+      {/* ── Hero ── */}
+      <div className={`${embedded ? 'pt-8 pb-6' : 'pt-20 pb-8 sm:pt-28 sm:pb-12'} bg-white`}>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className={`text-2xl sm:text-4xl lg:text-5xl font-extrabold text-black tracking-tight ${embedded ? 'mb-3' : 'mb-4'}`}>
+            {t(TEXTS.title, language)}
+          </h1>
+          <p className="text-sm sm:text-lg text-gray-500 mb-6 sm:mb-8">
+            {t(TEXTS.subtitle, language)}
+          </p>
+          <div className="relative max-w-xl mx-auto">
+            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-gray-400" />
+            <input
+              ref={inputRef}
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={t(TEXTS.searchPlaceholder, language)}
+              className="w-full pl-10 sm:pl-12 pr-10 py-3 sm:py-3.5 bg-gray-50 border border-gray-200 rounded-full text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-gray-300 transition-all"
+            />
+            {searchQuery && (
+              <button onClick={clearSearch} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+            )}
           </div>
-
-          {/* Quick Actions */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            <div className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/50 hover:shadow-xl transition-all">
-              <div className="text-black mb-4">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">常见问题</h3>
-              <p className="text-gray-600 mb-4">快速找到您需要的答案</p>
-              <a href="#faq" className="text-black hover:text-black font-medium">查看FAQ →</a>
-            </div>
-
-            <div className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/50 hover:shadow-xl transition-all">
-              <div className="text-black mb-4">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">联系我们</h3>
-              <p className="text-gray-600 mb-4">获取专业的技术支持</p>
-              <a href="#contact" className="text-black hover:text-black font-medium">联系客服 →</a>
-            </div>
-
-            <div className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-white/50 hover:shadow-xl transition-all">
-              <div className="text-black mb-4">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                </svg>
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">使用指南</h3>
-              <p className="text-gray-600 mb-4">详细的产品使用教程</p>
-              <a href="#guides" className="text-black hover:text-black font-medium">查看指南 →</a>
-            </div>
-          </div>
-
-          {/* FAQ Section */}
-          <section id="faq" className="mb-16">
-            <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/50 p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">常见问题</h2>
-
-              <div className="space-y-6">
-                <div className="border-b border-gray-200 pb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">如何连接 灵光记？</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    1. 确保您的手机蓝牙已开启<br />
-                    2. 打开"灵光记"APP<br />
-                    3. 点击"添加设备"<br />
-                    4. 按照屏幕提示完成配对
-                  </p>
-                </div>
-
-                <div className="border-b border-gray-200 pb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">录音文件保存在哪里？</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    录音文件默认保存在"灵光记"APP的本地存储中。您也可以选择开启云同步功能，将文件备份到云端。
-                  </p>
-                </div>
-
-                <div className="border-b border-gray-200 pb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">支持哪些语言转写？</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    "灵光记"支持120多种语言的语音转写，包括中文（简体和繁体）、英语、日语、韩语、法语、德语、西班牙语等。
-                  </p>
-                </div>
-
-                <div className="border-b border-gray-200 pb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">如何导出转写文本？</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    在"灵光记"APP中，选择要导出的录音文件，点击"导出"按钮，可以选择导出为TXT、DOCX或PDF格式。
-                  </p>
-                </div>
-
-                <div className="border-b border-gray-200 pb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">电池续航时间有多长？</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    灵光记在连续录音模式下可续航12小时，待机模式下可续航7天。充电时间约1.5小时。
-                  </p>
-                </div>
-
-                <div className="pb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">如何更新固件？</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    在"灵光记"APP中，进入"设置" → "设备管理" → "固件更新"，按照提示完成更新。
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Contact Section */}
-          <section id="contact" className="mb-16">
-            <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/50 p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">联系我们</h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">客服联系方式</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                      </svg>
-                      <span className="text-gray-600">邮箱：<a href="mailto:support@lynse.ai" className="text-black hover:underline">support@lynse.ai</a></span>
-                    </div>
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                      </svg>
-                      <span className="text-gray-600">电话：<a href="tel:+8615618981688" className="text-black hover:underline">+86 15618981688</a></span>
-                    </div>
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-black mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                      </svg>
-                      <span className="text-gray-600">服务时间：周一至周五 9:00-18:00</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">在线客服</h3>
-                  <p className="text-gray-600 mb-4">您也可以通过以下方式获取即时帮助：</p>
-                  <div className="space-y-3">
-                    <button className="w-full bg-gradient-to-r from-gray-800 to-gray-900 text-white py-3 px-6 rounded-xl font-medium hover:shadow-lg transition-all">
-                      在线客服聊天
-                    </button>
-                    <button className="w-full border-2 border-black text-black py-3 px-6 rounded-xl font-medium hover:bg-black hover:text-white transition-all">
-                      提交工单
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Guides Section */}
-          <section id="guides" className="mb-16">
-            <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/50 p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">使用指南</h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-gradient-to-br from-white/50 to-gray-50/60 rounded-xl p-6 border border-white/40">
-                  <div className="text-black mb-4">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">快速入门</h3>
-                  <p className="text-gray-600 mb-4">5分钟了解如何开始使用灵光记</p>
-                  <a href="/support/quick-start" className="text-black hover:text-black font-medium">查看指南 →</a>
-                </div>
-
-                <div className="bg-gradient-to-br from-white/50 to-gray-50/60 rounded-xl p-6 border border-white/40">
-                  <div className="text-black mb-4">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v6m-6 0a2 2 0 002 2h2a2 2 0 002-2" />
-                    </svg>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">高级功能</h3>
-                  <p className="text-gray-600 mb-4">探索灵光记的全部高级功能</p>
-                  <a href="/support/advanced-features" className="text-black hover:text-black font-medium">查看指南 →</a>
-                </div>
-
-                {/* 可以根据需要添加更多指南卡片 */}
-              </div>
-            </div>
-          </section>
         </div>
-      </main>
+      </div>
 
+      <div className="max-w-3xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10">
+
+        {/* ── Search Results ── */}
+        {searchResults !== null && (
+          <div className="mb-8 sm:mb-12">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <p className="text-sm text-gray-500 truncate mr-3">
+                {t(TEXTS.searchResultsFor, language)}<span className="text-black font-medium">"{searchQuery}"</span>
+              </p>
+              <button onClick={clearSearch} className="text-sm text-gray-400 hover:text-black transition-colors flex-shrink-0">
+                {t(TEXTS.clearSearch, language)}
+              </button>
+            </div>
+            {searchResults.length === 0 ? (
+              <div className="text-center py-12 sm:py-16">
+                <p className="text-gray-500 text-sm">{t(TEXTS.noResults, language)}</p>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {searchResults.map(({ item, category, section }) => (
+                  <div key={item.id} className="bg-white rounded-xl border border-gray-100 overflow-hidden">
+                    <button onClick={() => toggleItem(item.id)} className="w-full flex items-start justify-between gap-2 sm:gap-3 p-4 sm:p-5 text-left">
+                      <div className="flex-1 min-w-0">
+                        <span className="text-xs text-gray-400 block mb-0.5">{t(category.title, language)} · {t(section.title, language)}</span>
+                        <span className="font-semibold text-black text-sm leading-snug">{item.question[language]}</span>
+                      </div>
+                      <ChevronDown className={`w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5 transition-transform duration-200 ${openItems.has(item.id) ? 'rotate-180' : ''}`} />
+                    </button>
+                    {openItems.has(item.id) && (
+                      <div className="px-4 sm:px-5 pb-4 sm:pb-5">
+                        <div className="bg-gray-50 rounded-xl p-3 sm:p-4">
+                          <p className="text-gray-600 text-sm leading-relaxed break-words">{formatAnswer(item.answer[language])}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ── Full Accordion (all categories) ── */}
+        {searchResults === null && (
+          <div className="space-y-2 sm:space-y-3">
+            {FAQ_CATEGORIES.map(category => {
+              const catExpanded = expandedCategories.has(category.id);
+              const totalItems = category.sections.reduce((a, s) => a + s.items.length, 0);
+
+              return (
+                <div key={category.id} data-category-id={category.id} className="bg-white rounded-xl sm:rounded-2xl border border-gray-100 overflow-hidden">
+                  {/* Category Header */}
+                  <button
+                    onClick={() => toggleCategory(category.id)}
+                    className="w-full flex items-center justify-between px-4 sm:px-5 py-3.5 sm:py-4 hover:bg-gray-50/50 transition-colors active:bg-gray-50"
+                  >
+                    <div className="text-left">
+                      <h2 className="text-sm sm:text-base font-bold text-black">{t(category.title, language)}</h2>
+                      <p className="text-xs text-gray-400 mt-0.5">{totalItems} {t(TEXTS.articles, language)}</p>
+                    </div>
+                    <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 text-gray-400 transition-transform duration-200 ${catExpanded ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {/* Category Body */}
+                  <div className={`transition-all duration-300 ease-in-out ${catExpanded ? 'max-h-[10000px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+                    <div className="border-t border-gray-100">
+                      {(() => {
+                        const isSingleSection = category.sections.length === 1;
+
+                        const renderFAQItem = (item: FAQItem) => (
+                          <div key={item.id} className="border-t border-gray-50">
+                            <button
+                              onClick={() => toggleItem(item.id)}
+                              className="w-full flex items-start justify-between gap-2 sm:gap-3 px-4 sm:px-5 py-2.5 sm:py-3 text-left hover:bg-gray-50/30 transition-colors active:bg-gray-50"
+                            >
+                              <span className="text-sm text-black font-medium pl-2.5 sm:pl-3 border-l-2 border-gray-200 leading-snug">{item.question[language]}</span>
+                              <ChevronDown className={`w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5 transition-transform duration-200 ${openItems.has(item.id) ? 'rotate-180' : ''}`} />
+                            </button>
+                            <div className={`transition-all duration-300 ease-in-out ${openItems.has(item.id) ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+                              <div className="px-3 sm:px-5 pb-2.5 sm:pb-3 pl-6 sm:pl-8">
+                                <div className="bg-gray-50 rounded-xl p-3 sm:p-4">
+                                  <p className="text-gray-600 text-sm leading-relaxed break-words">{formatAnswer(item.answer[language])}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+
+                        return category.sections.map(section => {
+                          // Single section: render items directly without section wrapper
+                          if (isSingleSection) {
+                            return (
+                              <div key={section.id}>
+                                {section.items.map(item => renderFAQItem(item))}
+                              </div>
+                            );
+                          }
+
+                          const secExpanded = expandedSections.has(section.id);
+                          return (
+                            <div key={section.id} className="border-t border-gray-50 first:border-t-0">
+                              {/* Section Header */}
+                              <button
+                                onClick={() => toggleSection(section.id)}
+                                className="w-full flex items-center justify-between px-4 sm:px-5 py-3 sm:py-3.5 hover:bg-gray-50/30 transition-colors active:bg-gray-50"
+                              >
+                                <div className="text-left">
+                                  <h3 className="text-sm font-semibold text-black">{t(section.title, language)}</h3>
+                                  <p className="text-xs text-gray-400 mt-0.5">{section.items.length} {t(TEXTS.articles, language)}</p>
+                                </div>
+                                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${secExpanded ? 'rotate-180' : ''}`} />
+                              </button>
+
+                              {/* Section Items */}
+                              <div className={`transition-all duration-300 ease-in-out ${secExpanded ? 'max-h-[8000px] opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+                                {section.items.map(item => renderFAQItem(item))}
+                              </div>
+                            </div>
+                          );
+                        });
+                      })()}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* ── Contact ── */}
+        <div className="mt-10 sm:mt-16 border-t border-gray-200 pt-8 sm:pt-10">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-base sm:text-lg font-bold text-black mb-1.5 sm:mb-2">{t(TEXTS.contactTitle, language)}</h2>
+            <p className="text-xs sm:text-sm text-gray-500">{t(TEXTS.contactSubtitle, language)}</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <a href="mailto:support@lynse.ai" className="bg-white rounded-xl border border-gray-100 p-4 sm:p-5 text-center hover:border-gray-300 transition-all active:bg-gray-50">
+              <p className="text-sm font-semibold text-black mb-1">{t(TEXTS.emailUs, language)}</p>
+              <p className="text-xs text-gray-400">support@lynse.ai</p>
+            </a>
+            <div className="relative">
+              <button
+                onClick={() => setShowCSRQ(!showCSRQ)}
+                className="w-full bg-white rounded-xl border border-gray-100 p-4 sm:p-5 text-center hover:border-gray-300 transition-all cursor-pointer active:bg-gray-50"
+              >
+                <p className="text-sm font-semibold text-black mb-1">{t(TEXTS.contactSupport, language)}</p>
+                <p className="text-xs text-gray-400">{t(TEXTS.tapToShow, language)}</p>
+              </button>
+              {showCSRQ && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setShowCSRQ(false)} />
+                  <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 z-50 bg-white rounded-2xl shadow-xl border border-gray-100 p-5 text-center ${embedded ? 'w-52' : 'w-48 sm:w-52'}`}>
+                    <img src="/images/customer_service_qr.png" alt={t(TEXTS.scanContact, language)} className="w-36 sm:w-40 h-36 sm:h-40 mx-auto mb-2" />
+                    <p className="text-xs text-gray-500">{t(TEXTS.scanContact, language)}</p>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className="relative">
+              <button
+                onClick={() => setShowQR(!showQR)}
+                className="w-full bg-white rounded-xl border border-gray-100 p-4 sm:p-5 text-center hover:border-gray-300 transition-all cursor-pointer active:bg-gray-50"
+              >
+                <p className="text-sm font-semibold text-black mb-1">{t(TEXTS.joinGroup, language)}</p>
+                <p className="text-xs text-gray-400">{t(TEXTS.tapToShow, language)}</p>
+              </button>
+              {showQR && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setShowQR(false)} />
+                  <div className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 z-50 bg-white rounded-2xl shadow-xl border border-gray-100 p-5 text-center ${embedded ? 'w-52' : 'w-48 sm:w-52'}`}>
+                    <img src="/images/contact_me_qr.png" alt={t(TEXTS.scanQR, language)} className="w-36 sm:w-40 h-36 sm:h-40 mx-auto mb-2" />
+                    <p className="text-xs text-gray-500">{t(TEXTS.scanQR, language)}</p>
+                  </div>
+                </>
+              )}
+            </div>
+            <a href="tel:+8615618981688" className="bg-white rounded-xl border border-gray-100 p-4 sm:p-5 text-center hover:border-gray-300 transition-all active:bg-gray-50">
+              <p className="text-sm font-semibold text-black mb-1">{t(TEXTS.phoneSupport, language)}</p>
+              <p className="text-xs text-gray-400">+86 15618981688</p>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
