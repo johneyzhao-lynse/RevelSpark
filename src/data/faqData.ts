@@ -1294,13 +1294,13 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
     id: 'personalization',
     title: {
       en: 'Templates & Industry Dictionaries',
-      zh: '模板与行业词库',
+      zh: '个性化体验',
       'zh-TW': '模板與行業詞庫',
       ja: 'テンプレートと業界辞書',
     },
     description: {
       en: 'Official templates, custom templates and industry dictionaries',
-      zh: '官方模板、自定义模板和行业词库',
+      zh: '模板、行业词库和常用输出方式',
       'zh-TW': '官方模板、自定義模板和行業詞庫',
       ja: '公式テンプレート、カスタムテンプレート、業界辞書',
     },
@@ -1310,14 +1310,14 @@ export const FAQ_CATEGORIES: FAQCategory[] = [
         id: 'personalization-settings',
         title: {
           en: 'Templates & Industry Dictionaries',
-          zh: '模板与行业词库',
+          zh: '个性化体验',
           'zh-TW': '模板與行業詞庫',
           ja: 'テンプレートと業界辞書',
         },
         icon: 'Sliders',
         description: {
           en: 'Note templates and industry dictionaries',
-          zh: '笔记模板和行业词库',
+          zh: '模板、行业词库和常用输出方式',
           'zh-TW': '筆記模板和行業詞庫',
           ja: 'ノートテンプレートと業界辞書',
         },
