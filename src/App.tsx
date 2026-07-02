@@ -20,6 +20,13 @@ const PageLoader = () => (
 
 type Route = '/' | '/download' | '/sparkcard' | '/about' | '/SupportCenterPage' | 'maintenance';
 
+function normalizePath(path: string) {
+  if (path.length > 1 && path.endsWith('/')) {
+    return path.slice(0, -1);
+  }
+  return path;
+}
+
 // Map country code to language
 function countryToLanguage(country: string): Language {
   const map: Record<string, Language> = {
@@ -51,7 +58,7 @@ function detectLanguage(): Language {
 }
 
 function getInitialRoute(): Route {
-  const path = window.location.pathname;
+  const path = normalizePath(window.location.pathname);
   if (path === '/sparkcard') return '/sparkcard';
   if (path === '/about') return '/about';
   if (path === '/SupportCenterPage') return '/SupportCenterPage';
@@ -63,6 +70,7 @@ function App() {
   const [route, setRoute] = useState<Route>(getInitialRoute);
 
   const navigate = useCallback((path: string) => {
+    const normalizedPath = normalizePath(path);
     const validRoutes: Record<string, Route> = {
       '/': '/',
       '/download': '/download',
@@ -70,7 +78,7 @@ function App() {
       '/about': '/about',
       '/SupportCenterPage': '/SupportCenterPage',
     };
-    const r = validRoutes[path] ?? 'maintenance';
+    const r = validRoutes[normalizedPath] ?? 'maintenance';
     setRoute(r);
     window.history.pushState({}, '', path);
   }, []);
